@@ -2,15 +2,13 @@
   <img src="https://s3-us-west-2.amazonaws.com/simplyrets/site/simplyrets-logo-horizontal.svg" width="500"/>
   <br/>
   <i>A RESTful API and WordPress plugin for powering your website wit data from your MLS.</i>
+  <br/>
+  <br/>
 </div>
 
-> [Homepage](http://simplyrets.com) &nbsp;&middot;&nbsp;
-> [Services](http://simplyrets.com/services) &nbsp;&middot;&nbsp;
-> [Pricing](http://simplyrets.com/#home-pricing) &nbsp;&middot;&nbsp;
-> [Contact us](http://simplyrets.com/#home-contact) &nbsp;&middot;&nbsp;
-> [Dashboard](http://simplyrets.com/account)
+<br/>
 
-## WordPress Plugin
+# WordPress Plugin
 > The SimplyRETS WordPress plugin is a plug-and-play solution to build
 > a website for your MLS listings.
 
@@ -30,7 +28,10 @@ requests and address your issues._
 - [View the code](https://github.com/SimplyRETS/simplyretswp)
 - [Submit an issue](https://github.com/SimplyRETS/simplyretswp/issues/new)
 
-## Developer API
+<br/>
+<br/>
+
+# Developer API
 > The SimplyRETS developer API makes it simple to pull listings in
 > from an MLS, and has a robust set of fields and query parameters for
 > complex applications.
@@ -44,10 +45,3 @@ documentation, examples, and help topics. Browse the links below:
 - [Full API documentation](https://docs.simplyrets.com/api/index.html)
 - [View a live app (MaxAvenue.com)](https://maxavenue.com)
 - [Browse help topics](https://simplyrets.com/tags/RETS.html)
-
----
-
-> [simplyrets.com](http://simplyrets.com) &nbsp;&middot;&nbsp;
-> [Terms](https://simplyrets.com/termsofservice) &nbsp;&middot;&nbsp;
-> [Privacy](https://simplyrets.com/privacypolicy) &nbsp;&middot;&nbsp;
-> [Contact us](https://simplyrets.com/#home-contact)
