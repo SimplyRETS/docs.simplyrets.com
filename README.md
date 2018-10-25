@@ -1,9 +1,7 @@
 <div align="center">
   <img src="https://s3-us-west-2.amazonaws.com/simplyrets/site/simplyrets-logo-horizontal.svg" width="500"/>
+  <i>A RESTful API and WordPress plugin for powering your website wit data from your MLS.</i>
 </div>
-  
-_A RESTful API and WordPress plugin for powering your website with
-data from your MLS._
 
 > [Homepage](http://simplyrets.com) &nbsp;&middot;&nbsp;
 > [Services](http://simplyrets.com/services) &nbsp;&middot;&nbsp;
