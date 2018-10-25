@@ -1,5 +1,6 @@
 <div align="center">
   <img src="https://s3-us-west-2.amazonaws.com/simplyrets/site/simplyrets-logo-horizontal.svg" width="500"/>
+  <br/>
   <i>A RESTful API and WordPress plugin for powering your website wit data from your MLS.</i>
 </div>
 
