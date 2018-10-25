@@ -1,4 +1,7 @@
-# SimplyRETS Documentation
+<div align="center">
+  <img src="https://s3-us-west-2.amazonaws.com/simplyrets/site/simplyrets-logo-horizontal.svg" width="500"/>
+</div>
+  
 _A RESTful API and WordPress plugin for powering your website with
 data from your MLS._
 
