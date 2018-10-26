@@ -1,8 +1,24 @@
-# SimplyRETS documentation
-> A RESTful API for powering your website with RETS data from your
-> MLS.
+<h1 class="text-muted">SimplyRETS documentation</h1>
+_A RESTful API for powering your website with RETS data from your
+MLS._
 
-## WordPress Plugin
+<br/>
+The SimplyRETS API and WordPress plugin give you a way to create real
+estate apps and websites with listings from your MLS. We believe it
+building tools that help _you_ focus on building your business or
+product, without worrying about the downloading, updating, and
+normalizing the data you need.
+
+Below are links to documentation, examples, and help topics to get
+started and up to speed quickly with the Developer API or WordPress
+plugin. If you have any questions, don't hesitate to [reach
+out](https://simplyrets.com/#home-pricing).
+
+<br/>
+<br/>
+
+<div id="wordpress"></div>
+## <i class="fab fa-wordpress-simple" style="font-size:2.5rem"></i> WordPress Plugin
 > The SimplyRETS WordPress plugin is a plug-and-play solution to build
 > a website for your MLS listings.
 
@@ -25,7 +41,8 @@ requests and address your issues._
 <br/>
 <br/>
 
-## Developer API
+<div id="api"></div>
+## <i class="fas fa-code" style="font-size:2.5rem"></i> Developer API
 > The SimplyRETS developer API makes it simple to pull listings in
 > from an MLS, and has a robust set of fields and query parameters for
 > complex applications.
