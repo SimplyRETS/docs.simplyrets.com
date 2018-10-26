@@ -1,14 +1,8 @@
-<div align="center">
-  <img src="https://s3-us-west-2.amazonaws.com/simplyrets/site/simplyrets-logo-horizontal.svg" width="500"/>
-  <br/>
-  <i>A RESTful API and WordPress plugin for powering your website wit data from your MLS.</i>
-  <br/>
-  <br/>
-</div>
+# SimplyRETS documentation
+> A RESTful API for powering your website with RETS data from your
+> MLS.
 
-<br/>
-
-# WordPress Plugin
+## WordPress Plugin
 > The SimplyRETS WordPress plugin is a plug-and-play solution to build
 > a website for your MLS listings.
 
@@ -31,7 +25,7 @@ requests and address your issues._
 <br/>
 <br/>
 
-# Developer API
+## Developer API
 > The SimplyRETS developer API makes it simple to pull listings in
 > from an MLS, and has a robust set of fields and query parameters for
 > complex applications.
