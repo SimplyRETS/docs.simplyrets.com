@@ -11,8 +11,8 @@ normalizing the data you need.
 
 Below are links to documentation, examples, and help topics to get
 started and up to speed quickly with the Developer API or WordPress
-plugin. If you have any questions, don't hesitate to [reach
-out](https://simplyrets.com/#home-pricing).
+plugin. If you have any questions, don't hesitate
+to [reach out](https://simplyrets.com/#home-pricing).
 
 <br/>
 <br/>
