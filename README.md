@@ -67,4 +67,11 @@ documentation, examples, and help topics. Browse the links below:
 > and various other articles on being successful with the SimplyRETS
 > API.
 
+<br/>
+
+## [API examples (GitHub)](https://github.com/SimplyRETS/examples)
+## [JavaScript/AJAX example](https://github.com/SimplyRETS/examples/tree/master/javascript/)
+## [Listings API Tips and Tricks](https://simplyrets.com/blog/api-tips-and-tricks.html)
+## [Interactivie map search tutorial](https://simplyrets.com/blog/interactive-map-search.html)
+## [Pagination with `limit` and `offset`](https://simplyrets.com/blog/api-pagination.html)
 {% include topics.html %}
