@@ -28,6 +28,7 @@ examples, and more.
 - [Official WordPress plugin documentation](http://wordpress-demo.simplyrets.com/documentation)
 - [Demo plugin installation](http://wordpress-demo.simplyrets.com/docementation)
 - [SimplyRETS on WordPress.org](https://wordpress.org/plugins/simply-rets)
+- [WordPress Plugin CSS Style Guide](/simply-rets-client.html)
 
 **Did you know?**
 The SimplyRETS WordPress plugin is fully open-sourced! You can fork
