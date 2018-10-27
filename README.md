@@ -27,7 +27,7 @@ examples, and more.
 - [User Guide](http://wordpress-demo.simplyrets.com/documentation)
 - [Demo Site](http://wordpress-demo.simplyrets.com/)
 - [WordPress.org download](https://wordpress.org/plugins/simply-rets)
-- [CSS Style Guide](/simply-rets-client.html)
+- [CSS Style Guide]({{ "/simply-rets-client.html" | relative_url }})
 
 **Did you know?**
 The SimplyRETS WordPress plugin is fully open-sourced! You can fork
