@@ -1,4 +1,4 @@
-<h1 class="text-muted">SimplyRETS documentation</h1>
+<h1 class="text-muted">SimplyRETS docs and examples</h1>
 _A RESTful API for powering your website with RETS data from your
 MLS._
 
@@ -15,7 +15,6 @@ plugin. If you have any questions, don't hesitate
 to [reach out](https://simplyrets.com/#home-pricing).
 
 <br/>
-<br/>
 
 <div id="wordpress"></div>
 ## <i class="fab fa-wordpress-simple" style="font-size:2.5rem;vertical-align:bottom;margin-right:10px"></i> WordPress Plugin
@@ -25,21 +24,21 @@ to [reach out](https://simplyrets.com/#home-pricing).
 Visit the links below to view the WordPress plugin documentation,
 examples, and more.
 
-- [Official WordPress plugin documentation](http://wordpress-demo.simplyrets.com/documentation)
-- [Demo plugin installation](http://wordpress-demo.simplyrets.com/docementation)
-- [SimplyRETS on WordPress.org](https://wordpress.org/plugins/simply-rets)
-- [WordPress Plugin CSS Style Guide](/simply-rets-client.html)
+- [User Guide](http://wordpress-demo.simplyrets.com/documentation)
+- [Demo Site](http://wordpress-demo.simplyrets.com/)
+- [WordPress.org download](https://wordpress.org/plugins/simply-rets)
+- [CSS Style Guide](/simply-rets-client.html)
 
 **Did you know?**
 The SimplyRETS WordPress plugin is fully open-sourced! You can fork
 the code and make changes for your installation, or submit changes and
-issues to the official repository. _We will gladly merge your pull
-requests and address your issues._
+issues to the official repository.
 
 - [View the code](https://github.com/SimplyRETS/simplyretswp)
-- [Submit an issue](https://github.com/SimplyRETS/simplyretswp/issues/new)
+- [Submit an issue or feedback](https://github.com/SimplyRETS/simplyretswp/issues/new)
 
-<br/>
+_We will gladly merge your pull requests and address your issues._
+
 <br/>
 
 <div id="api"></div>
@@ -51,14 +50,16 @@ requests and address your issues._
 The Developer API has an abundance of resources, including interactive
 documentation, examples, and help topics. Browse the links below:
 
-- [Full API documentation](https://docs.simplyrets.com/api/index.html)
-  - [`/properties` documentation](https://docs.simplyrets.com/api/index.html#!/default/get_properties)
-  - [`/openhouses` documentation](https://docs.simplyrets.com/api/index.html#!/default/get_openhouses)
-- [Full API documentation](https://docs.simplyrets.com/api/index.html)
-- [View a live app (MaxAvenue.com)](https://maxavenue.com)
-- [Browse help topics](https://simplyrets.com/tags/RETS.html)
+- [API documentation](/api/index.html)
+  - [`/properties`](/api/index.html#!/default/get_properties)
+  - [`/openhouses`](/api/index.html#!/default/get_openhouses)
+- [Live example](http://maxavenue.com/homes-for-sale/)
+- [API help topics](#topics)
 
-<br/>
+All of the help topics below are geared towards using the API, from
+getting started, to more advanced things like pagination. If you can't
+find what you need, [reach out any time](https://simplyrets.com/#home-contact).
+
 <br/>
 
 <div id="topics"></div>
@@ -72,6 +73,6 @@ documentation, examples, and help topics. Browse the links below:
 ## [API examples (GitHub)](https://github.com/SimplyRETS/examples)
 ## [JavaScript/AJAX example](https://github.com/SimplyRETS/examples/tree/master/javascript/)
 ## [Listings API Tips and Tricks](https://simplyrets.com/blog/api-tips-and-tricks.html)
-## [Interactivie map search tutorial](https://simplyrets.com/blog/interactive-map-search.html)
+## [Interactive map search tutorial](https://simplyrets.com/blog/interactive-map-search.html)
 ## [Pagination with `limit` and `offset`](https://simplyrets.com/blog/api-pagination.html)
 {% include topics.html %}

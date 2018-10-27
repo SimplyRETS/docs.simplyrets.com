@@ -22,7 +22,7 @@
     <script type="text/javascript">
      $(function () {
 
-         var apidocsURL = 'https://docs.simplyrets.com/api/resources.json'
+         var apidocsURL = "{{ "/api/assets/resources.json" | relative_url}}"
 
          window.swaggerUi = new SwaggerUi({
              apiKeyName: "Authorization",
