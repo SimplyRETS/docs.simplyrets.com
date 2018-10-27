@@ -4,3 +4,7 @@ twitter_username: SimplyRETS
 github_username:  SimplyRETS
 googleplus_username: +SimplyRETSInc
 description: SimplyRETS API and WordPress plugin documentation. The easiest way to build real estate websites with data from your MLS.
+
+collections:
+  topics:
+    output: true

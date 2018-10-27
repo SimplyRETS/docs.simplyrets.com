@@ -18,7 +18,7 @@ to [reach out](https://simplyrets.com/#home-pricing).
 <br/>
 
 <div id="wordpress"></div>
-## <i class="fab fa-wordpress-simple" style="font-size:2.5rem"></i> WordPress Plugin
+## <i class="fab fa-wordpress-simple" style="font-size:2.5rem;vertical-align:bottom;margin-right:10px"></i> WordPress Plugin
 > The SimplyRETS WordPress plugin is a plug-and-play solution to build
 > a website for your MLS listings.
 
@@ -43,7 +43,7 @@ requests and address your issues._
 <br/>
 
 <div id="api"></div>
-## <i class="fas fa-code" style="font-size:2.5rem"></i> Developer API
+## <i class="fas fa-code" style="font-size:2.5rem;vertical-align:bottom;margin-right:10px"></i> Developer API
 > The SimplyRETS developer API makes it simple to pull listings in
 > from an MLS, and has a robust set of fields and query parameters for
 > complex applications.
@@ -57,3 +57,14 @@ documentation, examples, and help topics. Browse the links below:
 - [Full API documentation](https://docs.simplyrets.com/api/index.html)
 - [View a live app (MaxAvenue.com)](https://maxavenue.com)
 - [Browse help topics](https://simplyrets.com/tags/RETS.html)
+
+<br/>
+<br/>
+
+<div id="topics"></div>
+## <i class="far fa-user" style="font-size:2.5rem;vertical-align:bottom;margin-right:10px"></i> Topics
+> Browse the topics below for examples, steps to debug common issues,
+> and various other articles on being successful with the SimplyRETS
+> API.
+
+{% include topics.html %}
