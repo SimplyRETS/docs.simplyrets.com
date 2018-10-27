@@ -50,11 +50,11 @@ _We will gladly merge your pull requests and address your issues._
 The Developer API has an abundance of resources, including interactive
 documentation, examples, and help topics. Browse the links below:
 
-- [API documentation](/api/index.html)
-  - [`/properties`](/api/index.html#!/default/get_properties)
-  - [`/openhouses`](/api/index.html#!/default/get_openhouses)
+- [API documentation](api/index.html)
+  - [`/properties`](api/index.html#!/default/get_properties)
+  - [`/openhouses`](api/index.html#!/default/get_openhouses)
 - [Live example](http://maxavenue.com/homes-for-sale/)
-- [API help topics](/#topics)
+- [API help topics](#topics)
 
 All of the help topics below are geared towards using the API, from
 getting started, to more advanced things like pagination. If you can't
