@@ -54,7 +54,7 @@ documentation, examples, and help topics. Browse the links below:
   - [`/properties`](/api/index.html#!/default/get_properties)
   - [`/openhouses`](/api/index.html#!/default/get_openhouses)
 - [Live example](http://maxavenue.com/homes-for-sale/)
-- [API help topics](#topics)
+- [API help topics](/#topics)
 
 All of the help topics below are geared towards using the API, from
 getting started, to more advanced things like pagination. If you can't
