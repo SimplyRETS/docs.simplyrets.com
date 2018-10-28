@@ -10,3 +10,4 @@ description: SimplyRETS API and WordPress plugin documentation. The easiest way 
 collections:
   topics:
     output: true
+    permalink: /topics/:title
