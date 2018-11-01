@@ -1,0 +1,20 @@
+  ---
+    title: Using queries to show listings for a specific status
+    layout: page
+    ---
+    Using queries to show listings for a specific status
+
+The SimplyRETS query parameters make it easy to customize the listings you show in each page on your website. You can use them to filter properties shown based on their status – open, pending, closed. This is useful particularly if you don’t want potentials clients sifting through closed listings until they find the house of their dreams!
+
+All you have to do is add this:
+
+Show only open properties: status=Active
+Or, if you want to see the closed properties in your area:
+
+Show only closed properties: status=Closed
+The great thing is you can also specify more than one status you’d like to see:
+
+Show open and pending properties: status=Active;Pending
+It really is that simple! There’s a ton of filters, so feel free to try them out and set up custom pages for your real estate website!
+
+Check out the full list of available query parameters here: https://docs.simplyrets.com/api/index.html#!/default/get_properties 
