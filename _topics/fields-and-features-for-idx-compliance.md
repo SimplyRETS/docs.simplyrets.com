@@ -9,7 +9,7 @@ from your MLS. For example, in many areas it's required to show the
 timestamp of when the data was last updated in a disclaimer.
 
 ### Last update timestamp
-The timestamp of the last listing refresh timestamp can be found in
+The timestamp of the last listing refresh can be found in
 one of two spots:
 
 1. The `X-SimplyRETS-Last-Update` header in an API response.
