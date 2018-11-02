@@ -35,7 +35,7 @@ one of two spots:
 ### Agent/office contact information
 In some cases it may be required that you show the contact information
 for the listing agent and/or listing office. This data is provided in
-the API response with every listing:
+the API response with every listing, if available in the RETS feed:
 
 **Agent information**
 
