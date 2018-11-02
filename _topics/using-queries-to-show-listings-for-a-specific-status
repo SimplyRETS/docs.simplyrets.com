@@ -14,7 +14,7 @@ All you have to do is add this:
 Show only open properties: `https://api.simplyrets.com/properties?status=Active`
 Or, if you want to see the closed properties in your area:
 
-Show only closed properties: status=Closed
+Show only closed properties: `https://api.simplyrets.com/properties?status=Closed`
 The great thing is you can also specify more than one status you’d like to see:
 
 Show open and pending properties: status=Active;Pending
