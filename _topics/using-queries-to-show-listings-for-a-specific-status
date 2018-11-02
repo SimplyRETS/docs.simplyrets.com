@@ -11,7 +11,7 @@ through closed listings until they find the house of their dreams!
 
 All you have to do is add this:
 
-Show only open properties: status=Active
+Show only open properties: `https://api.simplyrets.com/properties?status=Active`
 Or, if you want to see the closed properties in your area:
 
 Show only closed properties: status=Closed
