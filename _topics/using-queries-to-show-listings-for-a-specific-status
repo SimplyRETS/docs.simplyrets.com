@@ -1,6 +1,6 @@
   ---
-    title: Using queries to show listings for a specific status
-    layout: page
+title: Using queries to show listings for a specific status
+layout: page
     ---
 
 The SimplyRETS query parameters make it easy to customize the listings you show in each page
