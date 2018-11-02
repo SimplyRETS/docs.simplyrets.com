@@ -1,18 +1,14 @@
 <div>
   {%- if site.topics.size > 0 -%}
-    <ul class="post-list">
-      {%- for topic in site.topics -%}
-      <li>
-        <h5>
-          <a class="post-link" href="{{ topic.url | relative_url }}">
-            {{ topic.title | escape }}
-          </a>
-        </h5>
-        {%- if site.show_excerpts -%}
-          {{ topic.excerpt }}
-        {%- endif -%}
-      </li>
-      {%- endfor -%}
-    </ul>
+    {%- for topic in site.topics -%}
+      <h5>
+        <a class="post-link" href="{{ topic.url | relative_url }}">
+          {{ topic.title | escape }}
+        </a>
+      </h5>
+      {%- if site.show_excerpts -%}
+        {{ topic.excerpt }}
+      {%- endif -%}
+    {%- endfor -%}
   {%- endif -%}
 </div>
