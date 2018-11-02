@@ -2,7 +2,6 @@
     title: Using queries to show listings for a specific status
     layout: page
     ---
-    Using queries to show listings for a specific status
 
 The SimplyRETS query parameters make it easy to customize the listings you show in each page
 on your website. You can use them to filter properties shown based on their status – open,
