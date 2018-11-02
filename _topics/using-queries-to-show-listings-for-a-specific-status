@@ -21,4 +21,4 @@ Show open and pending properties: `https://api.simplyrets.com/properties?status=
 It really is that simple! There’s a ton of filters, so feel free to try them out and
 set up custom pages for your real estate website!
 
-Check out the full list of available query parameters here: https://docs.simplyrets.com/api/index.html#!/default/get_properties 
+Check out the [full list of available query parameters here](https://docs.simplyrets.com/api/index.html#!/default/get_properties)
