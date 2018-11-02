@@ -6,7 +6,7 @@ title: Versioning API requests with media types
 The SimplyRETS API uses the `Accept` content type header to allow
 clients to control which version of the API they receive. API requests
 that set a specific content version will remain backwards compatible
-with future updates to the response.
+with future updates to the response body.
 
 For this reason, we highly recommend **setting an explicit media
 type** when your application reaches production. As we release new
