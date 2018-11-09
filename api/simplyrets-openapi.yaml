@@ -1339,30 +1339,38 @@ components:
         length:
           format: float
           type: number
-        featuers:
+          nullable: true
+        features:
           type: string
           description: A set of features in the room.
+          nullable: true
         area:
           format: float
           type: number
           description: The area of the room in units provided by the RETS vendor.
+          nullable: true
         width:
           format: float
           type: number
+          nullable: true
         typeText:
           type: string
           description: |
             Entire raw value of of the room `Type` data provided in the
             RETS feed.
+          nullable: true
         type:
           type: string
           description: The `RoomType` RESO Data Dictionary 1.6 type.
+          nullable: true
         dimensions:
           type: string
           description: Room dimension textual value.
+          nullable: true
         description:
           type: string
           description: A description of the room.
+          nullable: true
     StreetAddress:
       type: object
       description: RETS Street Address
@@ -1370,20 +1378,25 @@ components:
         crossStreet:
           type: string
           description: Known cross street
+          nullable: true
         state:
           type: string
           description: >-
             State or province. Maps to the data dictionary field
             `StateOrProvince`.
+          nullable: true
         country:
           type: string
           description: Street address country (United States or Canada)
+          nullable: true
         postalCode:
           type: string
           description: Street Address postal code
+          nullable: true
         streetName:
           type: string
           description: Name of the street
+          nullable: true
         streetNumberText:
           type: string
           description: |
@@ -1393,25 +1406,29 @@ components:
             alpha-numerical. For example, "N63453" or "34556B".
 
             **Added on 2016/05/02**
+          nullable: true
         city:
           type: string
           description: City name
+          nullable: true
         streetNumber:
           format: int64
           type: integer
           description: Street number
+          nullable: true
         full:
           type: string
           description: Full pretty-printed address with suffix (if available)
+          nullable: true
     Property:
       type: object
       description: Rets Listing Property
       properties:
         rooms:
-          schema:
-            items:
-              $ref: '#/components/schemas/Room'
-            type: array
+          items:
+            $ref: '#/components/schemas/Room'
+          type: array
+          nullable: true
           description: |
             A comprehensive list of rooms. Room data is not included in the
             standard payload.  Use `include=rooms` in your query to include
@@ -1426,54 +1443,71 @@ components:
         roof:
           type: string
           description: Property roof description
+          nullable: true
         cooling:
           type: string
+          nullable: true
           description: >-
             A description of the cooling or air conditioning features of the
             property.
+          nullable: true
         style:
           type: string
           description: Property style description or short string
+          nullable: true
         area:
           format: int64
           type: integer
           description: Square footage of the building associated with a listing
+          nullable: true
         bathsFull:
           format: int64
           type: integer
+          nullable: true
           description: Number of full bathrooms
         bathsHalf:
           format: int64
           type: integer
+          nullable: true
           description: Number of half bathrooms
         stories:
           format: float
           type: number
+          nullable: true
           description: |
             Number of stories or levels. Represented as a `double' to
             account for half stories.
         fireplaces:
           format: int64
           type: integer
+          nullable: true
           description: Number of fireplaces
         flooring:
           type: string
+          nullable: true
           description: The type(s) of flooring found within the property.
         heating:
           type: string
           description: Heating description or short string
+          nullable: true
         foundation:
           type: string
+          nullable: true
         poolFeatures:
           type: string
+          nullable: true
         laundryFeatures:
           type: string
+          nullable: true
         occupantName:
           type: string
+          nullable: true
         ownerName:
           type: string
+          nullable: true
         lotDescription:
           type: string
+          nullable: true
         lotSizeAcres:
           format: float
           type: number
@@ -1481,6 +1515,7 @@ components:
             Lot size in acres
 
             **Added on 2016/05/04 - Not available for all RETS vendors**
+          nullable: true
         subType:
           type: string
           enum:
@@ -1498,36 +1533,45 @@ components:
             - Timeshare
             - Triplex
             - ManufacturedOnLand
+            - null
           description: |
             A normalized representation of the listings sub-type.
+          nullable: true
         bedrooms:
           format: int64
           type: integer
           description: Number of bedrooms
+          nullable: true
         interiorFeatures:
           type: string
           description: The properties interior features
+          nullable: true
         lotSize:
           type: string
           description: |
             Lot size dimensions or square footage as a text. This
             field is generally used to show the pretty formatted
             lot size.
+          nullable: true
         areaSource:
           type: string
+          nullable: true
         maintenanceExpense:
           format: float
           type: number
           description: Yearly maintenance expense
+          nullable: true
         additionalRooms:
           type: string
           description: |
             Additional room information. This is a textual description
             of additional rooms for the listing.
+          nullable: true
         exteriorFeatures:
           type: string
           description: |
             Exterior Features for the listing
+          nullable: true
         water:
           type: string
           description: |
@@ -1536,9 +1580,11 @@ components:
             name, sea name, canal name). Otherwise, this field will
             contain features of the waterfront on which the property is
             located.
+          nullable: true
         view:
           type: string
           description: View details and description
+          nullable: true
         lotSizeArea:
           format: float
           type: number
@@ -1547,18 +1593,24 @@ components:
             of measurement (Square Feet, Square Meters, Acres, etc.).
 
             **Added on 2016/05/04 - Not available for all RETS vendors**
+          nullable: true
         subdivision:
           type: string
           description: The subdivision or community name
+          nullable: true
         construction:
           type: string
           description: The materials that were used in the construction of the property.
+          nullable: true
         subTypeRaw:
           type: string
           description: |
             The raw text representation of the property sub type.
+          nullable: true
         parking:
           $ref: '#/components/schemas/Parking'
+          # TODO test
+          nullable: true
         lotSizeAreaUnits:
           type: string
           description: |
@@ -1569,6 +1621,7 @@ components:
             of measure specified by your RETS provider.
 
             **Added on 2016/05/04 - Not available for all RETS vendors**
+          nullable: true
         type:
           type: string
           enum:
@@ -1590,18 +1643,23 @@ components:
           format: float
           type: number
           description: Number of garage spaces
+          nullable: true
         bathsThreeQuarter:
           format: int64
           type: integer
           description: Number of 3/4 bathrooms
+          nullable: true
         accessibility:
           type: string
+          nullable: true
         occupantType:
           type: string
+          nullable: true
         yearBuilt:
           format: int64
           type: integer
           description: Year the property was built
+          nullable: true
     Listing:
       type: object
       description: RETS Listing Property
@@ -1609,6 +1667,7 @@ components:
         privateRemarks:
           type: string
           description: Agent only remarks
+          nullable: true
         property:
           $ref: '#/components/schemas/Property'
           description: Specific property data associated with listing.
@@ -1631,34 +1690,43 @@ components:
         showingInstructions:
           type: string
           description: Public instructions for showing the property.
+          nullable: true
         office:
           $ref: '#/components/schemas/Office'
           description: Listing office or brokerage.
+          nullable: true
         leaseTerm:
           type: string
           description: Represents the length of the lease.
+          nullable: true
         disclaimer:
           type: string
           description: |
             Data accuracy disclaimer. The value in the disclaimer may
             change depending on the rules imposed by your RETS vendors.
+          nullable: true
         address:
           $ref: '#/components/schemas/StreetAddress'
           description: Comprehensive property address information
+          nullable: true
         listDate:
           format: date-time
           type: string
           description: Date and time the listing became Active
+          nullable: true
         agent:
           $ref: '#/components/schemas/Agent'
           description: Comprehensive listing agent information
+          nullable: true
         modified:
           format: date-time
           type: string
           description: Date and time of the last modification
+          nullable: true
         school:
           $ref: '#/components/schemas/School'
           description: Comprehensive school zone data
+          nullable: true
         photos:
           items:
             type: string
@@ -1670,6 +1738,7 @@ components:
           format: double
           type: number
           description: Price of the listing
+          nullable: true
         listingId:
           type: string
           description: |
@@ -1682,14 +1751,18 @@ components:
         mls:
           $ref: '#/components/schemas/MlsInformation'
           description: RETS vendor information and data
+          nullable: true
         geo:
           $ref: '#/components/schemas/GeographicData'
           description: Geographic data for the listing
+          nullable: true
         tax:
           $ref: '#/components/schemas/Tax'
           description: Associate tax data
+          nullable: true
         coAgent:
           $ref: '#/components/schemas/Agent'
+          nullable: true
           description: |
             co-listing agent information.
 
@@ -1699,20 +1772,25 @@ components:
         sales:
           $ref: '#/components/schemas/Sales'
           description: Sales data
+          nullable: true
         leaseType:
           type: string
           description: Information about the status of the existing lease on the property.
+          nullable: true
         virtualTourUrl:
           type: string
           description: |
             The URL for an unbranded virtual tour of the property.
 
             **Added on 2016/05/04 - Not available for all RETS vendors**
+          nullable: true
         remarks:
           type: string
           description: Description or remarks
+          nullable: true
         association:
           $ref: '#/components/schemas/Association'
+          nullable: true
     OpenHouse:
       type: object
       description: SimplyRETS Open House object
@@ -1720,6 +1798,7 @@ components:
         refreshments:
           type: string
           description: Provided
+          nullable: true
         listing:
           $ref: '#/components/schemas/Listing'
           description: The full listing associated with the OpenHouse
@@ -1727,10 +1806,12 @@ components:
           format: date-time
           type: string
           description: Start Date for the open house
+          nullable: true
         inputId:
           description: |
             The MLS number for the showing agent or agent which created the
             OpenHouse in the RETS database.
+          nullable: true
         openHouseKey:
           type: string
           description: |
@@ -1740,6 +1821,7 @@ components:
           format: date-time
           type: string
           description: The ending date time for the open house
+          nullable: true
         openHouseId:
           type: string
           description: |
@@ -1747,15 +1829,18 @@ components:
         type:
           type: string
           description: 'The open house type. For example, Public or Private'
+          nullable: true
         description:
           type: string
           description: The remarks and/or description details for the open house
+          nullable: true
     Office:
       type: object
       description: RETS Office
       properties:
         contact:
           $ref: '#/components/schemas/ContactInformation'
+          nullable: true
           description: |
             Associated contact details for the office. The availability of this
             information depends on your RETS vendor's rules and regulations
@@ -1764,11 +1849,14 @@ components:
         name:
           type: string
           description: Pimary office name
+          nullable: true
         servingName:
           type: string
           description: Primary office or brokerage name
+          nullable: true
         brokerid:
           type: string
+          nullable: true
           description: |
             Office or brokerage MLS identifier
 
@@ -1793,6 +1881,7 @@ components:
         lastName:
           type: string
           description: Agent last name
+          nullable: true
         contact:
           $ref: '#/components/schemas/ContactInformation'
           description: |
@@ -1801,12 +1890,15 @@ components:
             contact information publicly.
 
             *Contact information is not available for all RETS Vendors.*
+          nullable: true
         firstName:
           type: string
           description: Agent first name
+          nullable: true
         id:
           type: string
           description: Well known Agent MLS number or id.
+          nullable: true
     School:
       type: object
       description: RETS School Data
@@ -1814,15 +1906,19 @@ components:
         middleSchool:
           type: string
           description: Middle or junior school name
+          nullable: true
         highSchool:
           type: string
           description: High school name
+          nullable: true
         elementarySchool:
           type: string
           description: Elementary school name.
+          nullable: true
         district:
           type: string
           description: School district name.
+          nullable: true
     ContactInformation:
       type: object
       description: RETS Contact Information
@@ -1833,18 +1929,21 @@ components:
             The email address of the `ContactInformation`
 
             **Not available for all RETS vendors**
+          nullable: true
         office:
           type: string
           description: |
             Contact Information Office Phone Number
 
             **Not available for all RETS vendors**
+          nullable: true
         cell:
           type: string
           description: |
             Contact Information Cell Phone
 
             **Not available for all RETS vendors**
+          nullable: true
     Tax:
       type: object
       description: RETS Tax Data
@@ -1853,24 +1952,30 @@ components:
           format: int64
           type: integer
           description: Tax Year
+          nullable: true
         taxAnnualAmount:
-          type: string
+          type: integer
           description: Annual tax amount in USD
+          nullable: true
         id:
           type: string
           description: Tax Parcel ID for the listing
+          nullable: true
     Parking:
       type: object
       description: RETS School Data
       properties:
         leased:
           type: string
+          nullable: true
         spaces:
           type: integer
           description: Number of parking spaces
+          nullable: true
         description:
           type: string
           description: Parking features description
+          nullable: true
     Sales:
       type: object
       description: Sales Data
@@ -1879,20 +1984,25 @@ components:
           format: date-time
           type: string
           description: RETS Sales data close date
+          nullable: true
         office:
-          type: string
+          $ref: '#/components/schemas/Office'
           description: RETS Sales data selling office/brokerage id
+          nullable: true
         closePrice:
           format: int64
           type: integer
           description: RETS Sales data sold price
+          nullable: true
         agent:
-          type: string
+          $ref: '#/components/schemas/Agent'
           description: RETS Sales data agent id
+          nullable: true
         contractDate:
           format: date-time
           type: string
           description: RETS Sales data contract date
+          nullable: true
     GeographicData:
       type: object
       description: RETS Geographic Data
@@ -1900,20 +2010,25 @@ components:
         county:
           type: string
           description: Listing county
+          nullable: true
         lat:
           format: double
           type: number
           description: Listing latitude (if available)
+          nullable: true
         lng:
           format: double
           type: number
           description: Listing longitude (if available)
+          nullable: true
         marketArea:
           type: string
           description: Listing GeoMarket area. May be the same as mlsArea
+          nullable: true
         directions:
           type: string
           description: Directions to the property
+          nullable: true
     Broker:
       type: object
       description: SimplyRETS Broker Api
@@ -1922,6 +2037,7 @@ components:
           format: date-time
           type: string
           description: Start Date
+          nullable: true
     MlsInformation:
       type: object
       description: RETS Vendor Data
@@ -1982,6 +2098,7 @@ components:
             - ComingSoon
         area:
           type: string
+          nullable: true
           description: >-
             MLS Area major. The major marketing area name, as defined by the MLS
             or other non-governmental organization.
@@ -1989,6 +2106,7 @@ components:
           format: int64
           type: integer
           description: Amount of days the property has been Active
+          nullable: true
         originatingSystemName:
           type: string
           description: >
@@ -2013,6 +2131,7 @@ components:
             RETS vendors, this will be the name of the originating RETS
 
             vendor.
+          nullable: true
         statusText:
           type: string
           description: |
@@ -2023,6 +2142,7 @@ components:
           description: >-
             MLS Area minor. The minor/sub marketing area name, as defined by the
             MLS or other non-governmental organization.
+          nullable: true
     Association:
       type: object
       description: Home Owners Association
@@ -2030,9 +2150,12 @@ components:
         fee:
           type: integer
           description: Association fee
+          nullable: true
         name:
           type: string
           description: Name of the association
+          nullable: true
         amenities:
           type: string
           description: Any extra amenities granted by the HOA
+          nullable: true
