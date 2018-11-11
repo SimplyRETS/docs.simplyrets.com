@@ -1334,7 +1334,6 @@ components:
           nullable: true
         cooling:
           type: string
-          nullable: true
           description: >-
             A description of the cooling or air conditioning features of the
             property.
