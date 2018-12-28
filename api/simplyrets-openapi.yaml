@@ -1578,6 +1578,14 @@ components:
           type: string
           description: Public instructions for showing the property.
           nullable: true
+        showingContactName:
+          type: string
+          description: The name of the contact for the showing of the listed property.
+          nullable: true
+        showingContactPhone:
+          type: string
+          description: Telephone number that should be called to arrange showing the property.
+          nullable: true
         office:
           $ref: '#/components/schemas/Office'
           description: Listing office or brokerage.
