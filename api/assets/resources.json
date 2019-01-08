@@ -327,6 +327,14 @@
           "type": "string",
           "description": "Public instructions for showing the property."
         },
+        "showingContactName": {
+          "type": "string",
+          "description": "The name of the contact for the showing of the listed property."
+        },
+        "showingContactPhone": {
+          "type": "string",
+          "description": "Telephone number that should be called to arrange showing the property."
+        },
         "office": {
           "$ref": "#/definitions/Office",
           "description": "Listing office or brokerage."
