@@ -1352,6 +1352,21 @@ paths:
         description: 'Filter listings by a setting a minimum year built.'
       - required: false
         in: query
+        name: maxyear
+        type: integer
+        description: 'Filter listings by a setting a maximum year built.'
+      - required: false
+        in: query
+        name: minacres
+        type: integer
+        description: 'Filter listings by a setting a minimum acreage.'
+      - required: false
+        in: query
+        name: maxacres
+        type: integer
+        description: 'Filter listings by a setting a maximum acreage.'
+      - required: false
+        in: query
         name: limit
         type: integer
         description: |

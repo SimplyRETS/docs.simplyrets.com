@@ -826,6 +826,27 @@ paths:
             type: integer
         - required: false
           in: query
+          name: maxyear
+          description: |
+            Filter listings by a setting a maximum year built.
+          schema:
+            type: integer
+        - required: false
+          in: query
+          name: minacres
+          description: |
+            Filter listings by a setting a minimum acreage.
+          schema:
+            type: integer
+        - required: false
+          in: query
+          name: maxacres
+          description: |
+            Filter listings by a setting a maximum acreage.
+          schema:
+            type: integer
+        - required: false
+          in: query
           name: limit
           description: |
             Set the number of listings to return in the response.

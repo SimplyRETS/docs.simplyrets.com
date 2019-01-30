@@ -1287,6 +1287,27 @@
           {
             "required": false,
             "in": "query",
+            "name": "maxyear",
+            "type": "integer",
+            "description": "Filter listings by a setting a maximum year built.\n"
+          },
+          {
+            "required": false,
+            "in": "query",
+            "name": "minacres",
+            "type": "integer",
+            "description": "Filter listings by a setting a minimum acreage.\n"
+          },
+          {
+            "required": false,
+            "in": "query",
+            "name": "maxacres",
+            "type": "integer",
+            "description": "Filter listings by a setting a maximum acreage.\n"
+          },
+          {
+            "required": false,
+            "in": "query",
             "name": "limit",
             "type": "integer",
             "description": "Set the number of listings to return in the response.\nThis defaults to 20 listings, and can be a maximum of 500.\nTo paginate through to the next page of listings, take a\nlook at the `offset` parameter, or the Link in the HTTP\nHeader.\n"
