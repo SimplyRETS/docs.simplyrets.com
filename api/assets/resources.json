@@ -890,7 +890,7 @@
             "name": "include",
             "collectionFormat": "multi",
             "type": "array",
-            "description": "Include a extra fields which are not in the default\nresponse body\n- 'association' includes additional HOA data\n- 'agreement' information on the listing agreement\n- 'garageSpaces' additional garage data\n- 'maintenanceExpense' data on maintenance expenses\n- 'parking' additional parking data\n- 'pool' includes an additional pool description\n- 'taxAnnualAmount' include the annual tax amount\n- 'taxYear' include the tax year data\n- 'rooms' include parameter will include\n   any additional rooms as a list.\n\nNote that your RETS vendor or MLS must provide these fields\nin their RETS data for them to be available in the API\nresponse.\n\nIn the future, fields which require an 'include' may become available\nby default.\n"
+            "description": "Include a extra fields which are not in the default response body. Available values:\n\n - `rooms`: include parameter will include any additional rooms as a list.\n\nNote that your RETS vendor or MLS must provide these\nfields in their RETS data for them to be available in the\nAPI response. In the future, fields which require an\n`include` may become available by default."
           }
         ],
         "security": [

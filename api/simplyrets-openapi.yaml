@@ -272,39 +272,15 @@ paths:
           name: include
           description: >
             Include a extra fields which are not in the default
+            response body. Available values:
 
-            response body
-
-            - 'association' includes additional HOA data
-
-            - 'agreement' information on the listing agreement
-
-            - 'garageSpaces' additional garage data
-
-            - 'maintenanceExpense' data on maintenance expenses
-
-            - 'parking' additional parking data
-
-            - 'pool' includes an additional pool description
-
-            - 'taxAnnualAmount' include the annual tax amount
-
-            - 'taxYear' include the tax year data
-
-            - 'rooms' include parameter will include
+            - 'rooms': include parameter will include
                any additional rooms as a list.
 
-            Note that your RETS vendor or MLS must provide these fields
-
-            in their RETS data for them to be available in the API
-
-            response.
-
-
-            In the future, fields which require an 'include' may become
-            available
-
-            by default.
+            Note that your RETS vendor or MLS must provide these
+            fields in their RETS data for them to be available in the
+            API response. In the future, fields which require an
+            'include' may become available by default.
           explode: true
           schema:
             type: array
@@ -391,24 +367,15 @@ paths:
           name: include
           description: |
             Include a extra fields which are not in the default
-            response body
-            - 'association' includes additional HOA data
-            - 'agreement' information on the listing agreement
-            - 'garageSpaces' additional garage data
-            - 'maintenanceExpense' data on maintenance expenses
-            - 'parking' additional parking data
-            - 'pool' includes an additional pool description
-            - 'taxAnnualAmount' include the annual tax amount
-            - 'taxYear' include the tax year data
-            - 'rooms' include parameter will include
+            response body. Available values:
+
+            - 'rooms': include parameter will include
                any additional rooms as a list.
 
-            Note that your RETS vendor or MLS must provide these fields
-            in their RETS data for them to be available in the API
-            response.
-
-            In the future, fields which require an 'include' may
-            become available by default.
+            Note that your RETS vendor or MLS must provide these
+            fields in their RETS data for them to be available in the
+            API response. In the future, fields which require an
+            'include' may become available by default.
           explode: true
           schema:
             type: array
@@ -499,38 +466,15 @@ paths:
           name: include
           description: >
             Include a extra fields which are not in the default
+            response body. Available values:
 
-            response body
-
-
-            - `association` includes additional HOA data
-
-            - `agreement` information on the listing agreement
-
-            - `garageSpaces` additional garage data
-
-            - `maintenanceExpense` data on maintenance expenses
-
-            - `parking` additional parking data
-
-            - `pool` includes an additional pool description
-
-            - `rooms` include parameter will include
+            - 'rooms': include parameter will include
                any additional rooms as a list.
 
-            Note that your RETS vendor or MLS must provide these fields
-
-            in their RETS data for them to be available with valid data
-
-            in the API response. If your MLS does not offer these fields,
-
-            they will contain 'null'.
-
-
-            In the future, fields which require an 'include' may become
-            available
-
-            by default.
+            Note that your RETS vendor or MLS must provide these
+            fields in their RETS data for them to be available in the
+            API response. In the future, fields which require an
+            'include' may become available by default.
           explode: true
           schema:
             type: array
@@ -1117,39 +1061,15 @@ paths:
           name: include
           description: >
             Include a extra fields which are not in the default
+            response body. Available values:
 
-            response body
-
-            - 'association' includes additional HOA data
-
-            - 'agreement' information on the listing agreement
-
-            - 'garageSpaces' additional garage data
-
-            - 'maintenanceExpense' data on maintenance expenses
-
-            - 'parking' additional parking data
-
-            - 'pool' includes an additional pool description
-
-            - 'taxAnnualAmount' include the annual tax amount
-
-            - 'taxYear' include the tax year data
-
-            - 'rooms' include parameter will include
+            - 'rooms': include parameter will include
                any additional rooms as a list.
 
-            Note that your RETS vendor or MLS must provide these fields
-
-            in their RETS data for them to be available in the API
-
-            response.
-
-
-            In the future, fields which require an 'include' may become
-            available
-
-            by default.
+            Note that your RETS vendor or MLS must provide these
+            fields in their RETS data for them to be available in the
+            API response. In the future, fields which require an
+            'include' may become available by default.
           explode: true
           schema:
             type: array
