@@ -196,6 +196,9 @@ definitions:
       full:
         type: string
         description: Full pretty-printed address with suffix (if available)
+      unit:
+        type: string
+        description: Unit number
   Property:
     type: object
     description: Rets Listing Property

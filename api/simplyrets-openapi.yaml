@@ -1249,6 +1249,10 @@ components:
           type: string
           description: Full pretty-printed address with suffix (if available)
           nullable: true
+        unit:
+          type: string
+          description: Unit number
+          nullable: true
     Property:
       type: object
       description: Rets Listing Property
