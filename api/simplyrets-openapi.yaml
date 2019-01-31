@@ -847,6 +847,20 @@ paths:
             type: integer
         - required: false
           in: query
+          name: minGarageSpaces
+          description: |
+            Filter listings by a minimum number of garage spaces.
+          schema:
+            type: integer
+        - required: false
+          in: query
+          name: maxGarageSpaces
+          description: |
+            Filter listings by a maximum number of garage spaces.
+          schema:
+            type: integer
+        - required: false
+          in: query
           name: limit
           description: |
             Set the number of listings to return in the response.

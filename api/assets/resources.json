@@ -1312,6 +1312,20 @@
           {
             "required": false,
             "in": "query",
+            "name": "minGarageSpaces",
+            "type": "integer",
+            "description": "Filter listings by a minimum number of garage spaces.\n"
+          },
+          {
+            "required": false,
+            "in": "query",
+            "name": "maxGarageSpaces",
+            "type": "integer",
+            "description": "Filter listings by a maximum number of garage spaces.\n"
+          },
+          {
+            "required": false,
+            "in": "query",
             "name": "limit",
             "type": "integer",
             "description": "Set the number of listings to return in the response.\nThis defaults to 20 listings, and can be a maximum of 500.\nTo paginate through to the next page of listings, take a\nlook at the `offset` parameter, or the Link in the HTTP\nHeader.\n"

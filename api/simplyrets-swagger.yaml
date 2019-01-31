@@ -1370,6 +1370,16 @@ paths:
         description: 'Filter listings by a setting a maximum acreage.'
       - required: false
         in: query
+        name: minGarageSpaces
+        type: integer
+        description: 'Filter listings by a minimum number of garage spaces.'
+      - required: false
+        in: query
+        name: maxGarageSpaces
+        type: integer
+        description: 'Filter listings by a maximum number of garage spaces.'
+      - required: false
+        in: query
         name: limit
         type: integer
         description: |
