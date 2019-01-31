@@ -447,7 +447,7 @@
           "description": "The MLS number for the showing agent or agent which created the\nOpenHouse in the RETS database.\n"
         },
         "openHouseKey": {
-          "type": "string",
+          "type": "integer",
           "description": "A unique identifier for the open house which is specific to the\nSimplyRETS API\n"
         },
         "endTime": {

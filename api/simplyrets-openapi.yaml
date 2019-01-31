@@ -1653,7 +1653,7 @@ components:
             OpenHouse in the RETS database.
           nullable: true
         openHouseKey:
-          type: string
+          type: integer
           description: |
             A unique identifier for the open house which is specific to the
             SimplyRETS API
