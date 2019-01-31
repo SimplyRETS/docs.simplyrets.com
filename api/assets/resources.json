@@ -578,7 +578,7 @@
           "description": "Tax Year"
         },
         "taxAnnualAmount": {
-          "type": "string",
+          "type": "integer",
           "description": "Annual tax amount in USD"
         },
         "id": {
