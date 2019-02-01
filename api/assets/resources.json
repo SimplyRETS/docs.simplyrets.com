@@ -34,7 +34,7 @@
           "format": "float",
           "type": "number"
         },
-        "featuers": {
+        "features": {
           "type": "string",
           "description": "A set of features in the room."
         },
@@ -1371,7 +1371,18 @@
             "name": "features",
             "collectionFormat": "multi",
             "type": "array",
-            "description": "Filter the listings by specific interior features.  You\ncan filter by multiple. For example, to filter trial listings\nby multiple features you can use,\nReturn listings that are within a set of latitude\nlongitude coordinates. For example,\n\n```\nWet Bar\nHigh Ceiling\n```\n\ne.g. `https://simplyrets.com/services?features=Wet%20Bar&features=High%20Ceiling`\n\nThe list of `features` provided by your RETS vendor or MLS\ncan be seen by sending an `OPTIONS` request to the\n`/properties` endpoint:\n\n`curl -XOPTIONS -u simplyrets:simplyrets https://api.simplyrets.com/properties`\n"
+            "description": "Filter the listings by specific **interior features**.  You can\n use the parameter multiple times to filter\n by multiple features. For example, to search\n for `Wet Bar` and `High Ceiling`:\n\n```https://simplyrets.com/services?features=Wet%20Bar&features=High%20Ceiling```\n\nThe list of `features` provided by your RETS vendor or MLS\ncan be seen by sending an `OPTIONS` request to the\n`/properties` endpoint:\n\n`curl -XOPTIONS -u simplyrets:simplyrets https://api.simplyrets.com/properties`\n"
+          },
+          {
+            "items": {
+              "type": "string"
+            },
+            "required": false,
+            "in": "query",
+            "name": "exteriorFeatures",
+            "collectionFormat": "multi",
+            "type": "array",
+            "description": "Filter the listings by specific **exterior features**.  You can\n use the parameter multiple times to filter\n by multiple features. For example, to search\n for `Porch` and `Fully Fenced`:\n\n```https://simplyrets.com/services?exteriorFeatures=Porch&exteriorFeatures=Fully+Fenced```\n"
           },
           {
             "required": false,

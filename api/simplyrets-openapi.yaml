@@ -921,39 +921,39 @@ paths:
           in: query
           name: features
           description: >
-            Filter the listings by specific interior features.  You
-
-            can filter by multiple. For example, to filter trial listings
-
-            by multiple features you can use,
-
-            Return listings that are within a set of latitude
-
-            longitude coordinates. For example,
-
+            Filter the listings by specific **interior features**.  You
+            can use the parameter multiple times to filter by multiple
+            features. For example, to search for `Wet Bar` and `High
+            Ceiling`:
 
             ```
-
-            Wet Bar
-
-            High Ceiling
-
+            https://simplyrets.com/services?features=Wet%20Bar&features=High%20Ceiling
             ```
-
-
-            e.g.
-            `https://simplyrets.com/services?features=Wet%20Bar&features=High%20Ceiling`
-
 
             The list of `features` provided by your RETS vendor or MLS
-
             can be seen by sending an `OPTIONS` request to the
-
             `/properties` endpoint:
 
+            ```
+            curl -XOPTIONS -u simplyrets:simplyrets https://api.simplyrets.com/properties
+            ```
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - required: false
+          in: query
+          name: exteriorFeatures
+          description: >
+            Filter the listings by specific **exterior features**.  You
+            can use the parameter multiple times to filter by multiple
+            features. For example, to search for `Proch` and `Fully
+            Fenced`:
 
-            `curl -XOPTIONS -u simplyrets:simplyrets
-            https://api.simplyrets.com/properties`
+            ```
+            https://simplyrets.com/services?exteriorFeatures=Porch&exteriorFeatures=Fully+Fenced
+            ```
           explode: true
           schema:
             type: array
