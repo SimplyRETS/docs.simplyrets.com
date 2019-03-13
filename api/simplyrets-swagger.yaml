@@ -859,6 +859,20 @@ paths:
         name: listingId
         type: string
         description: 'Request openhouses for a specific `listingId`.'
+      - required: false
+        name: vendor
+        in: query
+        type: string
+        description: |
+          Specify the RETS vendor to search. This parameter is
+          **required on multi-mls accounts**. You can query one
+          vendor at a time. Your vendor IDs can be found in your
+          account panel, or you can make an HTTP OPTIONS request to
+          https://api.simplyrets.com.
+
+          ```
+          curl -XOPTIONS https://api.simplyrets.com/properties
+          ```
       - items:
           type: string
         required: false
@@ -1008,6 +1022,20 @@ paths:
         name: openHouseKey
         type: integer
         description: A unique OpenHouse identification key
+      - required: false
+        name: vendor
+        in: query
+        type: string
+        description: |
+          Specify the RETS vendor to search. This parameter is
+          **required on multi-mls accounts**. You can query one
+          vendor at a time. Your vendor IDs can be found in your
+          account panel, or you can make an HTTP OPTIONS request to
+          https://api.simplyrets.com.
+
+          ```
+          curl -XOPTIONS https://api.simplyrets.com/properties
+          ```
       - items:
           type: string
         required: false
@@ -1074,6 +1102,20 @@ paths:
           to the SimplyRETS API only.  This field is different from
           the `listingId` field (which is the public number given to
           a listing by the RETS vendor or MLS and is not used here).
+      - required: false
+        name: vendor
+        in: query
+        type: string
+        description: |
+          Specify the RETS vendor to search. This parameter is
+          **required on multi-mls accounts**. You can query one
+          vendor at a time. Your vendor IDs can be found in your
+          account panel, or you can make an HTTP OPTIONS request to
+          https://api.simplyrets.com.
+
+          ```
+          curl -XOPTIONS https://api.simplyrets.com/properties
+          ```
       - items:
           type: string
         required: false

@@ -871,6 +871,13 @@
           {
             "required": false,
             "in": "query",
+            "name": "vendor",
+            "type": "string",
+            "description": "Specify the RETS vendor to search.\nThis parameter is **required on multi-mls accounts**. You can\nquery one vendor at a time. Your vendor IDs can be\nfound in your account panel, or you can make an HTTP\nOPTIONS request to https://api.simplyrets.com.\n\n`curl -XOPTIONS https://api.simplyrets.com/properties`\n"
+          },
+          {
+            "required": false,
+            "in": "query",
             "name": "sort",
             "type": "string",
             "enum": [
@@ -957,6 +964,13 @@
             "description": "A unique OpenHouse identification key"
           },
           {
+            "required": false,
+            "in": "query",
+            "name": "vendor",
+            "type": "string",
+            "description": "Specify the RETS vendor to search.\nThis parameter is **required on multi-mls accounts**. You can\nquery one vendor at a time. Your vendor IDs can be\nfound in your account panel, or you can make an HTTP\nOPTIONS request to https://api.simplyrets.com.\n\n`curl -XOPTIONS https://api.simplyrets.com/properties`\n"
+          },
+          {
             "items": {
               "type": "string"
             },
@@ -1026,6 +1040,13 @@
             "name": "mlsId",
             "type": "integer",
             "description": "The `mlsId` field is a unique identifier which is specific\nto the SimplyRETS API only.  This field is different from\nthe `listingId` field (which is the public number given to\na listing by the RETS vendor or MLS and is not used here).\n"
+          },
+          {
+            "required": false,
+            "in": "query",
+            "name": "vendor",
+            "type": "string",
+            "description": "Specify the RETS vendor to search.\nThis parameter is **required on multi-mls accounts**. You can\nquery one vendor at a time. Your vendor IDs can be\nfound in your account panel, or you can make an HTTP\nOPTIONS request to https://api.simplyrets.com.\n\n`curl -XOPTIONS https://api.simplyrets.com/properties`\n"
           },
           {
             "items": {
@@ -1349,7 +1370,7 @@
             "in": "query",
             "name": "vendor",
             "type": "string",
-            "description": "Used to specify the RETS vendor to search from. This\nparameter is required on multi-MLS apps. You can query one\nvendor at a time. To get your vendor id's make an HTTP\nOPTIONS request to https://api.simplyrets.com.\n\n`curl -XOPTIONS https://api.simplyrets.com/properties`\n"
+            "description": "Specify the RETS vendor to search.\nThis parameter is **required on multi-mls accounts**. You can\nquery one vendor at a time. Your vendor IDs can be\nfound in your account panel, or you can make an HTTP\nOPTIONS request to https://api.simplyrets.com.\n\n`curl -XOPTIONS https://api.simplyrets.com/properties`\n"
           },
           {
             "items": {

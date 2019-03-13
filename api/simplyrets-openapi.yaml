@@ -189,6 +189,21 @@ paths:
               type: string
         - required: false
           in: query
+          name: vendor
+          description: |
+            Specify the RETS vendor to search. This parameter is
+            **required on multi-mls accounts**. You can query one
+            vendor at a time. Your vendor IDs can be found in your
+            account panel, or you can make an HTTP OPTIONS request to
+            https://api.simplyrets.com.
+
+            ```
+            curl -XOPTIONS https://api.simplyrets.com/properties
+            ```
+          schema:
+            type: string
+        - required: false
+          in: query
           name: brokers
           description: |
             Filter the listings returned by brokerage with a Broker ID.
@@ -364,6 +379,21 @@ paths:
             default: 189018
         - required: false
           in: query
+          name: vendor
+          description: |
+            Specify the RETS vendor to search. This parameter is
+            **required on multi-mls accounts**. You can query one
+            vendor at a time. Your vendor IDs can be found in your
+            account panel, or you can make an HTTP OPTIONS request to
+            https://api.simplyrets.com.
+
+            ```
+            curl -XOPTIONS https://api.simplyrets.com/properties
+            ```
+          schema:
+            type: string
+        - required: false
+          in: query
           name: include
           description: |
             Include a extra fields which are not in the default
@@ -461,6 +491,21 @@ paths:
             type: integer
             format: int64
             default: 1005252
+        - required: false
+          in: query
+          name: vendor
+          description: |
+            Specify the RETS vendor to search. This parameter is
+            **required on multi-mls accounts**. You can query one
+            vendor at a time. Your vendor IDs can be found in your
+            account panel, or you can make an HTTP OPTIONS request to
+            https://api.simplyrets.com.
+
+            ```
+            curl -XOPTIONS https://api.simplyrets.com/properties
+            ```
+          schema:
+            type: string
         - required: false
           in: query
           name: include
