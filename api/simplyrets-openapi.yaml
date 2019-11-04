@@ -1138,6 +1138,43 @@ paths:
               type: string
         - required: false
           in: query
+          name: idx
+          description: >
+            Specify the IDX display requirements for the listings in
+            the response. The `idx` parameter checks if the
+            `internetAddressDisplay` and
+            `internetEntireListingDisplay` for each listing are true
+            (or `null`) or false based on this setting.
+
+            ##### **`idx=null`** (default)
+              - `internetAddressDisplay` must be true
+              - `internetEntireListingDisplay` must be true
+            ##### **`idx=listing`**
+              - `internetAddressDisplay` is ignored
+              - `internetEntireListingDisplay` must be true
+            ##### **`idx=address`**
+              - `internetAddressDisplay` must be true
+              - `internetEntireListingDisplay` is ignored
+            ##### **`idx=ignore`**
+              - `internetAddressDisplay` is ignored
+              - `internetEntireListingDisplay` is ignored
+
+            Learn more about SimplyRETS's [IDX compliance features here](/topics/fields-and-features-for-idx-compliance)
+            and please check with your MLS or data feed provider on
+            the rules and requirements for displaying restricted
+            listings.
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+            enum:
+              - "null"
+              - listing
+              - address
+              - ignore
+        - required: false
+          in: query
           name: include
           description: >
             Include a extra fields which are not in the default
