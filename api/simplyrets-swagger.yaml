@@ -465,6 +465,9 @@ definitions:
         format: double
         type: number
         description: Price of the listing
+      internetAddressDisplay:
+        type: boolean
+        description: The IDX address display requirements of the listing from the MLS.
       listingId:
         type: string
         description: |
@@ -477,6 +480,9 @@ definitions:
       mls:
         "$ref": "#/definitions/MlsInformation"
         description: RETS vendor information and data
+      internetEntireListingDisplay:
+        type: boolean
+        description: The IDX entire listing display requirements of the listing from the MLS.
       geo:
         "$ref": "#/definitions/GeographicData"
         description: Geographic data for the listing

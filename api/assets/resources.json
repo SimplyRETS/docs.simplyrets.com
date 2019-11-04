@@ -385,6 +385,10 @@
           "type": "number",
           "description": "Price of the listing"
         },
+        "internetAddressDisplay": {
+          "type": "boolean",
+          "description": "The IDX address display requirements of the listing from the MLS."
+        },
         "listingId": {
           "type": "string",
           "description": "Data Dictionary v1.3 ListingId. The well known identifier for\nthe listing. The value is the id or number by the RETS vendor\nas a public identifier for the listing.\n\nThis identifier should not be confused with the `mlsId`, which is\nspecific to the SimplyRETS API.\n"
@@ -392,6 +396,10 @@
         "mls": {
           "$ref": "#/definitions/MlsInformation",
           "description": "RETS vendor information and data"
+        },
+        "internetEntireListingDisplay": {
+          "type": "boolean",
+          "description": "The IDX entire listing display requirements of the listing from the MLS."
         },
         "geo": {
           "$ref": "#/definitions/GeographicData",

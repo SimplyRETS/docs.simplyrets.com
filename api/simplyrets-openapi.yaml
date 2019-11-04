@@ -1675,6 +1675,10 @@ components:
           type: number
           description: Price of the listing
           nullable: true
+        internetAddressDisplay:
+          type: boolean
+          nullable: true
+          description: The IDX address display requirements of the listing from the MLS.
         listingId:
           type: string
           description: |
@@ -1688,6 +1692,10 @@ components:
           $ref: '#/components/schemas/MlsInformation'
           description: RETS vendor information and data
           nullable: true
+        internetEntireListingDisplay:
+          type: boolean
+          nullable: true
+          description: The IDX entire listing display requirements of the listing from the MLS.
         geo:
           $ref: '#/components/schemas/GeographicData'
           description: Geographic data for the listing
