@@ -761,6 +761,16 @@ paths:
               - timeshare
               - triplex
               - manufacturedonland
+              - farmandranch
+              - agriculture
+              - business
+              - hotelmotel
+              - industrial
+              - mixeduse
+              - officespace
+              - retail
+              - unimprovedland
+              - warehouse
         - required: false
           in: query
           name: agent

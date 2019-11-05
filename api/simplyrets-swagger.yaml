@@ -279,20 +279,30 @@ definitions:
       subType:
         type: string
         enum:
-          - Apartment
-          - BoatSlip
-          - SingleFamilyResidence
-          - DeededParking
-          - Cabin
-          - Condominium
-          - Duplex
-          - ManufacturedHome
-          - Quadruplex
-          - StockCooperative
-          - Townhouse
-          - Timeshare
-          - Triplex
-          - ManufacturedOnLand
+          - apartment
+          - boatslip
+          - singlefamilyresidence
+          - deededparking
+          - cabin
+          - condominium
+          - duplex
+          - manufacturedhome
+          - quadruplex
+          - stockcooperative
+          - townhouse
+          - timeshare
+          - triplex
+          - manufacturedonland
+          - farmandranch
+          - agriculture
+          - business
+          - hotelmotel
+          - industrial
+          - mixeduse
+          - officespace
+          - retail
+          - unimprovedland
+          - warehouse
         description: 'A normalized representation of the listings sub-type.'
       bedrooms:
         format: int64
