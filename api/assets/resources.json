@@ -719,6 +719,11 @@
           "type": "integer",
           "description": "Amount of days the property has been Active"
         },
+        "originalEntryTimestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The transactional timestamp automatically recorded by the MLS system representing the date/time the listing was entered and made visible to members of the MLS."
+        },
         "originatingSystemName": {
           "type": "string",
           "description": "Alias for the listing office or brokerage\n\nThis field corresponds to the data-dictionary `OriginatingSystemName` field\n\nThe name of the originating record provider.  Most commonly\nthe name of the MLS. The place where the listing is\noriginally input by the member.  The legal name of the\ncompany.  To be used for display.\n\nIf you're data provider aggregates feeds from multiple other\nRETS vendors, this will be the name of the originating RETS\nvendor.\n"
