@@ -2061,6 +2061,14 @@ components:
           type: integer
           description: Amount of days the property has been Active
           nullable: true
+        originalEntryTimestamp:
+          format: date-time
+          type: string
+          nullable: true
+          description: |
+            The transactional timestamp automatically recorded by the MLS system
+            representing the date/time the listing was entered and made visible
+            to members of the MLS.
         originatingSystemName:
           type: string
           description: >
