@@ -812,9 +812,10 @@
             "enum": [
               "residential",
               "rental",
-              "multifamily",
               "condominium",
+              "mobilehome",
               "commercial",
+              "multifamily",
               "land",
               "farm"
             ],
@@ -1201,9 +1202,10 @@
             "enum": [
               "residential",
               "rental",
-              "multifamily",
               "condominium",
+              "mobilehome",
               "commercial",
+              "multifamily",
               "land",
               "farm"
             ],
