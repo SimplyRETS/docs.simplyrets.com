@@ -151,8 +151,9 @@ paths:
             enum:
               - residential
               - rental
-              - multifamily
+              - mobilehome
               - condominium
+              - multifamily
               - commercial
               - land
               - farm
@@ -728,8 +729,9 @@ paths:
             enum:
               - residential
               - rental
-              - multifamily
+              - mobilehome
               - condominium
+              - multifamily
               - commercial
               - land
               - farm
