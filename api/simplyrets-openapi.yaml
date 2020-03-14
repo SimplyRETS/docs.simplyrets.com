@@ -1855,6 +1855,33 @@ components:
           type: string
           description: Well known Agent MLS number or id.
           nullable: true
+    SingleAgent:
+      type: object
+      description: Agent Information from the Agents API
+      properties:
+        id:
+          type: string
+          description: The MLS unique system key for this entity.
+        agentId:
+          type: string
+          description: The well-known MLS ID for an entity.
+        agentKey:
+          type: string
+          description: |
+            The **SimplyRETS unique ID** for an entity. This number
+            will not be familiar.
+        firstName:
+          type: string
+          description: Agent first name.
+          nullable: true
+        lastName:
+          type: string
+          description: Agent last name.
+          nullable: true
+        contact:
+          "$ref": "#/definitions/ContactInformation"
+          description: Well known Agent MLS number or id.
+          nullable: true
     School:
       type: object
       description: RETS School Data
@@ -2123,3 +2150,187 @@ components:
           type: string
           description: Any extra amenities granted by the HOA
           nullable: true
+  '/agents':
+    get:
+      summary: The SimplyRETS Agents API
+      responses:
+        '200':
+          description: |
+            Will send `Authenticated` if authentication is succesful,
+            otherwise it will send `Unauthorized`
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: '#/components/schemas/SingleAgent'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                type: "array"
+                items:
+                  $ref: '#/components/schemas/SingleAgent'
+        '400':
+          description: Will send `Bad Request`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Will send `Authentication Required`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Will send `Authorization Required`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: |
+            Will send `Too Many Requests`. Please see our Service
+            Level Agreement for more information on Request Rates and
+            Acceptable Use.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Will send `Internal Server Error`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+            default: 20
+          description: |
+            The maximum number of agent entities to return per query.
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+            default: 0
+          description: |
+            Return agent entities starting after the _n_th entry. Used
+            for paginating through pages in the API.
+      security:
+        - basicAuth: []
+      description: |
+        The Agents API gives you access to the agent specific
+        information from your MLS. You can use this data to augment
+        the information available from the
+        [Listings API](/api/index.html#!/default/get_properties),
+        build a directory of agents, and more.
+
+        Note that this API is available as an
+        [addon to any other plan](https://simplyrets.com/#home-pricing).
+  '/agents/{agentKey}':
+    get:
+      summary: Single Agent Endpoint
+      responses:
+        '200':
+          description: |
+            Will send `Authenticated` if authentication is succesful,
+            otherwise it will send `Unauthorized`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SingleAgent'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/SingleAgent'
+        '400':
+          description: Will send `Bad Request`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Will send `Authentication Required`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Will send `Authorization Required`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: |
+            Will send `Too Many Requests`. Please see our Service
+            Level Agreement for more information on Request Rates and
+            Acceptable Use.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Will send `Internal Server Error`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+        - name: agentKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: |
+            "The `agentKey` value for an agent. Generally, you will
+            get this value from the
+            [Agents API](/api/index.html#!/default/get_agents) or will
+            have it stored if you are keeping a copy of the data
+            locally.
+      security:
+        - basicAuth: []
+      description: |
+        The Single Agent Endpoint gives you a way to query the API for
+        _a specific agent entity_. If you know the `agentKey` value
+        and only need data for this one agent entity, this endpoint
+        will have better performance and transmit less data than the
+        [Agents API](/api/index.html#!/default/get_agents).
+
+        Note that this API is available as an
+        [addon to any other plan](https://simplyrets.com/services).
