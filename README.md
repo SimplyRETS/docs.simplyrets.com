@@ -53,7 +53,11 @@ documentation, examples, and help topics. Browse the links below:
 <!-- Not sure why the below links don't work with a nested base_url -->
 - [API documentation]({{ "/api/index.html" | relative_url }})
   - [`/properties`]({{ "/api/index.html#!/default/get_properties" | relative_url }})
+  - [`/properties/{mlsId}`]({{ "/api/index.html#!/default/get_properties_mlsId" | relative_url }})
   - [`/openhouses`]({{ "/api/index.html#!/default/get_openhouses" | relative_url }})
+  - [`/openhouses/{openHouseKey}`]({{ "/api/index.html#!/default/get_properties_openHouseKey" | relative_url }})
+  - [`/agents`]({{ "/api/index.html#!/default/get_agents" | relative_url }})
+  - [`/agents/{agentKey}`]({{ "/api/index.html#!/default/get_agents_agentKey" | relative_url }})
 - [Live example](http://maxavenue.com/homes-for-sale/)
 - [API help topics](#topics)
 

@@ -546,6 +546,36 @@
         }
       }
     },
+    "SingleAgent": {
+      "type": "object",
+      "description": "Agent Information from the Agents API",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The MLS unique system key for this entity."
+        },
+        "agentId": {
+          "type": "string",
+          "description": "The well-known MLS ID for an entity."
+        },
+        "agentKey": {
+          "type": "string",
+          "description": "The **SimplyRETS unique ID** for an entity. This number will not be familiar."
+        },
+        "firstName": {
+          "type": "string",
+          "description": "Agent first name"
+        },
+        "lastName": {
+          "type": "string",
+          "description": "Agent last name"
+        },
+        "contact": {
+          "$ref": "#/definitions/ContactInformation",
+          "description": "Agent contact information. This is only present in an API response when your RETS feed contains agent contact information Thus, **contact information is not available for all RETS Vendors.**"
+        }
+      }
+    },
     "School": {
       "type": "object",
       "description": "RETS School Data",
@@ -1553,6 +1583,132 @@
           }
         ],
         "description": "This is the main endpoint for accessing your properties. View\nall of the available query parameters and make requests below!\nThe API uses Basic Authentication, which most HTTP libraries\nwill handle for you. To use the test data (which is what this\npages uses), you can use the api key `simplyrets` and secret\n`simplyrets`. Note that these test listings are not live RETS\nlistings but the data, query parameters, and response bodies\nwill all work the same.\n"
+      }
+    },
+    "/agents": {
+      "get": {
+        "summary": "The SimplyRETS Agents API",
+        "responses": {
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            },
+            "description": "Will send `Authorization Required`."
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            },
+            "description": "Will send `Bad Request`."
+          },
+          "429": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            },
+            "description": "Will send `Too Many Requests`. Please see our Service\nLevel Agreement for more information on Request Rates and\nAcceptable Use.\n"
+          },
+          "200": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SingleAgent"
+              }
+            },
+            "description": "Will send `Authenticated` if authentication is succesful,\notherwise it will send `Unauthorized`\n"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            },
+            "description": "Will send `Internal Server Error`."
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            },
+            "description": "Will send `Authentication Required`."
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "number",
+            "required": false,
+            "description": "The maximum number of agent entities to return per query."
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "type": "number",
+            "required": false,
+            "description": "Return agent entities starting after the _n_th entry."
+          }
+        ],
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "description": "The Agents API gives you access to the agent specific information from your MLS. You can use this data to augment the information available from the [Listings API](/api/index.html#!/default/get_properties), build a directory of agents, and more. \n\n Note that this API is available as an [addon to any other plan](https://simplyrets.com/#home-pricing)."
+      }
+    },
+    "/agents/{agentKey}": {
+      "get": {
+        "summary": "Single Agent Endpoint",
+        "responses": {
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            },
+            "description": "Will send `Authorization Required`."
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            },
+            "description": "Will send `Bad Request`."
+          },
+          "429": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            },
+            "description": "Will send `Too Many Requests`. Please see our Service\nLevel Agreement for more information on Request Rates and\nAcceptable Use.\n"
+          },
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/SingleAgent"
+            },
+            "description": "Will send `Authenticated` if authentication is succesful,\notherwise it will send `Unauthorized`\n"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            },
+            "description": "Will send `Internal Server Error`."
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            },
+            "description": "Will send `Authentication Required`."
+          }
+        },
+        "parameters": [
+          {
+            "name": "agentKey",
+            "in": "path",
+            "type": "string",
+            "required": true,
+            "description": "The `agentKey` value for an agent. Generally, you will get this value from the [Agents API](/api/index.html#!/default/get_agents) or will have it stored if you are keeping a copy of the data locally."
+          }
+        ],
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "description": "The Single Agent Endpoint gives you a way to query the API for _a specific agent entity_. If you know the `agentKey` value and only need data for this one agent entity, this endpoint will have better performance and transmit less data than the [Agents API](/api/index.html#!/default/get_agents).\n\n Note that this API is available as an [addon to any other plan](https://simplyrets.com/services)."
       }
     }
   }
