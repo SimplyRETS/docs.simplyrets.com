@@ -302,8 +302,6 @@ paths:
             type: array
             items:
               type: string
-      security:
-        - basicAuth: []
       description: |
         This is the main endpoint for accessing openhouses.
   '/openhouses/{openHouseKey}':
@@ -412,8 +410,6 @@ paths:
             type: array
             items:
               type: string
-      security:
-        - basicAuth: []
       description: |
         Use this endpoint for accessing a single OpenHouse.
   '/properties/{mlsId}':
@@ -534,8 +530,6 @@ paths:
               - parking
               - pool
               - rooms
-      security:
-        - basicAuth: []
       description: |
         Use this endpoint for accessing a single listing. When you
         make a search to the `/properties` endpoint, each listing in
@@ -633,622 +627,44 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
       parameters:
-        - required: false
-          in: query
-          name: q
-          description: |
-            A textual keyword search. This parameter will search  the following
-            fields, when available:
-
-              - listingId (This does _not_ search the `mlsId` field in the SimplyRETS response body)
-              - street number
-              - street name
-              - mls area (major)
-              - city
-              - subdivision name
-              - postal code
-
-            The `q` parameter can be specified multiple times in a
-            query. For example, `q=Houston&q=mlsid_12345`.
-          schema:
-            type: string
-        - required: false
-          in: query
-          name: status
-          description: >
-            Request listings by a specific status. This parameter
-
-            defaults to active and you can specify multiple statuses
-
-            in a single query.
-
-
-            Listing statuses depend on your RETS vendor's field
-
-            availability. Below is a brief description of each status
-
-            with possible synonyms which may map to your RETS
-
-            vendor-specific statuses.
-
-
-            - *Active*: Active Listing which is still on the market
-
-            - *ActiveUnderContract*: An offer has been accepted but the listing
-            is still on market. Synonyms: Accepting Backup Offers, Backup Offer,
-            Active With Accepted. Synonyms: Offer, Backup, Contingent
-
-            - *Pending*: An offer has been accepted and the listing is no longer
-            on market. Synonyms: Offer Accepted, Under Contract
-
-            - *Hold*: The listing has been withdrawn from the market, but a
-            contract
-              still exists between the seller and the listing member. Synonyms: Hold, Hold Do Not Show, Temp Off Market
-            - *Withdrawn*: The listing has been withdrawn from the market, but a
-            contract
-              still exists between the seller and the listing member. Synonyms: Hold, Hold Do Not Show, Temp Off Market
-            - *Closed*: The purchase agreement has been fulfilled or the lease
-              agreement has been executed. Synonyms: Sold, Leased, Rented, Closed Sale
-            - *Expired*: The listing contract has expired
-
-            - *Delete*: The listing contract was never valid or other reason for
-            the contract to be nullified. Synonyms: Kill, Zap
-
-            - *Incomplete*: The listing has not yet be completely entered and is
-            not yet
-              published in the MLS. Synonyms: Draft, Partially Complted
-            - *ComingSoon*
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-            enum:
-              - Active
-              - Pending
-              - Closed
-              - ActiveUnderContract
-              - Hold
-              - Withdrawn
-              - Expired
-              - Delete
-              - Incomplete
-              - ComingSoon
-        - required: false
-          in: query
-          name: type
-          description: |
-            Request listings by a specific property type. This
-            defaults to Residential and Rental. You can specify
-            multiple property types in a single query.
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-            enum:
-              - residential
-              - rental
-              - mobilehome
-              - condominium
-              - multifamily
-              - commercial
-              - land
-              - farm
-        - required: false
-          in: query
-          name: subtype
-          description: |
-            Request listings by a specific property sub type.
-
-            *NOTE* not all sub type filters are available for all vendors.
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-            enum:
-              - apartment
-              - boatslip
-              - singlefamilyresidence
-              - deededparking
-              - cabin
-              - condominium
-              - duplex
-              - manufacturedhome
-              - ownyourown
-              - quadruplex
-              - stockcooperative
-              - townhouse
-              - timeshare
-              - triplex
-              - manufacturedonland
-              - farmandranch
-              - agriculture
-              - business
-              - hotelmotel
-              - industrial
-              - mixeduse
-              - officespace
-              - retail
-              - unimprovedland
-              - warehouse
-        - required: false
-          in: query
-          name: agent
-          description: |
-            Filter the listings returned by the `listAgent` id.  Note, the
-            Agent ID is provided by your RETS vendor or MLS.
-
-            The co-listing agent is not included in this query parameter.
-          schema:
-            type: string
-        - required: false
-          in: query
-          name: salesAgent
-          description: >
-            Filter the listings returned by the `sales.agent` id.  Note, the
-
-            Agent ID is provided by your RETS vendor or MLS.
-
-
-            The co-sales or co-buyer's agent is not included in this query
-            parameter.
-          schema:
-            type: string
-        - required: false
-          in: query
-          name: brokers
-          description: |
-            Filter the listings returned by brokerage with a Broker
-            ID. For some MLS areas, this is the ListOfficeId (Listing
-            Office ID).  You can specific multiple broker
-            parameters. Note, this query parameter is only available
-            if a Broker ID is provided by your RETS vendor or MLS.
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-        - required: false
-          in: query
-          name: minprice
-          description: |
-            Filter listings by a minimum price.
-          schema:
-            type: integer
-        - required: false
-          in: query
-          name: maxprice
-          description: |
-            Filter listings by a maximum price
-          schema:
-            type: integer
-        - required: false
-          in: query
-          name: minarea
-          description: |
-            Filter listings by a minimum area size in Sq Ft.
-          schema:
-            type: integer
-        - required: false
-          in: query
-          name: maxarea
-          description: |
-            Filter listings by a maximum area size in Sq Ft.
-          schema:
-            type: integer
-        - required: false
-          in: query
-          name: minbaths
-          description: |
-            Filter listings by a minimum number of bathrooms.
-          schema:
-            type: integer
-        - required: false
-          in: query
-          name: maxbaths
-          description: |
-            Filter listings by a maximum number of bathrooms.
-          schema:
-            type: integer
-        - required: false
-          in: query
-          name: minbeds
-          description: |
-            Filter listings by a minimum number of bedrooms.
-          schema:
-            type: integer
-        - required: false
-          in: query
-          name: maxbeds
-          description: |
-            Filter listings by a maximum number of bedrooms.
-          schema:
-            type: integer
-        - required: false
-          in: query
-          name: maxdom
-          description: |
-            Filter listings by a maximum number of days on market.  _Note
-            that your RETS vendor or MLS must provide Days on Market data._
-          schema:
-            type: integer
-        - required: false
-          in: query
-          name: minyear
-          description: |
-            Filter listings by a setting a minimum year built.
-          schema:
-            type: integer
-        - required: false
-          in: query
-          name: maxyear
-          description: |
-            Filter listings by a setting a maximum year built.
-          schema:
-            type: integer
-        - required: false
-          in: query
-          name: minacres
-          description: |
-            Filter listings by a setting a minimum acreage.
-          schema:
-            type: integer
-        - required: false
-          in: query
-          name: maxacres
-          description: |
-            Filter listings by a setting a maximum acreage.
-          schema:
-            type: integer
-        - required: false
-          in: query
-          name: minGarageSpaces
-          description: |
-            Filter listings by a minimum number of garage spaces.
-          schema:
-            type: integer
-        - required: false
-          in: query
-          name: maxGarageSpaces
-          description: |
-            Filter listings by a maximum number of garage spaces.
-          schema:
-            type: integer
-        - required: false
-          in: query
-          name: limit
-          description: |
-            Set the number of listings to return in the response.
-            This defaults to 20 listings, and can be a maximum of 500.
-            To paginate through to the next page of listings, take a
-            look at the `offset` parameter, or the Link in the HTTP
-            Header.
-          schema:
-            type: integer
-        - required: false
-          in: query
-          name: offset
-          description: |
-            Increase the offset parameter by the limit to go to the
-            next "page" of listings. Also take a look at the Link HTTP
-            Header for pre-built pagination.
-
-            *NOTE:* Use the `lastId` field to paginate response
-
-            *NOTE:* If you're offset is too high, you will receive an
-            `HTTP 400 offset too high` error message.
-          schema:
-            type: integer
-        - required: false
-          in: query
-          name: lastId
-          description: >
-            Used as a cursor for pagination. When using `lastId`, the `sort`
-            parameter
-
-            will not work.
-          schema:
-            type: integer
-        - required: false
-          in: query
-          name: vendor
-          description: |
-            Used to specify the RETS vendor to search from. This
-            parameter is required on multi-MLS apps. You can query one
-            vendor at a time. To get your vendor id's make an HTTP
-            OPTIONS request to https://api.simplyrets.com.
-
-            `curl -XOPTIONS https://api.simplyrets.com/properties`
-          schema:
-            type: string
-        - required: false
-          in: query
-          name: postalCodes
-          description: |
-            Filter the listings returned by postal codes / zip
-            code. You can specify multiple.
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-        - required: false
-          in: query
-          name: features
-          description: >
-            Filter the listings by specific **interior features**.  You
-            can use the parameter multiple times to filter by multiple
-            features. For example, to search for `Wet Bar` and `High
-            Ceiling`:
-
-            ```
-            https://simplyrets.com/services?features=Wet%20Bar&features=High%20Ceiling
-            ```
-
-            The list of `features` provided by your RETS vendor or MLS
-            can be seen by sending an `OPTIONS` request to the
-            `/properties` endpoint:
-
-            ```
-            curl -XOPTIONS -u simplyrets:simplyrets https://api.simplyrets.com/properties
-            ```
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-        - required: false
-          in: query
-          name: exteriorFeatures
-          description: >
-            Filter the listings by specific **exterior features**.  You
-            can use the parameter multiple times to filter by multiple
-            features. For example, to search for `Proch` and `Fully
-            Fenced`:
-
-            ```
-            https://simplyrets.com/services?exteriorFeatures=Porch&exteriorFeatures=Fully+Fenced
-            ```
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-        - required: false
-          in: query
-          name: water
-          description: >
-            Query water/waterfront listings only. Specify `true` to
-
-            filter waterfront listings.
-
-
-            If you specify `water=true`, all listings with any `waterfront`
-            value
-
-            will be queried.
-
-
-            If you specify `water=false`, listings which are **NOT** waterfront
-
-            listings will be queried.
-
-
-            If you specify `water=LAKE+NAME` or another valid value contained in
-
-            your feed, that value will be searched
-          schema:
-            type: string
-        - required: false
-          in: query
-          name: neighborhoods
-          description: >
-            Filter the listings returned by specific neighborhoods and
-
-            subdivisions. You can specify multiple `neighborhoods` by
-
-            using the query parameter multiple times.
-
-
-            The `neighborhoods` query parameter is case-insensitive.
-
-
-            The list of `neighborhoods` provided by your RETS vendor or
-
-            MLS can be seen by sending an `OPTIONS` request to the
-
-            `/properties` endpoint:
-
-
-            `curl -XOPTIONS -u simplyrets:simplyrets
-            https://api.simplyrets.com/properties`
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-        - required: false
-          in: query
-          name: cities
-          description: >
-            Filter the listings returned by specific cities. You can
-
-            specify multiple `cities` query parameters.
-
-
-            The `cities` query parameter is case-insensitive.
-
-
-            The list of `cities` provided by your RETS vendor or MLS can
-
-            be seen by sending an `OPTIONS` request to the `/properties`
-
-            endpoint:
-
-
-            `curl -XOPTIONS -u simplyrets:simplyrets
-            https://api.simplyrets.com/openhouses`
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-        - required: false
-          in: query
-          name: counties
-          description: >
-            Filter the listings returned by specific counties. You can
-
-            specify multiple `counties` parameters.
-
-
-            The `counties` query parameter is case-insensitive.
-
-
-            The list of `counties` provided by your RETS vendor or MLS
-
-            can be seen by sending an `OPTIONS` request to the
-
-            `/properties` endpoint:
-
-
-            `curl -XOPTIONS -u simplyrets:simplyrets
-            https://api.simplyrets.com/openhouses`
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-        - required: false
-          in: query
-          name: points
-          description: |
-            Return listings that are within a set of latitude
-            longitude coordinates. For example;
-            ```
-            29.723837,-95.69778
-            29.938275,-95.69778
-            29.938275,-95.32974
-            29.723837,-95.32974
-            ```
-
-            Note that some RETS vendors do not provide latitude and
-            longitude with their listings, which is required for this
-            parameter to work. In these cases, SimplyRETS offers a
-            [Geocoding Addon](https://simplyrets.com/services#geocoding).
-
-            Check out our
-            [blog post](https://simplyrets.com/blog/interactive-map-search.html)
-            on using the `points` parameter to build a map-based app
-            in javascript.
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-        - required: false
-          in: query
-          name: idx
-          description: >
-            Specify the IDX display requirements for the listings in
-            the response. The `idx` parameter checks if the
-            `internetAddressDisplay` and
-            `internetEntireListingDisplay` for each listing are true
-            (or `null`) or false based on this setting.
-
-            ##### **`idx=null`** (default)
-              - `internetAddressDisplay` must be true
-              - `internetEntireListingDisplay` must be true
-            ##### **`idx=listing`**
-              - `internetAddressDisplay` is ignored
-              - `internetEntireListingDisplay` must be true
-            ##### **`idx=address`**
-              - `internetAddressDisplay` must be true
-              - `internetEntireListingDisplay` is ignored
-            ##### **`idx=ignore`**
-              - `internetAddressDisplay` is ignored
-              - `internetEntireListingDisplay` is ignored
-
-            Learn more about SimplyRETS's [IDX compliance features here](/topics/fields-and-features-for-idx-compliance)
-            and please check with your MLS or data feed provider on
-            the rules and requirements for displaying restricted
-            listings.
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-            enum:
-              - "null"
-              - listing
-              - address
-              - ignore
-        - required: false
-          in: query
-          name: include
-          description: >
-            Include a extra fields which are not in the default
-            response body. Available values:
-
-            - 'rooms': include parameter will include
-               any additional rooms as a list.
-
-            Note that your RETS vendor or MLS must provide these
-            fields in their RETS data for them to be available in the
-            API response. In the future, fields which require an
-            'include' may become available by default.
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-            enum:
-              - association
-              - agreement
-              - garageSpaces
-              - maintenanceExpense
-              - parking
-              - pool
-              - rooms
-              - taxYear
-              - taxAnnualAmount
-        - required: false
-          in: query
-          name: sort
-          description: |
-            Sort the response by a specific field. Values starting
-            with a minus (-) denote descending order, while the others
-            are ascending.
-          schema:
-            type: string
-            enum:
-              - listprice
-              - '-listprice'
-              - listdate
-              - '-listdate'
-              - beds
-              - '-beds'
-              - baths
-              - '-baths'
-        - required: false
-          in: query
-          name: count
-          description: |
-            When set to `false`, The `X-Total-Count` header will not
-            be returned
-
-            Counting the listings can contribute to slower API calls
-            due to the extra queries that need to be run to get an
-            exact count.
-
-            Disabling count can increase query speeds.
-          schema:
-            type: integer
-            default: true
-      security:
-        - basicAuth: []
+      - "$ref": "#/components/parameters/q"
+      - "$ref": "#/components/parameters/status"
+      - "$ref": "#/components/parameters/type"
+      - "$ref": "#/components/parameters/subtype"
+      - "$ref": "#/components/parameters/agent"
+      - "$ref": "#/components/parameters/salesAgent"
+      - "$ref": "#/components/parameters/brokers"
+      - "$ref": "#/components/parameters/minprice"
+      - "$ref": "#/components/parameters/maxprice"
+      - "$ref": "#/components/parameters/minarea"
+      - "$ref": "#/components/parameters/maxarea"
+      - "$ref": "#/components/parameters/minbaths"
+      - "$ref": "#/components/parameters/maxbaths"
+      - "$ref": "#/components/parameters/minbeds"
+      - "$ref": "#/components/parameters/maxbeds"
+      - "$ref": "#/components/parameters/maxdom"
+      - "$ref": "#/components/parameters/minyear"
+      - "$ref": "#/components/parameters/maxyear"
+      - "$ref": "#/components/parameters/minacres"
+      - "$ref": "#/components/parameters/maxacres"
+      - "$ref": "#/components/parameters/minGarageSpaces"
+      - "$ref": "#/components/parameters/maxGarageSpaces"
+      - "$ref": "#/components/parameters/limit"
+      - "$ref": "#/components/parameters/offset"
+      - "$ref": "#/components/parameters/lastId"
+      - "$ref": "#/components/parameters/vendor"
+      - "$ref": "#/components/parameters/postalCodes"
+      - "$ref": "#/components/parameters/features"
+      - "$ref": "#/components/parameters/exteriorFeatures"
+      - "$ref": "#/components/parameters/water"
+      - "$ref": "#/components/parameters/neighborhoods"
+      - "$ref": "#/components/parameters/cities"
+      - "$ref": "#/components/parameters/counties"
+      - "$ref": "#/components/parameters/points"
+      - "$ref": "#/components/parameters/idx"
+      - "$ref": "#/components/parameters/include"
+      - "$ref": "#/components/parameters/sort"
+      - "$ref": "#/components/parameters/count"
       description: |
         This is the main endpoint for accessing your properties. View
         all of the available query parameters and make requests below!
@@ -1258,8 +674,224 @@ paths:
         `simplyrets`. Note that these test listings are not live RETS
         listings but the data, query parameters, and response bodies
         will all work the same.
+  /properties/analytics:
+    get:
+      summary: The SimplyRETS Market Analytics API
+      responses:
+        '200':
+          headers:
+            Link:
+              description: A set of pagination headers provided by the SimplyRETS API.
+              schema:
+                type: string
+            X-SimplyRETS-LastUpdate:
+              description: >-
+                The last time a listing refresh was run for the RETS feed
+                associated w/ this API request.
+              schema:
+                type: timestamp
+          description: |
+            Will send `Authenticated` if authentication is succesful,
+            otherwise it will send `Unauthorized`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListingsAnalytics'
+                type: object
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/ListingsAnalytics'
+                type: object
+        '400':
+          description: Will send `Bad Request`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Will send `Authentication Required`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Will send `Authorization Required`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: |
+            Will send `Too Many Requests`. Please see our Service
+            Level Agreement for more information on Request Rates and
+            Acceptable Use.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Will send `Internal Server Error`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+      - "$ref": "#/components/parameters/q"
+      - "$ref": "#/components/parameters/status"
+      - "$ref": "#/components/parameters/type"
+      - "$ref": "#/components/parameters/subtype"
+      - "$ref": "#/components/parameters/agent"
+      - "$ref": "#/components/parameters/salesAgent"
+      - "$ref": "#/components/parameters/brokers"
+      - "$ref": "#/components/parameters/minprice"
+      - "$ref": "#/components/parameters/maxprice"
+      - "$ref": "#/components/parameters/minarea"
+      - "$ref": "#/components/parameters/maxarea"
+      - "$ref": "#/components/parameters/minbaths"
+      - "$ref": "#/components/parameters/maxbaths"
+      - "$ref": "#/components/parameters/minbeds"
+      - "$ref": "#/components/parameters/maxbeds"
+      - "$ref": "#/components/parameters/maxdom"
+      - "$ref": "#/components/parameters/minyear"
+      - "$ref": "#/components/parameters/maxyear"
+      - "$ref": "#/components/parameters/minacres"
+      - "$ref": "#/components/parameters/maxacres"
+      - "$ref": "#/components/parameters/minGarageSpaces"
+      - "$ref": "#/components/parameters/maxGarageSpaces"
+      - "$ref": "#/components/parameters/limit"
+      - "$ref": "#/components/parameters/offset"
+      - "$ref": "#/components/parameters/lastId"
+      - "$ref": "#/components/parameters/vendor"
+      - "$ref": "#/components/parameters/postalCodes"
+      - "$ref": "#/components/parameters/features"
+      - "$ref": "#/components/parameters/exteriorFeatures"
+      - "$ref": "#/components/parameters/water"
+      - "$ref": "#/components/parameters/neighborhoods"
+      - "$ref": "#/components/parameters/cities"
+      - "$ref": "#/components/parameters/counties"
+      - "$ref": "#/components/parameters/points"
+      - "$ref": "#/components/parameters/idx"
+      - "$ref": "#/components/parameters/include"
+      - "$ref": "#/components/parameters/sort"
+      - "$ref": "#/components/parameters/count"
+      description: The SimplyRETS Market Analytics API allows you to get high-level
+        statistics and details about a search query. The `/properties/analytics` endpoint
+        works the same as `/properties`, but instead of returning listings it returns
+        analytics. You can use this information to populate details about a specific
+        area, query, price range, and more, on your website or application.
+  /properties/{mlsId}/analytics:
+    get:
+      summary: The SimplyRETS Market Analytics API
+      responses:
+        '200':
+          headers:
+            Link:
+              description: A set of pagination headers provided by the SimplyRETS API.
+              schema:
+                type: string
+            X-SimplyRETS-LastUpdate:
+              description: >-
+                The last time a listing refresh was run for the RETS feed
+                associated w/ this API request.
+              schema:
+                type: timestamp
+          description: |
+            Will send `Authenticated` if authentication is succesful,
+            otherwise it will send `Unauthorized`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListingAnalytics'
+                type: array
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/ListingAnalytics'
+                type: object
+        '400':
+          description: Will send `Bad Request`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Will send `Authentication Required`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Will send `Authorization Required`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: |
+            Will send `Too Many Requests`. Please see our Service
+            Level Agreement for more information on Request Rates and
+            Acceptable Use.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Will send `Internal Server Error`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+      - required: true
+        in: path
+        name: mlsId
+        description: |
+          The `mlsId` field is a unique identifier which is specific
+          to the SimplyRETS API only.  This field is different from
+          the `listingId` field (which is the public number given to
+          a listing by the RETS vendor or MLS and is not used here).
+        schema:
+          type: integer
+          format: int64
+          default: 1005252
+      - "$ref": "#/components/parameters/vendor"
+      description: Use this endpoint access the analytics for a single listing in
+        the SimplyREST API. The `/properties/{mlsId}/analytics` endpoint is similar
+        to the `/properties/{mlsId}` endpoint in that it's used to get the information
+        for a single listing based on the SimplyRETS unique ID `.mlsId`.
 servers:
   - url: 'https://api.simplyrets.com/'
+security:
+  - basicAuth: []
 components:
   securitySchemes:
     basicAuth:
@@ -1268,6 +900,659 @@ components:
       type: http
       description: HTTP Basic Authentication. Works over `HTTPS` only
       scheme: basic
+  parameters:
+    q:
+      required: false
+      in: query
+      name: q
+      description: |
+        A textual keyword search. This parameter will search  the following
+        fields, when available:
+
+          - listingId (This does _not_ search the `mlsId` field in the SimplyRETS response body)
+          - street number
+          - street name
+          - mls area (major)
+          - city
+          - subdivision name
+          - postal code
+
+        The `q` parameter can be specified multiple times in a
+        query. For example, `q=Houston&q=mlsid_12345`.
+      schema:
+        type: string
+    status:
+      required: false
+      in: query
+      name: status
+      description: >
+        Request listings by a specific status. This parameter
+
+        defaults to active and you can specify multiple statuses
+
+        in a single query.
+
+
+        Listing statuses depend on your RETS vendor's field
+
+        availability. Below is a brief description of each status
+
+        with possible synonyms which may map to your RETS
+
+        vendor-specific statuses.
+
+
+        - *Active*: Active Listing which is still on the market
+
+        - *ActiveUnderContract*: An offer has been accepted but the listing
+        is still on market. Synonyms: Accepting Backup Offers, Backup Offer,
+        Active With Accepted. Synonyms: Offer, Backup, Contingent
+
+        - *Pending*: An offer has been accepted and the listing is no longer
+        on market. Synonyms: Offer Accepted, Under Contract
+
+        - *Hold*: The listing has been withdrawn from the market, but a
+        contract
+          still exists between the seller and the listing member. Synonyms: Hold, Hold Do Not Show, Temp Off Market
+        - *Withdrawn*: The listing has been withdrawn from the market, but a
+        contract
+          still exists between the seller and the listing member. Synonyms: Hold, Hold Do Not Show, Temp Off Market
+        - *Closed*: The purchase agreement has been fulfilled or the lease
+          agreement has been executed. Synonyms: Sold, Leased, Rented, Closed Sale
+        - *Expired*: The listing contract has expired
+
+        - *Delete*: The listing contract was never valid or other reason for
+        the contract to be nullified. Synonyms: Kill, Zap
+
+        - *Incomplete*: The listing has not yet be completely entered and is
+        not yet
+          published in the MLS. Synonyms: Draft, Partially Complted
+        - *ComingSoon*
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+          - Active
+          - Pending
+          - Closed
+          - ActiveUnderContract
+          - Hold
+          - Withdrawn
+          - Expired
+          - Delete
+          - Incomplete
+          - ComingSoon
+    type:
+      required: false
+      in: query
+      name: type
+      description: |
+        Request listings by a specific property type. This
+        defaults to Residential and Rental. You can specify
+        multiple property types in a single query.
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+          - residential
+          - rental
+          - mobilehome
+          - condominium
+          - multifamily
+          - commercial
+          - land
+          - farm
+    subtype:
+      required: false
+      in: query
+      name: subtype
+      description: |
+        Request listings by a specific property sub type.
+
+        *NOTE* not all sub type filters are available for all vendors.
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+          - apartment
+          - boatslip
+          - singlefamilyresidence
+          - deededparking
+          - cabin
+          - condominium
+          - duplex
+          - manufacturedhome
+          - ownyourown
+          - quadruplex
+          - stockcooperative
+          - townhouse
+          - timeshare
+          - triplex
+          - manufacturedonland
+          - farmandranch
+          - agriculture
+          - business
+          - hotelmotel
+          - industrial
+          - mixeduse
+          - officespace
+          - retail
+          - unimprovedland
+          - warehouse
+    agent:
+      required: false
+      in: query
+      name: agent
+      description: |
+        Filter the listings returned by the `listAgent` id.  Note, the
+        Agent ID is provided by your RETS vendor or MLS.
+
+        The co-listing agent is not included in this query parameter.
+      schema:
+        type: string
+    salesAgent:
+      required: false
+      in: query
+      name: salesAgent
+      description: >
+        Filter the listings returned by the `sales.agent` id.  Note, the
+
+        Agent ID is provided by your RETS vendor or MLS.
+
+
+        The co-sales or co-buyer's agent is not included in this query
+        parameter.
+      schema:
+        type: string
+    brokers:
+      required: false
+      in: query
+      name: brokers
+      description: |
+        Filter the listings returned by brokerage with a Broker
+        ID. For some MLS areas, this is the ListOfficeId (Listing
+        Office ID).  You can specific multiple broker
+        parameters. Note, this query parameter is only available
+        if a Broker ID is provided by your RETS vendor or MLS.
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    minprice:
+      required: false
+      in: query
+      name: minprice
+      description: |
+        Filter listings by a minimum price.
+      schema:
+        type: integer
+    maxprice:
+      required: false
+      in: query
+      name: maxprice
+      description: |
+        Filter listings by a maximum price
+      schema:
+        type: integer
+    minarea:
+      required: false
+      in: query
+      name: minarea
+      description: |
+        Filter listings by a minimum area size in Sq Ft.
+      schema:
+        type: integer
+    maxarea:
+      required: false
+      in: query
+      name: maxarea
+      description: |
+        Filter listings by a maximum area size in Sq Ft.
+      schema:
+        type: integer
+    minbaths:
+      required: false
+      in: query
+      name: minbaths
+      description: |
+        Filter listings by a minimum number of bathrooms.
+      schema:
+        type: integer
+    maxbaths:
+      required: false
+      in: query
+      name: maxbaths
+      description: |
+        Filter listings by a maximum number of bathrooms.
+      schema:
+        type: integer
+    minbeds:
+      required: false
+      in: query
+      name: minbeds
+      description: |
+        Filter listings by a minimum number of bedrooms.
+      schema:
+        type: integer
+    maxbeds:
+      required: false
+      in: query
+      name: maxbeds
+      description: |
+        Filter listings by a maximum number of bedrooms.
+      schema:
+        type: integer
+    maxdom:
+      required: false
+      in: query
+      name: maxdom
+      description: |
+        Filter listings by a maximum number of days on market.  _Note
+        that your RETS vendor or MLS must provide Days on Market data._
+      schema:
+        type: integer
+    minyear:
+      required: false
+      in: query
+      name: minyear
+      description: |
+        Filter listings by a setting a minimum year built.
+      schema:
+        type: integer
+    maxyear:
+      required: false
+      in: query
+      name: maxyear
+      description: |
+        Filter listings by a setting a maximum year built.
+      schema:
+        type: integer
+    minacres:
+      required: false
+      in: query
+      name: minacres
+      description: |
+        Filter listings by a setting a minimum acreage.
+      schema:
+        type: integer
+    maxacres:
+      required: false
+      in: query
+      name: maxacres
+      description: |
+        Filter listings by a setting a maximum acreage.
+      schema:
+        type: integer
+    minGarageSpaces:
+      required: false
+      in: query
+      name: minGarageSpaces
+      description: |
+        Filter listings by a minimum number of garage spaces.
+      schema:
+        type: integer
+    maxGarageSpaces:
+      required: false
+      in: query
+      name: maxGarageSpaces
+      description: |
+        Filter listings by a maximum number of garage spaces.
+      schema:
+        type: integer
+    limit:
+      required: false
+      in: query
+      name: limit
+      description: |
+        Set the number of listings to return in the response.
+        This defaults to 20 listings, and can be a maximum of 500.
+        To paginate through to the next page of listings, take a
+        look at the `offset` parameter, or the Link in the HTTP
+        Header.
+      schema:
+        type: integer
+    offset:
+      required: false
+      in: query
+      name: offset
+      description: |
+        Increase the offset parameter by the limit to go to the
+        next "page" of listings. Also take a look at the Link HTTP
+        Header for pre-built pagination.
+
+        *NOTE:* Use the `lastId` field to paginate response
+
+        *NOTE:* If you're offset is too high, you will receive an
+        `HTTP 400 offset too high` error message.
+      schema:
+        type: integer
+    lastId:
+      required: false
+      in: query
+      name: lastId
+      description: >
+        Used as a cursor for pagination. When using `lastId`, the `sort`
+        parameter
+
+        will not work.
+      schema:
+        type: integer
+    vendor:
+      required: false
+      in: query
+      name: vendor
+      description: |
+        Used to specify the RETS vendor to search from. This
+        parameter is required on multi-MLS apps. You can query one
+        vendor at a time. To get your vendor id's make an HTTP
+        OPTIONS request to https://api.simplyrets.com.
+
+        `curl -XOPTIONS https://api.simplyrets.com/properties`
+      schema:
+        type: string
+    postalCodes:
+      required: false
+      in: query
+      name: postalCodes
+      description: |
+        Filter the listings returned by postal codes / zip
+        code. You can specify multiple.
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    features:
+      required: false
+      in: query
+      name: features
+      description: >
+        Filter the listings by specific **interior features**.  You
+        can use the parameter multiple times to filter by multiple
+        features. For example, to search for `Wet Bar` and `High
+        Ceiling`:
+
+        ```
+        https://simplyrets.com/services?features=Wet%20Bar&features=High%20Ceiling
+        ```
+
+        The list of `features` provided by your RETS vendor or MLS
+        can be seen by sending an `OPTIONS` request to the
+        `/properties` endpoint:
+
+        ```
+        curl -XOPTIONS -u simplyrets:simplyrets https://api.simplyrets.com/properties
+        ```
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    exteriorFeatures:
+      required: false
+      in: query
+      name: exteriorFeatures
+      description: >
+        Filter the listings by specific **exterior features**.  You
+        can use the parameter multiple times to filter by multiple
+        features. For example, to search for `Proch` and `Fully
+        Fenced`:
+
+        ```
+        https://simplyrets.com/services?exteriorFeatures=Porch&exteriorFeatures=Fully+Fenced
+        ```
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    water:
+      required: false
+      in: query
+      name: water
+      description: >
+        Query water/waterfront listings only. Specify `true` to
+
+        filter waterfront listings.
+
+
+        If you specify `water=true`, all listings with any `waterfront`
+        value
+
+        will be queried.
+
+
+        If you specify `water=false`, listings which are **NOT** waterfront
+
+        listings will be queried.
+
+
+        If you specify `water=LAKE+NAME` or another valid value contained in
+
+        your feed, that value will be searched
+      schema:
+        type: string
+    neighborhoods:
+      required: false
+      in: query
+      name: neighborhoods
+      description: >
+        Filter the listings returned by specific neighborhoods and
+
+        subdivisions. You can specify multiple `neighborhoods` by
+
+        using the query parameter multiple times.
+
+
+        The `neighborhoods` query parameter is case-insensitive.
+
+
+        The list of `neighborhoods` provided by your RETS vendor or
+
+        MLS can be seen by sending an `OPTIONS` request to the
+
+        `/properties` endpoint:
+
+
+        `curl -XOPTIONS -u simplyrets:simplyrets
+        https://api.simplyrets.com/properties`
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    cities:
+      required: false
+      in: query
+      name: cities
+      description: >
+        Filter the listings returned by specific cities. You can
+
+        specify multiple `cities` query parameters.
+
+
+        The `cities` query parameter is case-insensitive.
+
+
+        The list of `cities` provided by your RETS vendor or MLS can
+
+        be seen by sending an `OPTIONS` request to the `/properties`
+
+        endpoint:
+
+
+        `curl -XOPTIONS -u simplyrets:simplyrets
+        https://api.simplyrets.com/openhouses`
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    counties:
+      required: false
+      in: query
+      name: counties
+      description: >
+        Filter the listings returned by specific counties. You can
+
+        specify multiple `counties` parameters.
+
+
+        The `counties` query parameter is case-insensitive.
+
+
+        The list of `counties` provided by your RETS vendor or MLS
+
+        can be seen by sending an `OPTIONS` request to the
+
+        `/properties` endpoint:
+
+
+        `curl -XOPTIONS -u simplyrets:simplyrets
+        https://api.simplyrets.com/openhouses`
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    points:
+      required: false
+      in: query
+      name: points
+      description: |
+        Return listings that are within a set of latitude
+        longitude coordinates. For example;
+        ```
+        29.723837,-95.69778
+        29.938275,-95.69778
+        29.938275,-95.32974
+        29.723837,-95.32974
+        ```
+
+        Note that some RETS vendors do not provide latitude and
+        longitude with their listings, which is required for this
+        parameter to work. In these cases, SimplyRETS offers a
+        [Geocoding Addon](https://simplyrets.com/services#geocoding).
+
+        Check out our
+        [blog post](https://simplyrets.com/blog/interactive-map-search.html)
+        on using the `points` parameter to build a map-based app
+        in javascript.
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    idx:
+      required: false
+      in: query
+      name: idx
+      description: >
+        Specify the IDX display requirements for the listings in
+        the response. The `idx` parameter checks if the
+        `internetAddressDisplay` and
+        `internetEntireListingDisplay` for each listing are true
+        (or `null`) or false based on this setting.
+
+        ##### **`idx=null`** (default)
+          - `internetAddressDisplay` must be true
+          - `internetEntireListingDisplay` must be true
+        ##### **`idx=listing`**
+          - `internetAddressDisplay` is ignored
+          - `internetEntireListingDisplay` must be true
+        ##### **`idx=address`**
+          - `internetAddressDisplay` must be true
+          - `internetEntireListingDisplay` is ignored
+        ##### **`idx=ignore`**
+          - `internetAddressDisplay` is ignored
+          - `internetEntireListingDisplay` is ignored
+
+        Learn more about SimplyRETS's [IDX compliance features here](/topics/fields-and-features-for-idx-compliance)
+        and please check with your MLS or data feed provider on
+        the rules and requirements for displaying restricted
+        listings.
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+          - "null"
+          - listing
+          - address
+          - ignore
+    include:
+      required: false
+      in: query
+      name: include
+      description: >
+        Include a extra fields which are not in the default
+        response body. Available values:
+
+        - 'rooms': include parameter will include
+           any additional rooms as a list.
+
+        Note that your RETS vendor or MLS must provide these
+        fields in their RETS data for them to be available in the
+        API response. In the future, fields which require an
+        'include' may become available by default.
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+        enum:
+          - association
+          - agreement
+          - garageSpaces
+          - maintenanceExpense
+          - parking
+          - pool
+          - rooms
+          - taxYear
+          - taxAnnualAmount
+    sort:
+      required: false
+      in: query
+      name: sort
+      description: |
+        Sort the response by a specific field. Values starting
+        with a minus (-) denote descending order, while the others
+        are ascending.
+      schema:
+        type: string
+        enum:
+          - listprice
+          - '-listprice'
+          - listdate
+          - '-listdate'
+          - beds
+          - '-beds'
+          - baths
+          - '-baths'
+    count:
+      required: false
+      in: query
+      name: count
+      description: |
+        When set to `false`, The `X-Total-Count` header will not
+        be returned
+
+        Counting the listings can contribute to slower API calls
+        due to the extra queries that need to be run to get an
+        exact count.
+
+        Disabling count can increase query speeds.
+      schema:
+        type: boolean
+        default: true
   schemas:
     Room:
       type: object
@@ -1817,6 +2102,74 @@ components:
             Office or brokerage MLS identifier
 
             **Not available for all RETS vendors**
+    ListingAnalytics:
+      type: object
+      description: The SimplyRETS single listing analytics API response
+      properties:
+        pricePerSqFt:
+          nullable: true
+          type: number
+          format: float
+          example: 8.25
+          description: The listing's price per square foot, based on the current `ListPrice`
+            and `LivingArea`.
+    ListingsAnalytics:
+      type: object
+      description: The SimplyRETS market analytics API response
+      properties:
+        avgLivingArea:
+          nullable: true
+          type: number
+          format: float
+          example: 2550
+          description: The average `LivingArea` of listings matching the search criteria.
+        avgFullBaths:
+          nullable: true
+          type: number
+          format: float
+          example: 2.5
+          description: The average `BathroomsFull` of listings matching the search criteria.
+        avgBedrooms:
+          nullable: true
+          type: number
+          format: float
+          example: 3
+          description: The average `BedroomsTotal` of listings matching the search criteria.
+        avgLotSize:
+          nullable: true
+          type: number
+          format: float
+          example: 9750.25
+          description: The average `LotSizeArea` of listings matching the search criteria.
+        avgPrice:
+          nullable: true
+          type: number
+          format: float
+          example: 325275
+          description: The average `ListPrice` of listings matching the search criteria.
+        avgYearBuilt:
+          nullable: true
+          type: number
+          format: float
+          example: 1990
+          description: The average `YearBuilt` of listings matching the search criteria.
+        areaDistribution:
+          nullable: true
+          type: object
+          example:
+            Other: 0
+            Towne Lake: 5
+            Rice Military: 3
+            Vineyard Mdw Sec 01: 3
+            Glen Arbor Sec 07: 4
+          description: The total number of listings in an MLS area matching the search
+            criteria.
+        totalCount:
+          nullable: true
+          type: integer
+          example: 15
+          description: The total number of listings matching the search criteria, and
+            used to calculate the analytics.
     Error:
       type: object
       description: Error information
@@ -1878,6 +2231,7 @@ components:
     ContactInformation:
       type: object
       description: RETS Contact Information
+      nullable: true
       properties:
         email:
           type: string

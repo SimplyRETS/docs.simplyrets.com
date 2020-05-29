@@ -54,6 +54,7 @@ documentation, examples, and help topics. Browse the links below:
 - [API documentation]({{ "/api/index.html" | relative_url }})
   - [`/properties`]({{ "/api/index.html#!/default/get_properties" | relative_url }})
   - [`/openhouses`]({{ "/api/index.html#!/default/get_openhouses" | relative_url }})
+  - [`/properties/analytics`]({{ "/api/index.html#!/default/get_properties_analytics" | relative_url }})
 - [Live example](http://maxavenue.com/homes-for-sale/)
 - [API help topics](#topics)
 
