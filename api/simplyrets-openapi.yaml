@@ -28,6 +28,7 @@ info:
 tags:
   - name: Listings
   - name: OpenHouses
+  - name: Agents
   - name: Analytics
 paths:
   /openhouses:
@@ -641,6 +642,102 @@ paths:
         is specific to the SimplyRETS API only.  It is different from
         the `listingId` field is the public number given to a listing
         by the RETS vendor or MLS and is not used here.
+  /agents:
+    get:
+      summary: The SimplyRETS agents API
+      tags:
+        - Agents
+      responses:
+        '200':
+          headers:
+            Link:
+              description: A set of pagination headers provided by the SimplyRETS API.
+              schema:
+                type: string
+            X-SimplyRETS-LastUpdate:
+              description: >-
+                The last time a listing refresh was run for the RETS feed
+                associated w/ this API request.
+              schema:
+                type: timestamp
+          description: |
+            Will send `Authenticated` if authentication is succesful,
+            otherwise it will send `Unauthorized`.
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AgentsResponse'
+                type: array
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AgentsResponse'
+                type: array
+        '400':
+          description: Will send `Bad Request`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Will send `Authentication Required`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Will send `Authorization Required`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: |
+            Will send `Too Many Requests`. Please see our Service
+            Level Agreement for more information on Request Rates and
+            Acceptable Use.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Will send `Internal Server Error`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+        - "$ref": "#/components/parameters/agentQ"
+        - required: false
+          in: query
+          name: name
+          schema:
+            type: string
+          description: |
+            Query agents by name. You can provide a first name, last
+            name, or both.
+      description: |
+        The SimplyRETS agents API allows you to query the agent roster
+        and data from your RETS feed. This can be useful for building
+        multiple agent websites for a brokerage, marketing to agents,
+        and much much more. This endpoint is accessible by adding the
+        Agents API addon to your app.
   /properties/analytics:
     get:
       summary: The SimplyRETS market analytics API
@@ -1524,6 +1621,17 @@ components:
       schema:
         type: boolean
         default: true
+    agentQ:
+      required: false
+      in: query
+      name: q
+      description: |
+        A keyword search on the Agents API. The `q` parameter will
+        search the `.id` and `.contact.email` fields, and return
+        listings matching the criteria. `q` can be provided multiple
+        times.
+      schema:
+        type: string
   schemas:
     Room:
       type: object
@@ -2141,6 +2249,27 @@ components:
           example: 15
           description: The total number of listings matching the search criteria, and
             used to calculate the analytics.
+    AgentsResponse:
+      type: object
+      description: The SimplyRETS agents API response
+      properties:
+        id:
+          nullable: true
+          type: string
+          example: 123456789
+          description: The MLS id of the agent.
+        firstName:
+          nullable: true
+          type: string
+          example: John
+          description: The first name of the agent.
+        lastName:
+          nullable: true
+          type: string
+          example: Doe
+          description: The last name of the agent.
+        contact:
+          $ref: "#/components/schemas/ContactInformation"
     Error:
       type: object
       description: Error information
