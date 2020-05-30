@@ -51,9 +51,11 @@ The Developer API has an abundance of resources, including interactive
 documentation, examples, and help topics. Browse the links below:
 
 <!-- Not sure why the below links don't work with a nested base_url -->
+
 - [API documentation]({{ "/api/index.html" | relative_url }})
   - [`/properties`]({{ "/api/index.html#!/default/get_properties" | relative_url }})
   - [`/openhouses`]({{ "/api/index.html#!/default/get_openhouses" | relative_url }})
+  - [`/agents`]({{ "/api/index.html#/Agents/get_agents" | relative_url }})
   - [`/properties/analytics`]({{ "/api/index.html#!/default/get_properties_analytics" | relative_url }})
 - [Live example](http://maxavenue.com/homes-for-sale/)
 - [API help topics](#topics)
