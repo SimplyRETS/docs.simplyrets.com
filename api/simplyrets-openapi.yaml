@@ -1,79 +1,40 @@
 openapi: 3.0.0
 info:
-  version: 1.0.0
   title: SimplyRETS API
+  version: 1.0.0
   description: >
     The SimplyRETS API is an exciting step towards making it easier
-    for developers and real estate agents to **build something
-    awesome** with real estate data!
+    for developers and real estate professionals to **build something
+    awesome** with real estate data! The documentation below contains
+    all of the endpoints, search parameters, and responses from the
+    SimplyRETS API. You can **explore the data** by authorizing this
+    page with your API keys or the demo API keys (username:
+    `simplyrets` password: `simplyrets`). As always, if you have any
+    questions or comments, or need help getting set up, [contact
+    us](https://simplyrets.com/#home-contact) any time.
 
 
-    The documentation below makes live requests to our API using the trial
-    data. To get set up with the API using live RETS data, you must have
-    RETS credentials from your RETS vendor or MLS, which you can then use
-    to create an app with SimplyRETS. For more information on that
-    process, please see our [FAQ](https://simplyrets.com/faq), [Getting
-    Started](https://simplyrets.com/blog/getting-set-up.html) page, or
-    [contact us](https://simplyrets.com/\#home-contact).
+    **Additional resources**
 
+    - [Accessing live MLS data](https://simplyrets.com/blog/getting-set-up.html)
 
-    Below you'll find the API endpoints, query parameters, response
-    bodies,\nand other information about using the SimplyRETS API. You can
-    run\nqueries by clicking the 'Try it Out' button at the bottom of
-    each\nsection. Check out the [help topics](/#topics) for more tips and
-    examples on things like
-    [IDX compliance features](/topics/fields-and-features-for-idx-compliance) and
-    [versioning API requests](/topics/versioning-api-requests-with-media-types).
+    - [Create an app](https://simplyrets.com/account#/apps/new)
 
-    ### Authentication
+    - [Features for IDX compliance](/topics/fields-and-features-for-idx-compliance)
 
-    The SimplyRETS API uses Basic Authentication. When you create an
-    app, you'll get a set of API credentials to access your
-    listings.
+    - [API examples and help topics](/#topics)
 
-
-    If want to try out the test data, you can use
-    `simplyrets:simplyrets` for connecting to the API.
-
-    ### Pagination
-
-    To paginate through listings, start your query with these
-    parameters: 'limit=500&lastId=0'. The 'lastId' is the important
-    part, you can use any limit up to 500. When you receive the
-    response from the API with the results, check the 'Link' header for
-    the 'next' link. That link is pre-built to access the next 'page'
-    of listings. Alternatively, you can use the last listing's 'mlsId'
-    from the previous request and use that in the next query. For
-    example:
-
-
-    **First query:**
-    `curl -u username:password
-    'https://api.simplyrets.com/properties?limit=500&lastId=0'`
-
-
-    The 'mlsId' in the last listing of the results is '1234567', so
-    the..
-
-
-    **Second query**:
-    `curl -u username:password
-    'https://api.simplyrets.com/properties?limit=500&lastId=1234567'`
-
-
-    ...and so one until you have reached the final page of listings.
-    There a few pieces of useful information about each request stored
-    in the HTTP Headers:
-
-
-    - `X-Total-Count` shows you the total amount of listings that match
-      your current query.
-    - `Link` contains pre-built pagination links for accessing the next
-      'page' of listings that match your query.
+    - [Plans & pricing](https://simplyrets.com/#home-pricing)
+tags:
+  - name: Listings
+  - name: OpenHouses
+  - name: Analytics
 paths:
   /openhouses:
     get:
-      summary: The SimplyRETS OpenHouses API
+      summary: The SimplyRETS open houses API
+      tags:
+        - OpenHouses
       responses:
         '200':
           description: |
@@ -307,6 +268,8 @@ paths:
   '/openhouses/{openHouseKey}':
     get:
       summary: Single OpenHouse Endpoint
+      tags:
+        - OpenHouses
       responses:
         '200':
           description: |
@@ -412,137 +375,11 @@ paths:
               type: string
       description: |
         Use this endpoint for accessing a single OpenHouse.
-  '/properties/{mlsId}':
-    get:
-      summary: Single Listing Endpoint
-      responses:
-        '200':
-          description: |
-            Will send `Authenticated` if authentication is succesful,
-            otherwise it will send `Unauthorized`
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Listing'
-            application/vnd.simplyrets-v0.1+json:
-              schema:
-                $ref: '#/components/schemas/Listing'
-        '400':
-          description: Will send `Bad Request`.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            application/vnd.simplyrets-v0.1+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '401':
-          description: Will send `Authentication Required`.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            application/vnd.simplyrets-v0.1+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '403':
-          description: Will send `Authorization Required`.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            application/vnd.simplyrets-v0.1+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '429':
-          description: |
-            Will send `Too Many Requests`. Please see our Service
-            Level Agreement for more information on Request Rates and
-            Acceptable Use.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            application/vnd.simplyrets-v0.1+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '500':
-          description: Will send `Internal Server Error`.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-            application/vnd.simplyrets-v0.1+json:
-              schema:
-                $ref: '#/components/schemas/Error'
-      parameters:
-        - required: true
-          in: path
-          name: mlsId
-          description: |
-            The `mlsId` field is a unique identifier which is specific
-            to the SimplyRETS API only.  This field is different from
-            the `listingId` field (which is the public number given to
-            a listing by the RETS vendor or MLS and is not used here).
-          schema:
-            type: integer
-            format: int64
-            default: 1005252
-        - required: false
-          in: query
-          name: vendor
-          description: |
-            Specify the RETS vendor to search. This parameter is
-            **required on multi-mls accounts**. You can query one
-            vendor at a time. Your vendor IDs can be found in your
-            account panel, or you can make an HTTP OPTIONS request to
-            https://api.simplyrets.com.
-
-            ```
-            curl -XOPTIONS https://api.simplyrets.com/properties
-            ```
-          schema:
-            type: string
-        - required: false
-          in: query
-          name: include
-          description: >
-            Include a extra fields which are not in the default
-            response body. Available values:
-
-            - 'rooms': include parameter will include
-               any additional rooms as a list.
-
-            Note that your RETS vendor or MLS must provide these
-            fields in their RETS data for them to be available in the
-            API response. In the future, fields which require an
-            'include' may become available by default.
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-            enum:
-              - association
-              - agreement
-              - garageSpaces
-              - maintenanceExpense
-              - parking
-              - pool
-              - rooms
-      description: |
-        Use this endpoint for accessing a single listing. When you
-        make a search to the `/properties` endpoint, each listing in
-        the response will contain a unique `mlsId` field which should
-        be used to request that listing on this route.
-
-        The `mlsId` field is a unique identifier for a listing which
-        is specific to the SimplyRETS API only.  It is different from
-        the `listingId` field is the public number given to a listing
-        by the RETS vendor or MLS and is not used here.
   /properties:
     get:
-      summary: The SimplyRETS Listings API
+      summary: The SimplyRETS listings API
+      tags:
+        - Listings
       responses:
         '200':
           headers:
@@ -674,9 +511,141 @@ paths:
         `simplyrets`. Note that these test listings are not live RETS
         listings but the data, query parameters, and response bodies
         will all work the same.
+  '/properties/{mlsId}':
+    get:
+      summary: Single listing endpoint
+      tags:
+        - Listings
+      responses:
+        '200':
+          description: |
+            Will send `Authenticated` if authentication is succesful,
+            otherwise it will send `Unauthorized`
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Listing'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Listing'
+        '400':
+          description: Will send `Bad Request`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Will send `Authentication Required`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Will send `Authorization Required`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: |
+            Will send `Too Many Requests`. Please see our Service
+            Level Agreement for more information on Request Rates and
+            Acceptable Use.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Will send `Internal Server Error`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+        - required: true
+          in: path
+          name: mlsId
+          description: |
+            The `mlsId` field is a unique identifier which is specific
+            to the SimplyRETS API only.  This field is different from
+            the `listingId` field (which is the public number given to
+            a listing by the RETS vendor or MLS and is not used here).
+          schema:
+            type: integer
+            format: int64
+            default: 1005252
+        - required: false
+          in: query
+          name: vendor
+          description: |
+            Specify the RETS vendor to search. This parameter is
+            **required on multi-mls accounts**. You can query one
+            vendor at a time. Your vendor IDs can be found in your
+            account panel, or you can make an HTTP OPTIONS request to
+            https://api.simplyrets.com.
+
+            ```
+            curl -XOPTIONS https://api.simplyrets.com/properties
+            ```
+          schema:
+            type: string
+        - required: false
+          in: query
+          name: include
+          description: >
+            Include a extra fields which are not in the default
+            response body. Available values:
+
+            - 'rooms': include parameter will include
+               any additional rooms as a list.
+
+            Note that your RETS vendor or MLS must provide these
+            fields in their RETS data for them to be available in the
+            API response. In the future, fields which require an
+            'include' may become available by default.
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+            enum:
+              - association
+              - agreement
+              - garageSpaces
+              - maintenanceExpense
+              - parking
+              - pool
+              - rooms
+      description: |
+        Use this endpoint for accessing a single listing. When you
+        make a search to the `/properties` endpoint, each listing in
+        the response will contain a unique `mlsId` field which should
+        be used to request that listing on this route.
+
+        The `mlsId` field is a unique identifier for a listing which
+        is specific to the SimplyRETS API only.  It is different from
+        the `listingId` field is the public number given to a listing
+        by the RETS vendor or MLS and is not used here.
   /properties/analytics:
     get:
-      summary: The SimplyRETS Market Analytics API
+      summary: The SimplyRETS market analytics API
+      tags:
+        - Analytics
       responses:
         '200':
           headers:
@@ -796,7 +765,9 @@ paths:
         area, query, price range, and more, on your website or application.
   /properties/{mlsId}/analytics:
     get:
-      summary: The SimplyRETS Market Analytics API
+      summary: The single listing analytics API
+      tags:
+        - Analytics
       responses:
         '200':
           headers:
@@ -817,7 +788,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListingAnalytics'
-                type: array
+                type: object
             application/vnd.simplyrets-v0.1+json:
               schema:
                 $ref: '#/components/schemas/ListingAnalytics'

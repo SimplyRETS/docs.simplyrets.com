@@ -1,41 +1,52 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>SimplyRETS | RETS API Documentation</title>
 
-  {%- include swagger-ui-head.html -%}
+        <link
+            href="{{ "/assets/main.css" | relative_url}}"
+            media="screen"
+            rel="stylesheet"
+            type="text/css"
+        />
 
-    <div class="swagger-section">
-        <div id='header'>
-            <div class="swagger-ui-wrap">
-                <a id="logo" href="https://simplyrets.com">
-                    SimplyRETS
-                </a>
-                <form id='api_selector'>
-                    <div class='input'>
-                        <input
-                            placeholder="api key"
-                            id="input_apiKey"
-                            name="apiKey"
-                            type="text"
-                            value='simplyrets'
-                        />
-                    </div>
-                        <div class='input'>
-                            <input
-                                placeholder="api secret"
-                                id="input_apiSecret"
-                                name="apiSecret"
-                                type="text"
-                                value='simplyrets'
-                            />
-                        </div>
-                </form>
-            </div>
-        </div>
+        <link
+            href="{{ "/assets/css/swagger-ui.css" | relative_url}}"
+            media="screen"
+            rel="stylesheet"
+            type="text/css"
+        />
 
-        <div id="message-bar" class="swagger-ui-wrap">&nbsp;</div>
+        {%- if jekyll.environment == 'production' and site.google_analytics -%}
+          {%- include google-analytics.html -%}
+        {%- endif -%}
+
+    </head>
+    <div>
+
+        {%- include header.html -%}
 
         {{ content }}
 
-        <div id="swagger-ui-container" class="swagger-ui-wrap"></div>
+        <div id="swagger-ui-container" class="swagger-ui-wrap">
+        </div>
     </div>
+
+    <script
+        src="{{ "/assets/js/swagger-ui-bundle.js" | relative_url}}"
+        type="text/javascript">
+    </script>
+    <script type="text/javascript">
+     SwaggerUIBundle({
+         url: "./simplyrets-openapi.yaml",
+         dom_id: "#swagger-ui-container",
+         deepLinking: true,
+         presets: [
+             SwaggerUIBundle.presets.apis,
+             SwaggerUIBundle.SwaggerUIStandalonePreset
+         ]
+     })
+    </script>
+
 </html>

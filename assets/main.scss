@@ -1,0 +1,47 @@
+---
+---
+
+@import "minima";
+
+.swagger-ui-wrap {
+    .info {
+        margin-bottom: 25px !important;
+    }
+
+    .swagger-ui {
+        // Fix API/OAI version labels at the very top
+        pre.version {
+            background-color: initial;
+            border-color: transparent;
+            padding: 0px;
+        }
+
+        // Fix <code> elements
+        code {
+            background-color: #f8f8f8;
+            font-weight: 500;
+            padding: 2px 4px;
+            font-size: 90%;
+            color: #d14;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: #fff;
+        }
+
+        .model-box {
+            width: 95% !important;
+        }
+
+        // Parameter name table column
+        table tbody tr td:first-of-type {
+            min-width: 10em;
+            padding: 10px 5px;
+        }
+
+        table tbody tr td {
+            font-size: 14px;
+        }
+    }
+}
