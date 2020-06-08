@@ -2051,6 +2051,13 @@ components:
           type: number
           description: Price of the listing
           nullable: true
+        originalListPrice:
+          format: double
+          type: number
+          description: |
+            The original price of the property on the initial
+            agreement between the seller and the seller's broker.
+          nullable: true
         internetAddressDisplay:
           type: boolean
           nullable: true
