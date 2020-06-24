@@ -995,7 +995,9 @@ components:
         The `q` parameter can be specified multiple times in a
         query. For example, `q=Houston&q=mlsid_12345`.
       schema:
-        type: string
+        type: array
+        items:
+          type: string
     status:
       required: false
       in: query
@@ -1129,8 +1131,11 @@ components:
         Agent ID is provided by your RETS vendor or MLS.
 
         The co-listing agent is not included in this query parameter.
+      explode: true
       schema:
-        type: string
+        type: array
+        items:
+          type: string
     salesAgent:
       required: false
       in: query
@@ -1143,8 +1148,11 @@ components:
 
         The co-sales or co-buyer's agent is not included in this query
         parameter.
+      explode: true
       schema:
-        type: string
+        type: array
+        items:
+          type: string
     brokers:
       required: false
       in: query
