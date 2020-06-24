@@ -730,8 +730,15 @@ paths:
           schema:
             type: string
           description: |
-            Query agents by name. You can provide a first name, last
+            Filter agents by name. You can provide a first name, last
             name, or both.
+        - required: false
+          in: query
+          name: state
+          schema:
+            type: string
+          description: |
+            Filter agents by their `address.state` field.
       description: |
         The SimplyRETS agents API allows you to query the agent roster
         and data from your RETS feed. This can be useful for building
@@ -2275,8 +2282,14 @@ components:
           type: string
           example: Doe
           description: The last name of the agent.
+        address:
+          $ref: '#/components/schemas/StreetAddress'
+          description: Agent address information
+          nullable: true
         contact:
           $ref: "#/components/schemas/ContactInformation"
+          description: Agent contact information
+          nullable: true
     Error:
       type: object
       description: Error information
