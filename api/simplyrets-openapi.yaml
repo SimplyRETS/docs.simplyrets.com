@@ -1048,17 +1048,17 @@ components:
         type: array
         items:
           type: string
-        enum:
-          - Active
-          - Pending
-          - Closed
-          - ActiveUnderContract
-          - Hold
-          - Withdrawn
-          - Expired
-          - Delete
-          - Incomplete
-          - ComingSoon
+          enum:
+            - Active
+            - Pending
+            - Closed
+            - ActiveUnderContract
+            - Hold
+            - Withdrawn
+            - Expired
+            - Delete
+            - Incomplete
+            - ComingSoon
     type:
       required: false
       in: query
@@ -1072,15 +1072,15 @@ components:
         type: array
         items:
           type: string
-        enum:
-          - residential
-          - rental
-          - mobilehome
-          - condominium
-          - multifamily
-          - commercial
-          - land
-          - farm
+          enum:
+            - residential
+            - rental
+            - mobilehome
+            - condominium
+            - multifamily
+            - commercial
+            - land
+            - farm
     subtype:
       required: false
       in: query
@@ -1094,32 +1094,32 @@ components:
         type: array
         items:
           type: string
-        enum:
-          - apartment
-          - boatslip
-          - singlefamilyresidence
-          - deededparking
-          - cabin
-          - condominium
-          - duplex
-          - manufacturedhome
-          - ownyourown
-          - quadruplex
-          - stockcooperative
-          - townhouse
-          - timeshare
-          - triplex
-          - manufacturedonland
-          - farmandranch
-          - agriculture
-          - business
-          - hotelmotel
-          - industrial
-          - mixeduse
-          - officespace
-          - retail
-          - unimprovedland
-          - warehouse
+          enum:
+            - apartment
+            - boatslip
+            - singlefamilyresidence
+            - deededparking
+            - cabin
+            - condominium
+            - duplex
+            - manufacturedhome
+            - ownyourown
+            - quadruplex
+            - stockcooperative
+            - townhouse
+            - timeshare
+            - triplex
+            - manufacturedonland
+            - farmandranch
+            - agriculture
+            - business
+            - hotelmotel
+            - industrial
+            - mixeduse
+            - officespace
+            - retail
+            - unimprovedland
+            - warehouse
     agent:
       required: false
       in: query
@@ -1558,11 +1558,11 @@ components:
         type: array
         items:
           type: string
-        enum:
-          - "null"
-          - listing
-          - address
-          - ignore
+          enum:
+            - "null"
+            - listing
+            - address
+            - ignore
     include:
       required: false
       in: query
@@ -1583,16 +1583,16 @@ components:
         type: array
         items:
           type: string
-        enum:
-          - association
-          - agreement
-          - garageSpaces
-          - maintenanceExpense
-          - parking
-          - pool
-          - rooms
-          - taxYear
-          - taxAnnualAmount
+          enum:
+            - association
+            - agreement
+            - garageSpaces
+            - maintenanceExpense
+            - parking
+            - pool
+            - rooms
+            - taxYear
+            - taxAnnualAmount
     sort:
       required: false
       in: query
