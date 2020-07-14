@@ -2,10 +2,15 @@
 ---
 
 @import "minima";
+@import "responsive";
 
 .swagger-ui-wrap {
     .info {
         margin-bottom: 25px !important;
+
+        @include desktop {
+            padding-right: 25%;
+        }
     }
 
     .swagger-ui {

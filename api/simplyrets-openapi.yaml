@@ -4,14 +4,16 @@ info:
   version: 1.0.0
   description: >
     The SimplyRETS API is an exciting step towards making it easier
-    for developers and real estate professionals to **build something
-    awesome** with real estate data! The documentation below contains
-    all of the endpoints, search parameters, and responses from the
-    SimplyRETS API. You can **explore the data** by authorizing this
-    page with your API keys or the demo API keys (username:
-    `simplyrets` password: `simplyrets`). As always, if you have any
-    questions or comments, or need help getting set up, [contact
-    us](https://simplyrets.com/#home-contact) any time.
+    for software developers and real estate professionals to work
+    together and _build something awesome_ with real estate data!
+
+
+    The docs below describe all of the endpoints, search parameters,
+    and responses from SimplyRETS. You can **make live API requests on
+    this page** by clicking the "Authorize" button below and enter
+    your API keys (or `simplyrets`/`simplyrets` for the demo data).
+    [Contact us](https://simplyrets.com/#home-contact) if you have any
+    question, comments, or feedback.
 
 
     **Additional resources**

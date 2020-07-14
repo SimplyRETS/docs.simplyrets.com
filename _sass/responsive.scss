@@ -1,0 +1,9 @@
+$phone-width: 640px !default;
+$tablet-width: 768px !default;
+$desktop-width: 1024px !default;
+
+@mixin desktop {
+    @media (min-width: #{$desktop-width}) {
+        @content;
+    }
+}
