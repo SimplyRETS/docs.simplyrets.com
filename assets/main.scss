@@ -7,9 +7,11 @@
 .swagger-ui-wrap {
     .info {
         margin-bottom: 25px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
 
         @include desktop {
-            padding-right: 25%;
+            width: 80%;
         }
     }
 
