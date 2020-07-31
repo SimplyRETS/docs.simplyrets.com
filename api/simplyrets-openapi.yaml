@@ -2599,6 +2599,12 @@ components:
           type: integer
           description: Association fee
           nullable: true
+        frequency:
+          type: string
+          description: |
+            The frequency the association fee is paid. For example:
+            Monthly, Annually, One Time, etc.
+          nullable: true
         name:
           type: string
           description: Name of the association
