@@ -1746,22 +1746,6 @@ components:
       type: object
       description: Rets Listing Property
       properties:
-        rooms:
-          items:
-            $ref: '#/components/schemas/Room'
-          type: array
-          nullable: true
-          description: |
-            A comprehensive list of rooms. Room data is not included in the
-            standard payload.  Use `include=rooms` in your query to include
-            room data. If the list of rooms is empty, your RETS vendor may
-            not supply this information with your RETS feed.
-
-            This data is populated from 2 sources:
-
-              1. Inline room mappings in the `Property` resource
-
-              2. In an external RETS resource (e.g. `Room`)
         roof:
           type: string
           description: Property roof description
@@ -1981,6 +1965,22 @@ components:
           type: integer
           description: Year the property was built
           nullable: true
+        rooms:
+          items:
+            $ref: '#/components/schemas/Room'
+          type: array
+          nullable: true
+          description: |
+            A comprehensive list of rooms. Room data is not included in the
+            standard payload.  Use `include=rooms` in your query to include
+            room data. If the list of rooms is empty, your RETS vendor may
+            not supply this information with your RETS feed.
+
+            This data is populated from 2 sources:
+
+              1. Inline room mappings in the `Property` resource
+
+              2. In an external RETS resource (e.g. `Room`)
     Listing:
       type: object
       description: RETS Listing Property
