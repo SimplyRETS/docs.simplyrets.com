@@ -38,7 +38,7 @@
         type="text/javascript">
     </script>
     <script type="text/javascript">
-     SwaggerUIBundle({
+     var swaggerUi = SwaggerUIBundle({
          url: "./simplyrets-openapi.yaml",
          dom_id: "#swagger-ui-container",
          deepLinking: true,
@@ -49,6 +49,10 @@
          syntaxHighlight: {
              activate: true,
              theme: "agate"
+         },
+         onComplete: function() {
+             // Automatically use demo API credentials
+             swaggerUi.preauthorizeBasic("basicAuth", "simplyrets", "simplyrets")
          }
      })
     </script>
