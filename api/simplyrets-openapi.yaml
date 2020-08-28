@@ -32,6 +32,7 @@ tags:
   - name: OpenHouses
   - name: Agents
   - name: Analytics
+  - name: Metadata
 paths:
   /openhouses:
     get:
@@ -514,6 +515,130 @@ paths:
         `simplyrets`. Note that these test listings are not live RETS
         listings but the data, query parameters, and response bodies
         will all work the same.
+    options:
+      summary: Get metadata for the properties in a particular feed
+      tags:
+        - Metadata
+      responses:
+        '200':
+          headers:
+            X-SimplyRETS-Media-Type:
+              description: API version of the request and response.
+              schema:
+                type: string
+          description: |
+              A successful request will return a 200 OK status code
+              and a JSON response body.
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/PropertiesOptionsResponse'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/PropertiesOptionsResponse'
+        '400':
+          description: Will send `Bad Request`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: |
+            Will send `Too Many Requests`. Please see our Service
+            Level Agreement for more information on Request Rates and
+            Acceptable Use.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Will send `Internal Server Error`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+        - "$ref": "#/components/parameters/vendor"
+      description: |
+          An `OPTIONS` request to the `/properties` endpoint will
+          return general information about the underlying RETS or
+          WebAPI feed. This information is useful for a lot of
+          use-cases, like generating pages and queries for the cities
+          available the data.
+          <br/>
+          <br/>
+          **Note**: If you have multiple feeds connected to your app,
+          you must use a `vendor` parameter with this request.
+  /:
+    options:
+      summary: Get information about the current API credentials
+      tags:
+        - Metadata
+      responses:
+        '200':
+          headers:
+            X-SimplyRETS-Media-Type:
+              description: API version of the request and response.
+              schema:
+                type: string
+          description: |
+              A successful request will return a 200 OK status code
+              and a JSON response body.
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/OptionsResponse'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/OptionsResponse'
+        '400':
+          description: Will send `Bad Request`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: |
+            Will send `Too Many Requests`. Please see our Service
+            Level Agreement for more information on Request Rates and
+            Acceptable Use.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Will send `Internal Server Error`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      description: |
+          Making an OPTIONS reqeust to the API root endpoint
+          (`api.simplyrets.com/`) returns information about the
+          current API credentials, like available vendors and the time
+          of their last sync, available endpoints, and more.
   '/properties/{mlsId}':
     get:
       summary: Single listing endpoint
@@ -2300,6 +2425,132 @@ components:
           $ref: "#/components/schemas/ContactInformation"
           description: Agent contact information
           nullable: true
+    OptionsResponse:
+      type: object
+      description: Response of a successful OPTIONS request to /
+      properties:
+        expires:
+          nullable: false
+          type: string
+          format: date-time
+          example: "2020-01-02T11:06:18.916879378Z"
+          description: |
+              Timestamp of when the information in this response
+              should be considered stale.
+        vendors:
+          type: array
+          nullable: false
+          items:
+            type: string
+          example: ["abcmls", "xyzmls"]
+          description: |
+              A list of vendor IDs available to these API credentials,
+              to be used in requests to `/properties`, `/openhouses`,
+              etc.
+        updates:
+          type: object
+          nullable: false
+          additionalProperties:
+            type: string
+          example:
+            abcmls: "2020-08-01T01:06:18.235819332Z"
+            xyzmls: "2020-08-01T11:06:18.916879378Z"
+          description: |
+            A key/value map of vendor IDs with the timestamp of the
+            last succesful sync.
+        endpoints:
+          nullable: false
+          type: array
+          items:
+            type: string
+          example: ["/properties", "/openhouses"]
+          description: |
+              A list of API endpoints accesible with these credentials.
+        accepts:
+          nullable: false
+          type: array
+          items:
+            type: string
+          example: ["application/json", "application/vnd.simplyrets-v0.1+json"]
+          description: |
+              A list of valid media types available to these API credentials.
+                See [versioning API requests with media types](/topics/versioning-api-requests-with-media-types).
+    PropertiesOptionsResponse:
+      type: object
+      description: Response of a successful OPTIONS request to /properties
+      properties:
+        expires:
+          nullable: false
+          type: string
+          format: date-time
+          example: "2020-01-02T11:06:18.916879378Z"
+          description: |
+              Timestamp when the information in this response should
+              be considered stale.
+        lastUpdate:
+          nullable: false
+          type: string
+          format: date-time
+          example: "2020-01-01T11:06:18.916879378Z"
+          description: |
+              Timestamp when this feed was last synced with the data
+              source successfully.
+        fields:
+          nullable: true
+          type: object
+          description: |
+              An object containing field names, and all known values
+              for that field in this feed.
+          properties:
+            status:
+              nullable: true
+              type: array
+              items:
+                type: string
+              example: ["Active", "Pending", "Closed"]
+              description: A list of `statuses` available for this feed.
+            cities:
+              nullable: true
+              type: array
+              items:
+                type: string
+              example: ["Houston", "Austin", "Dallas"]
+              description: A list of `cities` found in this feed.
+            counties:
+              nullable: true
+              type: array
+              items:
+                type: string
+              example: ["Houston", "Austin", "Dallas"]
+              description: A list of `counties` found in this feed.
+            features:
+              nullable: true
+              type: array
+              items:
+                type: string
+              example: ["Central Air", "Great views", "Patio"]
+              description: A list of `interiorFeatures` found in this feed.
+            neighborhoods:
+              nullable: true
+              type: array
+              items:
+                type: string
+              example: ["Downtown", "Midtown", "Uptown"]
+              description: A list of `neighborhoods` found in this feed.
+            areaMinor:
+              nullable: true
+              type: array
+              items:
+                type: string
+              example: ["01-Rice Village", "02-Independence Heights", "03-Garden Oaks"]
+              description: A list of `areaMinor`s found in this feed.
+            type:
+              nullable: true
+              type: array
+              items:
+                type: string
+              example: ["Residential", "Rental", "Condominium", "Townhome", "Land"]
+              description: A list of property `type`s found in this feed.
     Error:
       type: object
       description: Error information
