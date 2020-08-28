@@ -25,11 +25,17 @@
 
         // Fix <code> elements
         code {
+            font-family: monospace;
+            color: #cd4a4a;
             background-color: #f8f8f8;
+            border-radius: 6px;
             font-weight: 500;
             padding: 2px 4px;
-            font-size: 105%;
-            color: #d14;
+            font-size: 14px;
+        }
+
+        small code {
+            font-size: inherit;
         }
 
         pre code {
