@@ -472,6 +472,7 @@ paths:
       - "$ref": "#/components/parameters/status"
       - "$ref": "#/components/parameters/type"
       - "$ref": "#/components/parameters/subtype"
+      - "$ref": "#/components/parameters/subTypeText"
       - "$ref": "#/components/parameters/agent"
       - "$ref": "#/components/parameters/salesAgent"
       - "$ref": "#/components/parameters/brokers"
@@ -1249,6 +1250,21 @@ components:
             - retail
             - unimprovedland
             - warehouse
+    subTypeText:
+      required: false
+      in: query
+      name: subTypeText
+      description: |
+        Filter listings by `.property.subTypeText`. The `subTypeText`
+        is the original MLS SubType value.  This parameter can be used
+        multiple times.
+
+        Please refer to your MLS for an exact list of possible values.
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
     agent:
       required: false
       in: query
