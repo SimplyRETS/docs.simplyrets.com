@@ -476,6 +476,7 @@ paths:
       - "$ref": "#/components/parameters/agent"
       - "$ref": "#/components/parameters/salesAgent"
       - "$ref": "#/components/parameters/brokers"
+      - "$ref": "#/components/parameters/specialListingConditions"
       - "$ref": "#/components/parameters/minprice"
       - "$ref": "#/components/parameters/maxprice"
       - "$ref": "#/components/parameters/minarea"
@@ -1306,6 +1307,21 @@ components:
         Office ID).  You can specific multiple broker
         parameters. Note, this query parameter is only available
         if a Broker ID is provided by your RETS vendor or MLS.
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    specialListingConditions:
+      required: false
+      in: query
+      name: specialListingConditions
+      description: |
+        Filter the listings by special listing conditions like REO,
+        Short Sale, Auction, etc.
+
+        Note: The available `specialListingConditions` values are
+        dependent on the data provided by your MLS.
       explode: true
       schema:
         type: array
@@ -2160,6 +2176,12 @@ components:
         showingContactPhone:
           type: string
           description: Telephone number that should be called to arrange showing the property.
+          nullable: true
+        specialListingConditions:
+          type: string
+          description: |
+            A list of options that describe the type of sale. i.e. Standard,
+            REO, Short Sale, Probate, Auction, NOD, etc., at the time of listing.
           nullable: true
         office:
           $ref: '#/components/schemas/Office'
