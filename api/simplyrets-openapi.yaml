@@ -477,6 +477,7 @@ paths:
       - "$ref": "#/components/parameters/salesAgent"
       - "$ref": "#/components/parameters/brokers"
       - "$ref": "#/components/parameters/specialListingConditions"
+      - "$ref": "#/components/parameters/ownership"
       - "$ref": "#/components/parameters/minprice"
       - "$ref": "#/components/parameters/maxprice"
       - "$ref": "#/components/parameters/minarea"
@@ -1322,6 +1323,20 @@ components:
 
         Note: The available `specialListingConditions` values are
         dependent on the data provided by your MLS.
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    ownership:
+      required: false
+      in: query
+      name: ownership
+      description: |
+        Filter listings by the `ownership` field.
+
+        Note: The possible values for this field varies. Consult your
+        MLS for a list of available `ownership` values.
       explode: true
       schema:
         type: array
@@ -2178,6 +2193,15 @@ components:
             A list of options that describe the type of sale. i.e. Standard,
             REO, Short Sale, Probate, Auction, NOD, etc., at the time of listing.
           nullable: true
+          example: Real Estate Owned
+        ownership:
+          type: string
+          description: |
+            A text description of the manner in which title to a
+            property is held. Trust, Corporation, Joint Tennant,
+            Individual.
+          nullable: true
+          example: Individual
         office:
           $ref: '#/components/schemas/Office'
           description: Listing office or brokerage.
