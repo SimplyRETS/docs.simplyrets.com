@@ -5,20 +5,22 @@
         <title>SimplyRETS | RETS API Documentation</title>
 
         <link
-            href="{{ "/assets/css/swagger-ui.css" | relative_url}}"
+            href="{{ '/assets/css/swagger-ui.css' | relative_url}}"
             media="screen"
             rel="stylesheet"
             type="text/css"
         />
 
         <link
-            href="{{ "/assets/main.css" | relative_url}}"
+            href="{{ '/assets/main.css' | relative_url}}"
             media="screen"
             rel="stylesheet"
             type="text/css"
         />
 
-        {%- include google-tag-manager.html -%}
+        {%- if jekyll.environment == 'production' -%}
+            {%- include google-tag-manager.html -%}
+        {%- endif -%}
 
     </head>
     <div>
@@ -32,7 +34,7 @@
     </div>
 
     <script
-        src="{{ "/assets/js/swagger-ui-bundle.js" | relative_url}}"
+        src="{{ '/assets/js/swagger-ui-bundle.js' | relative_url}}"
         type="text/javascript">
     </script>
     <script type="text/javascript">

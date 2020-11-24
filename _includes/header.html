@@ -1,9 +1,11 @@
-{%- include google-tag-manager-noscript.html -%}
+{%- if jekyll.environment == 'production' -%}
+  {%- include google-tag-manager-noscript.html -%}
+{%- endif -%}
 
 <header class="site-header" role="banner">
 
   <div class="wrapper">
-      <a class="site-title" rel="author" href="{{ "/" | relative_url }}">
+      <a class="site-title" rel="author" href="{{ '/' | relative_url }}">
         <img src="{{ "/assets/img/simplyrets-logo-horizontal.svg" | relative_url }}" style="max-width:175px"/>
       </a>
 
@@ -19,9 +21,9 @@
 
         <div class="trigger">
           <a class="page-link" href="https://simplyrets.com">simplyrets.com</a>
-          <a class="page-link" href="{{ "/#wordpress" | relative_url }}">WordPress</a>
-          <a class="page-link" href="{{ "/#api" | relative_url }}">API</a>
-          <a class="page-link" href="{{ "/#topics" | relative_url }}">Topics</a>
+          <a class="page-link" href="{{ '/#wordpress' | relative_url }}">WordPress</a>
+          <a class="page-link" href="{{ '/#api' | relative_url }}">API</a>
+          <a class="page-link" href="{{ '/#topics' | relative_url }}">Topics</a>
           <a class="page-link" href="https://simplyrets.com/#home-contact">Contact</a>
         </div>
       </nav>
