@@ -1785,6 +1785,8 @@ components:
           - '-listprice'
           - listdate
           - '-listdate'
+          - closedate
+          - '-closedate'
           - beds
           - '-beds'
           - baths
