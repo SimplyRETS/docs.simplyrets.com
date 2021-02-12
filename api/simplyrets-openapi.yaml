@@ -2484,6 +2484,11 @@ components:
           $ref: "#/components/schemas/ContactInformation"
           description: Agent contact information
           nullable: true
+        officeMlsId:
+          nullable: true
+          type: string
+          example: MLS123
+          description: The local, well-known MLS ID of the agent's office.
     OptionsResponse:
       type: object
       description: Response of a successful OPTIONS request to /
