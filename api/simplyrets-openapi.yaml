@@ -874,6 +874,13 @@ paths:
             type: string
           description: |
             Filter agents by their `address.state` field.
+        - required: false
+          in: query
+          name: officeMlsId
+          schema:
+            type: string
+          description: |
+            Filter agents by the `.officeMlsId` field.
       description: |
         The SimplyRETS agents API allows you to query the agent roster
         and data from your RETS feed. This can be useful for building
