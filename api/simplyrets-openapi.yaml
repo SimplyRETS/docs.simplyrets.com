@@ -487,6 +487,8 @@ paths:
       - "$ref": "#/components/parameters/minbeds"
       - "$ref": "#/components/parameters/maxbeds"
       - "$ref": "#/components/parameters/maxdom"
+      - "$ref": "#/components/parameters/minlistdate"
+      - "$ref": "#/components/parameters/maxlistdate"
       - "$ref": "#/components/parameters/minyear"
       - "$ref": "#/components/parameters/maxyear"
       - "$ref": "#/components/parameters/minacres"
@@ -1463,6 +1465,28 @@ components:
         Filter listings by a maximum number of garage spaces.
       schema:
         type: integer
+    minlistdate:
+      required: false
+      in: query
+      name: minlistdate
+      description: |
+        Query listings with a `.listDate` older than or equal to this value.
+
+        **Note:** By default this is parsed and compared as UTC unless
+        a timezone is specified in the parameter.
+      schema:
+        type: string
+    maxlistdate:
+      required: false
+      in: query
+      name: maxlistdate
+      description: |
+        Query listings with a `.listDate` more recent than or equal to this value.
+
+        **Note:** By default this is parsed and compared as UTC unless
+        a timezone is specified in the parameter.
+      schema:
+        type: string
     limit:
       required: false
       in: query
