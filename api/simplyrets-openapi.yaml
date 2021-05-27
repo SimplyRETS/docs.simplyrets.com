@@ -505,6 +505,7 @@ paths:
       - "$ref": "#/components/parameters/water"
       - "$ref": "#/components/parameters/neighborhoods"
       - "$ref": "#/components/parameters/cities"
+      - "$ref": "#/components/parameters/state"
       - "$ref": "#/components/parameters/counties"
       - "$ref": "#/components/parameters/points"
       - "$ref": "#/components/parameters/idx"
@@ -1666,6 +1667,19 @@ components:
 
         `curl -XOPTIONS -u simplyrets:simplyrets
         https://api.simplyrets.com/openhouses`
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    state:
+      required: false
+      in: query
+      name: state
+      description: >
+        Filter the listings by state or province. You can specify
+        multiple `state` parameters and the parameter is case
+        insensitive.
       explode: true
       schema:
         type: array
