@@ -1136,47 +1136,28 @@ components:
       name: status
       description: >
         Request listings by a specific status. This parameter
-
         defaults to active and you can specify multiple statuses
-
         in a single query.
 
-
         Listing statuses depend on your RETS vendor's field
-
         availability. Below is a brief description of each status
-
         with possible synonyms which may map to your RETS
-
         vendor-specific statuses.
 
+        - **Active**: Active Listing which is still on the market
 
-        - *Active*: Active Listing which is still on the market
-
-        - *ActiveUnderContract*: An offer has been accepted but the listing
+        - **ActiveUnderContract**: An offer has been accepted but the listing
         is still on market. Synonyms: Accepting Backup Offers, Backup Offer,
         Active With Accepted. Synonyms: Offer, Backup, Contingent
 
-        - *Pending*: An offer has been accepted and the listing is no longer
+        - **Pending**: An offer has been accepted and the listing is no longer
         on market. Synonyms: Offer Accepted, Under Contract
 
-        - *Hold*: The listing has been withdrawn from the market, but a
-        contract
-          still exists between the seller and the listing member. Synonyms: Hold, Hold Do Not Show, Temp Off Market
-        - *Withdrawn*: The listing has been withdrawn from the market, but a
-        contract
-          still exists between the seller and the listing member. Synonyms: Hold, Hold Do Not Show, Temp Off Market
-        - *Closed*: The purchase agreement has been fulfilled or the lease
-          agreement has been executed. Synonyms: Sold, Leased, Rented, Closed Sale
-        - *Expired*: The listing contract has expired
+        - **ComingSoon**: This is a listing that has not yet been on
+        market but will be on market soon.
 
-        - *Delete*: The listing contract was never valid or other reason for
-        the contract to be nullified. Synonyms: Kill, Zap
-
-        - *Incomplete*: The listing has not yet be completely entered and is
-        not yet
-          published in the MLS. Synonyms: Draft, Partially Complted
-        - *ComingSoon*
+        - **Closed**: The purchase agreement has been fulfilled or the lease
+        agreement has been executed. Synonyms: Sold, Leased, Rented, Closed Sale
       explode: true
       schema:
         type: array
@@ -2835,46 +2816,28 @@ components:
             - Incomplete
             - ComingSoon
           description: >
+            Normalized [RESO Data Dictionary 1.7]() standard status
+            value.  Compliant with Data Dictionary v1.7 `ListingStatus`.
 
-            Normalized [RESO Data Dictionary 1.6]() standard status value.
-            Compliant with data dictionary
-
-            v1.6 `ListingStatus`. Listing status availability depends on your
-            RETS vendor's
-
+            Listing statuses depend on your RETS vendor's field
             availability. Below is a brief description of each status
+            with possible synonyms which may map to your RETS
+            vendor-specific statuses.
 
-            with possible synonyms which may map to your MLS-specific
+            - **Active**: Active Listing which is still on the market
 
-            statuses
-
-
-            - Active: Active Listing which is still on the market
-
-            - ActiveUnderContract: An offer has been accepted but the listing is
-            still on market. Synonyms: Accepting Backup Offers, Backup Offer,
+            - **ActiveUnderContract**: An offer has been accepted but the listing
+            is still on market. Synonyms: Accepting Backup Offers, Backup Offer,
             Active With Accepted. Synonyms: Offer, Backup, Contingent
 
-            - Pending: An offer has been accepted and the listing is no longer
+            - **Pending**: An offer has been accepted and the listing is no longer
             on market. Synonyms: Offer Accepted, Under Contract
 
-            - Hold: The listing has been withdrawn from the market, but a
-            contract
-              still exists between the seller and the listing member. Synonyms: Hold, Hold Do Not Show, Temp Off Market
-            - Withdrawn: The listing has been withdrawn from the market, but a
-            contract
-              still exists between the seller and the listing member. Synonyms: Hold, Hold Do Not Show, Temp Off Market
-            - Closed: The purchase agreement has been fulfilled or the lease
-              agreement has been executed. Synonyms: Sold, Leased, Rented, Closed Sale
-            - Expired: The listing contract has expired
+            - **ComingSoon**: This is a listing that has not yet been on
+            market but will be on market soon.
 
-            - Delete: The listing contract was never valid or other reason for
-            the contract to be nullified. Synonyms: Kill, Zap
-
-            - Incomplete: The listing has not yet be completely entered and is
-            not yet
-              published in the MLS. Synonyms: Draft, Partially Complted
-            - ComingSoon
+            - **Closed**: The purchase agreement has been fulfilled or the lease
+            agreement has been executed. Synonyms: Sold, Leased, Rented, Closed Sale
         area:
           type: string
           nullable: true
