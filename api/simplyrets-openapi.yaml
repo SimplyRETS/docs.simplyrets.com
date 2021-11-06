@@ -1969,6 +1969,11 @@ components:
           type: string
           description: Heating description or short string
           nullable: true
+        bathrooms:
+          format: int64
+          type: integer
+          description: Number of bathrooms.
+          nullable: true
         foundation:
           type: string
           nullable: true
