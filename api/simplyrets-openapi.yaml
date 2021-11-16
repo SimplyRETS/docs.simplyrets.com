@@ -1969,6 +1969,10 @@ components:
           type: string
           description: Heating description or short string
           nullable: true
+        bathrooms:
+          format: string
+          description: Total number of bathrooms.
+          nullable: true
         foundation:
           type: string
           nullable: true
