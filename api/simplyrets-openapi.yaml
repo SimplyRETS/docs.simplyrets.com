@@ -1815,17 +1815,18 @@ components:
       in: query
       name: count
       description: |
-        When set to `false`, The `X-Total-Count` header will not
-        be returned
+        When set to `true`, The `X-Total-Count` header will be
+        returned, showing the total number of items matching the query.
 
         Counting the listings can contribute to slower API calls
         due to the extra queries that need to be run to get an
         exact count.
 
-        Disabling count can increase query speeds.
+        Enabling count may decrease API response/page load times,
+        especially on larger datasets.
       schema:
         type: boolean
-        default: true
+        default: false
     agentQ:
       required: false
       in: query
