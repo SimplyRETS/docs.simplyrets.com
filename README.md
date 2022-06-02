@@ -58,7 +58,7 @@ documentation, examples, and help topics. Browse the links below:
   - [`/agents`]({{ "/api/index.html#/Agents/get_agents" | relative_url }})
   - [`/properties/analytics`]({{ "/api/index.html#/Analytics/get_properties_analytics" | relative_url }})
 - [Live example](http://maxavenue.com/homes-for-sale/)
-- [API help topics](#topics)
+- [Code examples (GitHub)](https://github.com/SimplyRETS/examples)
 
 All of the help topics below are geared towards using the API, from
 getting started, to more advanced things like pagination. If you can't
@@ -74,9 +74,8 @@ find what you need, [reach out any time](https://simplyrets.com/#home-contact).
 
 <br/>
 
-## [API examples (GitHub)](https://github.com/SimplyRETS/examples)
+{% include topics.html %}
 ## [JavaScript/AJAX example](https://github.com/SimplyRETS/examples/tree/master/javascript/)
 ## [Listings API Tips and Tricks](https://simplyrets.com/blog/api-tips-and-tricks.html)
 ## [Interactive map search tutorial](https://simplyrets.com/blog/interactive-map-search.html)
 ## [Pagination with `limit` and `offset`](https://simplyrets.com/blog/api-pagination.html)
-{% include topics.html %}
