@@ -2358,11 +2358,6 @@ components:
           type: string
           description: Start Date for the open house
           nullable: true
-        inputId:
-          description: |
-            The MLS number for the showing agent or agent which created the
-            OpenHouse in the RETS database.
-          nullable: true
         openHouseKey:
           type: integer
           description: |
