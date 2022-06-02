@@ -1273,11 +1273,13 @@ components:
       in: query
       name: brokers
       description: |
-        Filter the listings returned by brokerage with a Broker
-        ID. For some MLS areas, this is the ListOfficeId (Listing
-        Office ID).  You can specific multiple broker
-        parameters. Note, this query parameter is only available
-        if a Broker ID is provided by your RETS vendor or MLS.
+        Filter the listings by returned by ListOfficeMlsId
+        (`.office.brokerid`).  For most MLS areas, this will
+        correspond to the "Office MLS ID".  You can specify
+        multiple `broker` parameters per query.
+
+        Note: your data feed must contain a ListOfficeMlsId or similar
+        field for this filter to work.
       explode: true
       schema:
         type: array
