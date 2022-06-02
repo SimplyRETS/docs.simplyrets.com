@@ -203,6 +203,13 @@ paths:
             format: date-time
         - required: false
           in: query
+          name: lastId
+          description: |
+            Used as a cursor for pagination.
+          schema:
+            type: integer
+        - required: false
+          in: query
           name: offset
           description: |
             Increase the offset parameter by the limit to go to the
@@ -214,20 +221,12 @@ paths:
             type: integer
         - required: false
           in: query
-          name: lastId
-          description: |
-            Used as a cursor for pagination.
-          schema:
-            type: integer
-        - required: false
-          in: query
           name: limit
           description: |
-            Set the number of listings to return in the response.
-            This defaults to 20 listings, and can be a maximum of 500.
-            To paginate through to the next page of listings, take a
-            look at the `offset` parameter, or the Link in the HTTP
-            Header.
+            The number of records returned in the API response. This
+            can be set to any number between 1 and 500.
+
+            The default limit is 12 on the `/openhouses` endpoint.
           schema:
             type: integer
         - required: false
