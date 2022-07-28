@@ -203,6 +203,13 @@ paths:
             format: date-time
         - required: false
           in: query
+          name: lastId
+          description: |
+            Used as a cursor for pagination.
+          schema:
+            type: integer
+        - required: false
+          in: query
           name: offset
           description: |
             Increase the offset parameter by the limit to go to the
@@ -214,20 +221,12 @@ paths:
             type: integer
         - required: false
           in: query
-          name: lastId
-          description: |
-            Used as a cursor for pagination.
-          schema:
-            type: integer
-        - required: false
-          in: query
           name: limit
           description: |
-            Set the number of listings to return in the response.
-            This defaults to 20 listings, and can be a maximum of 500.
-            To paginate through to the next page of listings, take a
-            look at the `offset` parameter, or the Link in the HTTP
-            Header.
+            The number of records returned in the API response. This
+            can be set to any number between 1 and 500.
+
+            The default limit is 12 on the `/openhouses` endpoint.
           schema:
             type: integer
         - required: false
@@ -387,22 +386,25 @@ paths:
       responses:
         '200':
           headers:
+            X-SimplyRETS-LastUpdate:
+              description: >-
+                The last time a listing refresh was completed for the RETS
+                or WebAPI feed associated with this API request.
+              schema:
+                type: timestamp
             Link:
               description: A set of pagination headers provided by the SimplyRETS API.
               schema:
                 type: string
             X-Total-Count:
               description: |
-                The total number of listings that match this search, even
-                if they can't be returned due to the API maximum response
-                limit. In many cases this number will be higher than the
-                total number of listings included in the response body.
-              schema:
-                type: timestamp
-            X-SimplyRETS-LastUpdate:
-              description: >-
-                The last time a listing refresh was run for the RETS feed
-                associated w/ this API request.
+                The total number of listings that match this search.
+                In many cases this number will be higher than the
+                total number of listings included in the response
+                body.
+
+                _This header is only returned when `count=true`
+                is specified in the query._
               schema:
                 type: timestamp
           description: |
@@ -2358,11 +2360,6 @@ components:
           format: date-time
           type: string
           description: Start Date for the open house
-          nullable: true
-        inputId:
-          description: |
-            The MLS number for the showing agent or agent which created the
-            OpenHouse in the RETS database.
           nullable: true
         openHouseKey:
           type: integer
