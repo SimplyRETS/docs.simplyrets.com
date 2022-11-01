@@ -2822,7 +2822,7 @@ components:
           type: string
           enum:
             - Active
-            - ActiveUnderContract (Backup-Offer)
+            - ActiveUnderContract
             - Pending
             - Hold
             - Withdrawn
