@@ -2008,13 +2008,10 @@ components:
         lotDescription:
           type: string
           nullable: true
-        lotSizeAcres:
+        acres:
           format: float
           type: number
-          description: |
-            Lot size in acres
-
-            **Added on 2016/05/04 - Not available for all RETS vendors**
+          description: Lot size in acres
           nullable: true
         subType:
           type: string
