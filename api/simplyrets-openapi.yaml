@@ -108,9 +108,8 @@ paths:
           in: query
           name: type
           description: |
-            Request listings by a specific property type. This
-            defaults to Residential, and you can only specify one type
-            in a single query.
+            Request open houses by it's listing's property type. This defaults to
+            Residential, and you can only specify one type in a single query.
           schema:
             type: string
             enum:
@@ -126,14 +125,14 @@ paths:
           in: query
           name: listingId
           description: |
-            Request openhouses for a specific `listingId`.
+            Request open houses for a specific `listingId`.
           schema:
             type: string
         - required: false
           in: query
           name: cities
           description: >
-            Filter the openhouses returned by a list of valid cities.
+            Filter the open houses returned by a list of valid cities.
 
 
             The `cities` query parameter is case-insensitive.
@@ -172,9 +171,9 @@ paths:
           in: query
           name: brokers
           description: |
-            Filter the listings returned by brokerage with a Broker ID.
-            You can specific multiple broker parameters. Note, the Broker
-            ID is provided by your RETS vendor or MLS.
+            Filter open houses by brokerage with a Broker ID.  You can specific
+            multiple broker parameters. Note, the Broker ID is provided by your
+            RETS vendor or MLS.
           explode: true
           schema:
             type: array
@@ -184,7 +183,7 @@ paths:
           in: query
           name: agent
           description: |
-            Filter the listings returned by an agent ID.  Note, the
+            Filter the open houses returned by an agent ID.  Note, the
             Agent ID is provided by your RETS vendor or MLS.
           schema:
             type: string
@@ -192,7 +191,14 @@ paths:
           in: query
           name: minprice
           description: |
-            Filter listings by a minimum price.
+            Filter open houses by the minimum price of it's corresponding listing.
+          schema:
+            type: integer
+        - required: false
+          in: query
+          name: maxprice
+          description: |
+            Filter open houses by the maximum price of it's corresponding listing.
           schema:
             type: integer
         - in: query
@@ -206,6 +212,30 @@ paths:
           name: lastId
           description: |
             Used as a cursor for pagination.
+          schema:
+            type: integer
+        - required: false
+          in: query
+          name: minarea
+          description: |
+            Filter open houses by the minimum living area of it's corresponding
+            listing.
+          schema:
+            type: integer
+        - required: false
+          in: query
+          name: minbeds
+          description: |
+            Filter open houses by the minimum number bedrooms of it's
+            corresponding listing.
+          schema:
+            type: integer
+        - required: false
+          in: query
+          name: minbaths
+          description: |
+            Filter open houses by the minimum number of bathrooms of it's
+            corresponding listing.
           schema:
             type: integer
         - required: false
