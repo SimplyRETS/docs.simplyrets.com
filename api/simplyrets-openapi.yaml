@@ -2023,7 +2023,7 @@ components:
         foundation:
           type: string
           nullable: true
-        poolFeatures:
+        pool:
           type: string
           nullable: true
         laundryFeatures:
