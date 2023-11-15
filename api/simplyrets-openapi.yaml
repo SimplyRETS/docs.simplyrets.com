@@ -1149,13 +1149,14 @@ components:
         A textual keyword search. This parameter will search  the following
         fields, when available:
 
-          - listingId (This does _not_ search the `mlsId` field in the SimplyRETS response body)
+          - listingId (MLS #)
           - street number
           - street name
-          - mls area (major)
+          - unit number
           - city
-          - subdivision name
           - postal code
+          - subdivision name
+          - mls area (major)
 
         The `q` parameter can be specified multiple times in a
         query. For example, `q=Houston&q=mlsid_12345`.
