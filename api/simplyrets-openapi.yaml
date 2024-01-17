@@ -1300,6 +1300,20 @@ components:
         type: array
         items:
           type: string
+    coListAgent:
+      required: false
+      in: query
+      name: coListAgent
+      description: |
+        Filter the listings returned by the CoListAgent (`.coAgent.id`) field.
+        Note, the CoListAgent ID is provided by the MLS.
+
+        The primary ListAgent is not included in this query parameter.
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
     salesAgent:
       required: false
       in: query
@@ -1308,7 +1322,6 @@ components:
         Filter the listings returned by the `sales.agent` id.  Note, the
 
         Agent ID is provided by your RETS vendor or MLS.
-
 
         The co-sales or co-buyer's agent is not included in this query
         parameter.
