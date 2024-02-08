@@ -1485,7 +1485,7 @@ components:
       in: query
       name: minlistdate
       description: |
-        Query listings with a `.listDate` older than or equal to this value.
+        Query listings with a `.listDate` _after_ (or equal to) this value.
 
         **Note:** By default this is parsed and compared as UTC unless
         a timezone is specified in the parameter.
@@ -1496,7 +1496,7 @@ components:
       in: query
       name: maxlistdate
       description: |
-        Query listings with a `.listDate` more recent than or equal to this value.
+        Query listings with a `.listDate` _before_ (or equal to) this value.
 
         **Note:** By default this is parsed and compared as UTC unless
         a timezone is specified in the parameter.
