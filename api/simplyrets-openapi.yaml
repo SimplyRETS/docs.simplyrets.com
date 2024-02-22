@@ -1796,32 +1796,27 @@ components:
       required: false
       in: query
       name: include
-      description: >
-        Include a extra fields which are not in the default
-        response body. Available values:
+      description: |
+        Enable additional fields in the API response. The available
+        `include` values are:
 
-        - 'rooms': include parameter will include
-           any additional rooms as a list.
+        - `include=compliance`: Adds `.compliance` data to the API
+          response.  Compliance data will contain extra fields that
+          may be required in your IDX display. Please check your MLS's
+          or association's specific IDX display requirements.
 
-        Note that your RETS vendor or MLS must provide these
-        fields in their RETS data for them to be available in the
-        API response. In the future, fields which require an
-        'include' may become available by default.
+        - `include=rooms`: Adds `.rooms` data to the API response.
+          Rooms data contains additional information about individual
+          rooms on the property (e.g. bedrooms, living room). Not all
+          feeds support this extended data. Enabled upon request.
       explode: true
       schema:
         type: array
         items:
           type: string
           enum:
-            - association
-            - agreement
-            - garageSpaces
-            - maintenanceExpense
-            - parking
-            - pool
+            - compliance
             - rooms
-            - taxYear
-            - taxAnnualAmount
     sort:
       required: false
       in: query
