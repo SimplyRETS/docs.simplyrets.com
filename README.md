@@ -57,6 +57,7 @@ documentation, examples, and help topics. Browse the links below:
   - [`/openhouses`]({{ "/api/index.html#/OpenHouses/get_openhouses" | relative_url }})
   - [`/agents`]({{ "/api/index.html#/Agents/get_agents" | relative_url }})
   - [`/properties/analytics`]({{ "/api/index.html#/Analytics/get_properties_analytics" | relative_url }})
+- [Live example](https://www.openhouseday.com/search)
 - [Code examples (GitHub)](https://github.com/SimplyRETS/examples)
 
 All of the help topics below are geared towards using the API, from
