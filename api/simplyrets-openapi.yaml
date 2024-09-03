@@ -119,6 +119,7 @@ paths:
               - condominium
               - multifamily
               - commercial
+              - commerciallease
               - land
               - farm
         - required: false
@@ -1228,6 +1229,7 @@ components:
             - condominium
             - multifamily
             - commercial
+            - commerciallease
             - land
             - farm
     subtype:
@@ -2153,15 +2155,24 @@ components:
             - RNT
             - MLF
             - CRE
+            - CLE
             - LND
             - FRM
           description: >
-            Abbreviated property type. RES is Residential, CND is
-            CondoOrTownhome,
+            The abbreviated property type.
 
-            RNT is Rental, MLF is Multi-Family, CRE is Commercial, LND is Land,
+              - **RES**: Residential
+              - **CND**: CondoOrTownhome
+              - **RNT**: Rental
+              - **MLF**: MultiFamily
+              - **CRE**: Commercial
+              - **CLE**: Commercial Lease
+              - **LND**: Land
+              - **FRM**: Farm
 
-            FRM is Farm. See the `propertySubType` field for more information.
+            Also see the `.property.subType` and
+            `.property.subTypeText` fields for more information about
+            the type of property.
         garageSpaces:
           format: float
           type: number
