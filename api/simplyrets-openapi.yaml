@@ -507,8 +507,9 @@ paths:
       - "$ref": "#/components/parameters/subtype"
       - "$ref": "#/components/parameters/subTypeText"
       - "$ref": "#/components/parameters/agent"
-      - "$ref": "#/components/parameters/salesAgent"
       - "$ref": "#/components/parameters/brokers"
+      - "$ref": "#/components/parameters/salesAgent"
+      - "$ref": "#/components/parameters/salesOffice"
       - "$ref": "#/components/parameters/specialListingConditions"
       - "$ref": "#/components/parameters/ownership"
       - "$ref": "#/components/parameters/minprice"
@@ -1300,6 +1301,23 @@ components:
         type: array
         items:
           type: string
+    brokers:
+      required: false
+      in: query
+      name: brokers
+      description: |
+        Filter the listings by returned by ListOfficeMlsId
+        (`.office.brokerid`).  For most MLS areas, this will
+        correspond to the "Office MLS ID".  You can specify
+        multiple `broker` parameters per query.
+
+        Note: your data feed must contain a ListOfficeMlsId or similar
+        field for this filter to work.
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
     salesAgent:
       required: false
       in: query
@@ -1317,16 +1335,15 @@ components:
         type: array
         items:
           type: string
-    brokers:
+    salesOffice:
       required: false
       in: query
-      name: brokers
+      name: salesOffice
       description: |
-        Filter the listings returned by brokerage with a Broker
-        ID. For some MLS areas, this is the ListOfficeId (Listing
-        Office ID).  You can specific multiple broker
-        parameters. Note, this query parameter is only available
-        if a Broker ID is provided by your RETS vendor or MLS.
+        Filter the listings returned by the `sales.office.brokerid`
+        field. This parameter can be specified multiple times.
+
+        Note, Office MLS IDs are provided by your MLS or data vendor.
       explode: true
       schema:
         type: array
