@@ -535,6 +535,7 @@ paths:
       - "$ref": "#/components/parameters/postalCodes"
       - "$ref": "#/components/parameters/features"
       - "$ref": "#/components/parameters/exteriorFeatures"
+      - "$ref": "#/components/parameters/pool"
       - "$ref": "#/components/parameters/water"
       - "$ref": "#/components/parameters/neighborhoods"
       - "$ref": "#/components/parameters/cities"
@@ -1019,6 +1020,7 @@ paths:
       - "$ref": "#/components/parameters/postalCodes"
       - "$ref": "#/components/parameters/features"
       - "$ref": "#/components/parameters/exteriorFeatures"
+      - "$ref": "#/components/parameters/pool"
       - "$ref": "#/components/parameters/water"
       - "$ref": "#/components/parameters/neighborhoods"
       - "$ref": "#/components/parameters/cities"
@@ -1611,6 +1613,27 @@ components:
         type: array
         items:
           type: string
+    pool:
+      required: false
+      in: query
+      name: pool
+      description: >
+        Filter listings on pool features (`.property.pool`). There
+        are multiple ways to use this parameter:
+
+        - `pool=true`: Return listings where `.property.pool` is NOT
+          `false` or `null`.
+        - `pool=false`: Return listings where `.property.pool` IS
+          `false` or `null`.
+        - `pool=QUERY`: Return listings with a matching
+          `.property.pool` value. Example: `?pool=Private`.
+
+        If this parameter is used multiple times in a single query,
+        return listings that match any of the provided values.
+      schema:
+        type: array
+        items:
+          type: string
     water:
       required: false
       in: query
@@ -2021,7 +2044,7 @@ components:
         foundation:
           type: string
           nullable: true
-        poolFeatures:
+        pool:
           type: string
           nullable: true
         laundryFeatures:
