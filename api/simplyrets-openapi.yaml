@@ -533,6 +533,7 @@ paths:
       - "$ref": "#/components/parameters/lastId"
       - "$ref": "#/components/parameters/vendor"
       - "$ref": "#/components/parameters/postalCodes"
+      - "$ref": "#/components/parameters/style"
       - "$ref": "#/components/parameters/features"
       - "$ref": "#/components/parameters/exteriorFeatures"
       - "$ref": "#/components/parameters/water"
@@ -1017,6 +1018,7 @@ paths:
       - "$ref": "#/components/parameters/lastId"
       - "$ref": "#/components/parameters/vendor"
       - "$ref": "#/components/parameters/postalCodes"
+      - "$ref": "#/components/parameters/style"
       - "$ref": "#/components/parameters/features"
       - "$ref": "#/components/parameters/exteriorFeatures"
       - "$ref": "#/components/parameters/water"
@@ -1562,6 +1564,26 @@ components:
       description: |
         Filter the listings returned by postal codes / zip
         code. You can specify multiple.
+      explode: true
+      schema:
+        type: array
+        items:
+          type: string
+    style:
+      required: false
+      in: query
+      name: features
+      description: >
+        Filter the listings by **architectural style**.  You can use
+        the parameter multiple times to filter by multiple styles. For
+        example, to search for `Contemporary` and `Bungalow`:
+
+        ```
+        https://simplyrets.com/services?style=Contemporary&style=Bungalow
+        ```
+
+        The values available for architectural style is provided by
+        the RETS/WebAPI vendor or MLS.
       explode: true
       schema:
         type: array
