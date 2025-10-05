@@ -507,6 +507,7 @@ paths:
       - "$ref": "#/components/parameters/subtype"
       - "$ref": "#/components/parameters/subTypeText"
       - "$ref": "#/components/parameters/agent"
+      - "$ref": "#/components/parameters/coListAgent"
       - "$ref": "#/components/parameters/salesAgent"
       - "$ref": "#/components/parameters/brokers"
       - "$ref": "#/components/parameters/specialListingConditions"
