@@ -31,6 +31,7 @@ tags:
   - name: Listings
   - name: OpenHouses
   - name: Agents
+  - name: Offices
   - name: Analytics
   - name: Metadata
 paths:
@@ -912,6 +913,180 @@ paths:
         multiple agent websites for a brokerage, marketing to agents,
         and much much more. This endpoint is accessible by adding the
         Agents API addon to your app.
+  /offices:
+    get:
+      summary: The SimplyRETS offices API
+      tags:
+        - Offices
+      responses:
+        '200':
+          headers:
+            Link:
+              description: A set of pagination headers provided by the SimplyRETS API.
+              schema:
+                type: string
+            X-SimplyRETS-LastUpdate:
+              description: >-
+                The last completed refresh for the RETS or WebAPI feed
+                associated with this API request.
+              schema:
+                type: string
+                format: date-time
+            X-Total-Count:
+              description: |
+                The total number of offices matching the search, before pagination.
+                Only returned when `count=true` is specified.
+              schema:
+                type: integer
+          description: |
+            A successful request returns an array of offices.
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/OfficesResponse'
+                type: array
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/OfficesResponse'
+                type: array
+        '400':
+          description: |
+            Will send `Bad Request` if the offices add-on is not enabled,
+            a required vendor or username is missing, or a positive offset returns no offices.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Will send `Authentication Required`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Will send `Authorization Required`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: |
+            Will send `Too Many Requests`. Please see our Service
+            Level Agreement for more information on Request Rates and
+            Acceptable Use.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Will send `Internal Server Error`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      parameters:
+        - required: false
+          in: query
+          name: q
+          description: |
+            Search offices by MLS office ID, main office MLS ID, email, or name.
+            IDs and email use exact matches; names use case-insensitive partial
+            matches. Repeat `q` to match any of the supplied values, for example
+            `?q=ABC123&q=Example`.
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - required: false
+          in: query
+          name: name
+          description: Filter offices by a case-insensitive partial match on their name.
+          schema:
+            type: string
+        - required: false
+          in: query
+          name: state
+          description: Filter offices by a case-insensitive partial match on `address.state`.
+          schema:
+            type: string
+        - required: false
+          in: query
+          name: count
+          description: |
+            Set to `true` to include the total number of matching offices in the
+            `X-Total-Count` response header.
+          schema:
+            type: boolean
+            default: false
+        - required: false
+          in: query
+          name: offset
+          description: |
+            Number of matching offices to skip. Increase by `limit` to request
+            the next page, or follow the `Link` response header. A positive
+            offset that returns no offices produces an HTTP 400 error.
+          schema:
+            type: integer
+            default: 0
+        - required: false
+          in: query
+          name: limit
+          description: Number of offices to return per page.
+          schema:
+            type: integer
+            default: 12
+        - "$ref": "#/components/parameters/vendor"
+        - required: false
+          in: query
+          name: username
+          description: |
+            Select the feed username when your API credentials have multiple
+            usernames for the selected vendor. Required in that case; the
+            username must be associated with your API credentials.
+          schema:
+            type: string
+      description: |
+        Query the office roster from your RETS or WebAPI feed. This endpoint
+        requires the Offices API add-on to be enabled for your API credentials.
+        Demo API credentials do not have access to this endpoint.
+        Results are ordered by modification timestamp, newest first.
+        Combine filters to narrow the search and use `limit` and `offset`, or
+        the `Link` response header, to paginate through matching offices.
+    options:
+      summary: Check the offices endpoint
+      tags:
+        - Metadata
+      description: Returns a confirmation message for the offices endpoint.
+      responses:
+        '200':
+          description: A successful OPTIONS request returns a JSON confirmation message.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Succesful OPTIONS request on /offices endpoint
   /properties/analytics:
     get:
       summary: The SimplyRETS market analytics API
@@ -2526,6 +2701,26 @@ components:
           example: 15
           description: The total number of listings matching the search criteria, and
             used to calculate the analytics.
+    OfficesResponse:
+      description: The SimplyRETS offices API response for a single office.
+      allOf:
+        - $ref: '#/components/schemas/Office'
+        - type: object
+          properties:
+            modified:
+              type: string
+              format: date-time
+              nullable: true
+              description: The office record's modification timestamp from the MLS.
+            address:
+              $ref: '#/components/schemas/StreetAddress'
+              description: Office address information.
+              nullable: true
+            status:
+              type: string
+              nullable: true
+              example: Active
+              description: Office status, such as Active, Inactive, or another MLS-provided value.
     AgentsResponse:
       type: object
       description: The SimplyRETS agents API response
