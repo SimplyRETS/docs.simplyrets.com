@@ -10,7 +10,7 @@ info:
 
     The docs below describe all of the endpoints, search parameters,
     and responses from SimplyRETS. You can **make live API requests on
-    this page** by clicking the "Authorize" button below and enter
+    this page** using the Authentication panel below. Enter
     your API keys (or `simplyrets`/`simplyrets` for the demo data).
     [Contact us](https://simplyrets.com/#home-contact) if you have any
     question, comments, or feedback.

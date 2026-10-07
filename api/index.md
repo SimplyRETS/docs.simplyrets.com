@@ -1,3 +1,3 @@
 ---
-layout: swaggerui
+layout: scalar
 ---

@@ -1,0 +1,8 @@
+Scalar API Reference 1.72.3
+Package: @scalar/api-reference@1.72.3 (npm)
+Source: https://github.com/scalar/scalar/tree/main/packages/api-reference
+Package licence: MIT
+Vendored browser bundle: dist/browser/standalone.js
+SHA-256: f98a66f9d9613398fd6eb58be8f25594d7e8861e71ea11bca94d67ae9fa5567f
+Upstream licence: https://github.com/scalar/scalar/blob/main/LICENSE
+Bundled third-party licence notices are retained in the JavaScript file.

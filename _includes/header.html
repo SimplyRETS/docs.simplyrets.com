@@ -6,7 +6,10 @@
 
   <div class="wrapper">
       <a class="site-title" rel="author" href="{{ '/' | relative_url }}">
-        <img src="{{ "/assets/img/simplyrets-logo-horizontal.svg" | relative_url }}" style="max-width:175px"/>
+        <img class="site-logo-light" src="{{ "/assets/img/simplyrets-logo-horizontal.svg" | relative_url }}" style="max-width:175px"/>
+        {%- if page.layout == "scalar" -%}
+          <img class="site-logo-dark" src="{{ "/assets/img/simplyrets-logo-horizontal-dark.svg" | relative_url }}" alt="SimplyRETS" style="max-width:175px"/>
+        {%- endif -%}
       </a>
 
       <nav class="site-nav">
@@ -27,5 +30,11 @@
           <a class="page-link" href="https://simplyrets.com/#home-contact">Contact</a>
         </div>
       </nav>
+      {%- if page.layout == "scalar" -%}
+        <button id="api-theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode">
+          <span class="theme-icon-dark" aria-hidden="true">☾</span>
+          <span class="theme-icon-light" aria-hidden="true">☀</span>
+        </button>
+      {%- endif -%}
   </div>
 </header>
