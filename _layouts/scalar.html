@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>SimplyRETS | RETS API Documentation</title>
+        <link rel="icon" href="{{ '/assets/img/favicon.ico' | relative_url }}">
+        <link
+            href="{{ '/assets/main.css' | relative_url }}"
+            media="screen"
+            rel="stylesheet"
+            type="text/css"
+        />
+        {%- if jekyll.environment == 'production' -%}
+            {%- include google-tag-manager.html -%}
+        {%- endif -%}
+    </head>
+    <body class="scalar-page">
+        {%- include header.html -%}
+        {{ content }}
+        <main id="scalar-reference" aria-label="SimplyRETS API reference"></main>
+        <noscript>
+            <p>This interactive API reference requires JavaScript.
+                <a href="{{ '/api/simplyrets-openapi.yaml' | relative_url }}">Download the OpenAPI specification</a>.
+            </p>
+        </noscript>
+        <script src="{{ '/assets/js/scalar-api-reference-1.72.3.js' | relative_url }}"></script>
+        <script src="{{ '/assets/js/scalar-reference.js' | relative_url }}"></script>
+    </body>
+</html>

@@ -4,57 +4,88 @@
 @import "minima";
 @import "responsive";
 
-.swagger-ui-wrap {
-    .info {
-        margin-bottom: 25px !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-
-        @include desktop {
-            width: 80%;
+// Keep the existing Minima layout on every page except the Scalar reference.
+.scalar-page {
+    --scalar-custom-header-height: 62px;
+    background: var(--scalar-background-1, #fafafa);
+    .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--scalar-background-1, #fafafa);
+        border-bottom-color: var(--scalar-border-color, #e2e5e2);
+        .wrapper {
+            max-width: none;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 0 24px;
+            min-height: 56px;
         }
+        .site-title { float: none; margin: 0; }
+        .site-nav { float: none; margin-left: auto; }
+        .page-link { color: var(--scalar-color-1, #333333); }
+        .menu-icon svg { fill: var(--scalar-color-1, #333333); }
     }
-
-    .swagger-ui {
-        // Fix API/OAI version labels at the very top
-        pre.version {
-            background-color: initial;
-            border-color: transparent;
-            padding: 0px;
+    &.light-mode .site-header {
+        background: var(--scalar-sidebar-background-1, var(--scalar-background-1));
+    }
+    .site-logo-dark, .theme-icon-light { display: none; }
+    #api-theme-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border: 1px solid var(--scalar-border-color, #e2e5e2);
+        border-radius: 8px;
+        background: var(--scalar-background-2, #f3f4f3);
+        color: var(--scalar-color-1, #333333);
+        font: 24px/1 system-ui, sans-serif;
+        cursor: pointer;
+        &:hover { background: var(--scalar-background-3, #e9ece9); }
+        &:focus-visible { outline: 2px solid var(--scalar-color-accent, #2e7d32); outline-offset: 3px; }
+    }
+    &.dark-mode {
+        color-scheme: dark;
+        .site-logo-light, .theme-icon-dark { display: none; }
+        .site-logo-dark, .theme-icon-light { display: inline; }
+    }
+    #scalar-reference pre, #scalar-reference code,
+    .scalar-client pre, .scalar-client code {
+        border: 0;
+        background-color: transparent;
+    }
+    // Avoid Minima's pale table outline on Scalar's dark authentication panel.
+    #scalar-reference table, #scalar-reference th, #scalar-reference td,
+    .scalar-client table, .scalar-client th, .scalar-client td {
+        border-color: var(--scalar-border-color, #e2e5e2);
+    }
+    // The header delegates to Scalar's native toggle so its client and code
+    // samples stay in sync without remounting or resetting an open request.
+    #scalar-reference button:has([aria-label="Set dark mode"]),
+    #scalar-reference button:has([aria-label="Set light mode"]) { display: none; }
+    @media screen and (max-width: 600px) {
+        .site-header {
+            .wrapper { padding: 0 16px; gap: 12px; }
+            .site-nav {
+                right: 68px;
+                background: var(--scalar-background-1, #fafafa);
+                border-color: var(--scalar-border-color, #e2e5e2);
+                .trigger {
+                    position: absolute;
+                    top: 44px;
+                    right: 0;
+                    min-width: 170px;
+                    padding: 6px 0;
+                    background: var(--scalar-background-1, #fafafa);
+                    border: 1px solid var(--scalar-border-color, #e2e5e2);
+                    border-radius: 8px;
+                }
+            }
         }
-
-        // Fix <code> elements
-        code {
-            font-family: monospace;
-            color: #cd4a4a;
-            background-color: #f8f8f8;
-            border-radius: 6px;
-            font-weight: 500;
-            padding: 2px 4px;
-            font-size: 13px;
-        }
-
-        small code {
-            font-size: inherit;
-        }
-
-        pre code {
-            background-color: transparent;
-            color: #fff;
-        }
-
-        .model-box {
-            width: 95% !important;
-        }
-
-        // Parameter name table column
-        table tbody tr td:first-of-type {
-            min-width: 10em;
-            padding: 10px 5px;
-        }
-
-        table tbody tr td {
-            font-size: 14px;
-        }
+        #api-theme-toggle { margin-left: auto; }
     }
 }
