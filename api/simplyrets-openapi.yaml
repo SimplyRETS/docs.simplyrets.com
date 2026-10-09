@@ -524,6 +524,7 @@ paths:
       - "$ref": "#/components/parameters/maxdom"
       - "$ref": "#/components/parameters/minlistdate"
       - "$ref": "#/components/parameters/maxlistdate"
+      - "$ref": "#/components/parameters/modified"
       - "$ref": "#/components/parameters/minyear"
       - "$ref": "#/components/parameters/maxyear"
       - "$ref": "#/components/parameters/minacres"
@@ -680,6 +681,153 @@ paths:
           (`api.simplyrets.com/`) returns information about the
           current API credentials, like available vendors and the time
           of their last sync, available endpoints, and more.
+  /properties/keys:
+    get:
+      summary: Get listing keys matching a property search
+      tags:
+        - Listings
+      description: |
+        Return the SimplyRETS `mlsId` values for listings matching a search,
+        rather than full listing objects. The primary use case is auditing
+        datasets replicated from `/properties`.
+
+        For example, run a daily audit by retrieving all pages of keys from
+        this endpoint, then comparing the complete set with the `mlsId`
+        values stored locally. Remove local listing records whose keys are
+        no longer returned to keep your replicated dataset in sync.
+
+        Use search filters that cover the same dataset you replicate, and
+        omit `modified` when performing a full audit so that unchanged
+        listings are included. Complete pagination before comparing keys
+        or removing local records.
+
+        This endpoint supports the same search filters as `/properties`,
+        including `modified`. Follow the `Link` response header to paginate.
+      parameters:
+      - "$ref": "#/components/parameters/q"
+      - "$ref": "#/components/parameters/status"
+      - "$ref": "#/components/parameters/type"
+      - "$ref": "#/components/parameters/subtype"
+      - "$ref": "#/components/parameters/subTypeText"
+      - "$ref": "#/components/parameters/agent"
+      - "$ref": "#/components/parameters/coListAgent"
+      - "$ref": "#/components/parameters/salesAgent"
+      - "$ref": "#/components/parameters/brokers"
+      - "$ref": "#/components/parameters/specialListingConditions"
+      - "$ref": "#/components/parameters/ownership"
+      - "$ref": "#/components/parameters/minprice"
+      - "$ref": "#/components/parameters/maxprice"
+      - "$ref": "#/components/parameters/minarea"
+      - "$ref": "#/components/parameters/maxarea"
+      - "$ref": "#/components/parameters/minbaths"
+      - "$ref": "#/components/parameters/maxbaths"
+      - "$ref": "#/components/parameters/minbeds"
+      - "$ref": "#/components/parameters/maxbeds"
+      - "$ref": "#/components/parameters/maxdom"
+      - "$ref": "#/components/parameters/minlistdate"
+      - "$ref": "#/components/parameters/maxlistdate"
+      - "$ref": "#/components/parameters/modified"
+      - "$ref": "#/components/parameters/minyear"
+      - "$ref": "#/components/parameters/maxyear"
+      - "$ref": "#/components/parameters/minacres"
+      - "$ref": "#/components/parameters/maxacres"
+      - "$ref": "#/components/parameters/minGarageSpaces"
+      - "$ref": "#/components/parameters/maxGarageSpaces"
+      - required: false
+        in: query
+        name: limit
+        description: |
+          Set the number of listing keys to return. Defaults to 20 and is
+          capped at 5000 when using offset pagination, or 500 when using
+          the `lastId` cursor.
+        schema:
+          type: integer
+          default: 20
+          maximum: 5000
+      - "$ref": "#/components/parameters/offset"
+      - "$ref": "#/components/parameters/lastId"
+      - "$ref": "#/components/parameters/vendor"
+      - "$ref": "#/components/parameters/postalCodes"
+      - "$ref": "#/components/parameters/features"
+      - "$ref": "#/components/parameters/exteriorFeatures"
+      - "$ref": "#/components/parameters/water"
+      - "$ref": "#/components/parameters/neighborhoods"
+      - "$ref": "#/components/parameters/cities"
+      - "$ref": "#/components/parameters/state"
+      - "$ref": "#/components/parameters/counties"
+      - "$ref": "#/components/parameters/points"
+      - "$ref": "#/components/parameters/idx"
+      - "$ref": "#/components/parameters/sort"
+      responses:
+        '200':
+          description: Listing keys matching the search.
+          headers:
+            X-SimplyRETS-LastUpdate:
+              description: |
+                The last time a listing refresh was completed for the RETS
+                or WebAPI feed associated with this API request.
+              schema:
+                type: string
+                format: date-time
+            Link:
+              description: A set of pagination headers provided by the SimplyRETS API.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyKeysResponse'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/PropertyKeysResponse'
+        '400':
+          description: Will send `Bad Request`, including when the offset is too high.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Will send `Authentication Required`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Will send `Authorization Required`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: |
+            Will send `Too Many Requests`. Please see our Service
+            Level Agreement for more information on Request Rates and
+            Acceptable Use.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Will send `Internal Server Error`.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+            application/vnd.simplyrets-v0.1+json:
+              schema:
+                $ref: '#/components/schemas/Error'
   '/properties/{mlsId}':
     get:
       summary: Single listing endpoint
@@ -1671,6 +1819,32 @@ components:
         Filter listings by a maximum number of garage spaces.
       schema:
         type: integer
+    modified:
+      required: false
+      in: query
+      name: modified
+      description: |
+        Return listings whose MLS modification timestamp is on or after
+        (greater than or equal to) this value. Use this filter to retrieve
+        listings updated since a given date or time.
+
+        Accepted values include `YYYY-MM-DD`, `MM/DD/YYYY`, and timestamps
+        using either a `T` or a space between the date and time, with
+        optional fractional seconds. A timestamp can include `Z`, a numeric
+        timezone offset (such as `-07:00`), or a timezone abbreviation
+        (such as `UTC` or `CST`). Examples: `2026-10-01`,
+        `2026-10-01T13:27:01.42Z`, and `2026-10-01 13:27:01`.
+
+        Values without a timezone are interpreted as UTC. A date without
+        a time is interpreted as midnight. URL-encode spaces and any `+`
+        in timezone offsets when sending this parameter.
+
+        Invalid values are ignored, so no modification-time filter is
+        applied. This filter is also ignored for feeds that do not provide
+        MLS modification timestamps. Other search filters still apply.
+      schema:
+        type: string
+      example: '2026-10-01T00:00:00Z'
     minlistdate:
       required: false
       in: query
@@ -2058,6 +2232,17 @@ components:
       schema:
         type: string
   schemas:
+    PropertyKeysResponse:
+      type: object
+      required:
+        - mlsId
+      properties:
+        mlsId:
+          type: array
+          description: SimplyRETS listing keys matching the search.
+          items:
+            type: integer
+            format: int64
     Room:
       type: object
       description: Sales Data
