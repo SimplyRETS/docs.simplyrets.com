@@ -34,6 +34,7 @@
         expandAllParameters: false,
         modelsSectionLabel: 'Schemas',
         hideClientButton: true,
+        hiddenClients: { js: true },
         hideDarkModeToggle: false,
         darkMode: false,
         withDefaultFonts: false,
