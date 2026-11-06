@@ -22,10 +22,25 @@ The API will include this higher-level information about the feed:
 -   `lastUpdate`: Timestamp of the last successful sync.
 -   `expires`: Expiration date of this metadata.
 
-The best practice for using this metadata is to **store the
-information in your database**, and refresh it at least once a
-day. The `OPTIONS` request is not intended to be used on page-load
-like `GET /properties`, especially with large feeds.
+## Metadata request frequency
+
+Authenticated `OPTIONS /properties` and `OPTIONS /openhouses` calculate
+search-filter values from listing data. This can be expensive for large
+MLS feeds.
+
+Fetch metadata when your application starts or refresh it in the background
+(for example, daily). **Cache and reuse the response** to populate search
+forms instead of requesting it on every page load or search.
+
+Production credentials have a protective limit of approximately **one
+metadata request per minute per API key**, shared across both endpoints,
+with a small burst allowance. The limit is applied per API server. Excess
+requests return **HTTP 429**; back off before retrying and use cached
+metadata meanwhile.
+
+Browser CORS preflights and the shared public demo credentials are exempt
+from this metadata limit; other API limits still apply. **Demo behavior
+does not reflect production polling limits.**
 
 ## Example request and response
 

@@ -7,26 +7,24 @@ info:
     for software developers and real estate professionals to work
     together and _build something awesome_ with real estate data!
 
-
     The docs below describe all of the endpoints, search parameters,
     and responses from SimplyRETS. You can **make live API requests on
-    this page** using the Authentication panel below. Enter
-    your API keys (or `simplyrets`/`simplyrets` for the demo data).
-    [Contact us](https://simplyrets.com/#home-contact) if you have any
-    question, comments, or feedback.
-
+    this page** using the Authentication panel below. Enter your API
+    keys or `simplyrets`/`simplyrets` for the demo data. With
+    production credentials, only **server-side authentication via
+    HTTPS** is supported.
 
     **Additional resources**
 
     - [Accessing live MLS data](https://simplyrets.com/blog/getting-set-up.html)
-
     - [Create an app](https://simplyrets.com/account#/apps/new)
-
     - [Features for IDX compliance](/topics/fields-and-features-for-idx-compliance)
-
     - [API examples and help topics](/#topics)
-
     - [Plans & pricing](https://simplyrets.com/#home-pricing)
+
+    [Contact us](https://simplyrets.com/#home-contact) any time if you
+    have any questions or need any help getting started with the API!
+
 tags:
   - name: Listings
   - name: OpenHouses
@@ -614,11 +612,21 @@ paths:
       parameters:
         - "$ref": "#/components/parameters/vendor"
       description: |
-          An `OPTIONS` request to the `/properties` endpoint will
-          return general information about the underlying RETS or
-          WebAPI feed. This information is useful for a lot of
-          use-cases, like generating pages and queries for the cities
-          available the data.
+          An authenticated `OPTIONS /properties` request returns available
+          search-filter values, such as cities and property types, from
+          the underlying listing data.
+
+          Metadata queries can be expensive for large feeds. Fetch at
+          application startup or refresh in the background, then cache
+          and reuse the response—not on each page load or search.
+
+          Production credentials have a protective limit of about one
+          metadata request per minute per API key, shared across
+          `OPTIONS /properties` and `OPTIONS /openhouses`, with a small
+          burst allowance per API server.
+          Back off on HTTP 429.
+
+          [Learn more about OPTIONS request frequency](/topics/getting-properties-metadata-with-an-options-request#metadata-request-frequency).
           <br/>
           <br/>
           **Note**: If you have multiple feeds connected to your app,
