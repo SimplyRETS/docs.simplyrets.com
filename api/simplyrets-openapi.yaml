@@ -1465,7 +1465,12 @@ components:
       in: header
       name: Authorization
       type: http
-      description: HTTP Basic Authentication. Works over `HTTPS` only
+      description: >
+        HTTP Basic Authentication over `HTTPS` only. Keep production credentials
+        server-side; browser-based API requests from public applications are
+        discouraged. [Contact us](https://simplyrets.com/#home-contact) with any
+        questions or [submit a support request](https://simplyrets.com/account)
+        if your app requires browser based authentication.
       scheme: basic
   parameters:
     q:
